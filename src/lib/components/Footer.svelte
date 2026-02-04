@@ -7,7 +7,7 @@
   <div class="container mx-auto px-6">
     <div class="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
       <div class="col-span-1 md:col-span-2">
-        <h3 class="text-2xl font-bold mb-4">GTM Technologies</h3>
+        <h3 class="text-2xl font-bold mb-4">GGM Technologies</h3>
         <p class="text-primary-foreground/80 mb-6 max-w-md">
           We specialize in creating beautiful e-commerce experiences for brands of all sizes. 
           Let's build something amazing together.
@@ -53,7 +53,7 @@
 
     <div class="border-t border-primary-foreground/20 pt-8 flex flex-col md:flex-row justify-between items-center">
       <p class="text-primary-foreground/60 text-sm">
-        © 2024 GTM Technologies. All rights reserved.
+        © 2024 GGM Technologies. All rights reserved.
       </p>
       <div class="flex gap-6 mt-4 md:mt-0">
         <a href="/privacy-policy" class="text-primary-foreground/60 hover:text-primary-foreground text-sm transition-colors">

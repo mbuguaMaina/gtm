@@ -16,10 +16,10 @@
       <div class="flex w-full justify-between lg:w-auto items-center">
         <a
           class="group flex items-center space-x-2 transition-all duration-200"
-          aria-label="GTM Technologies - Home"
+          aria-label="GGM Technologies - Home"
           href="/"
         >
-          <img src="/circularlogo.png" class="w-10 h-10 object-contain  " alt="GTM Technologies - logo">
+          <img src="/circularlogo.png" class="w-10 h-10 object-contain  " alt="GGM Technologies - logo">
         
         </a>
 

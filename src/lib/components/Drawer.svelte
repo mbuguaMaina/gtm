@@ -24,7 +24,7 @@
    <div class="border-b  border-default pb-4 flex items-center ">
       <a onclick={() => open = false} href="/" class="flex items-center space-x-2 rtl:space-x-reverse">
          <img src="/circularlogo.png" class="h-6 w-6" alt="Flowbite Logo" />
-         <span class="self-center text-lg font-semibold whitespace-nowrap text-heading">GTM TECHNOLOGIES</span>
+         <span class="self-center text-lg font-semibold whitespace-nowrap text-heading">GGM TECHNOLOGIES</span>
       </a>
       <button type="button" onclick={()=>open=false}   aria-controls="drawer-navigation" class="text-body bg-transparent hover:text-heading hover:bg-neutral-tertiary rounded-base w-9 h-9 absolute top-2.5 end-2.5 flex items-center justify-center">
          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
