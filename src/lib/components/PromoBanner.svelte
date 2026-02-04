@@ -8,7 +8,7 @@
   class="
     py-12
     bg-linear-to-r from-accent to-accent/90
-    dark:from-accent/90 dark:to-accent/70
+     
     text-accent-foreground
     relative
     overflow-hidden
@@ -19,10 +19,9 @@
       <div class="flex items-center gap-4">
         <div
           class="
-            bg-white/10 dark:bg-white/15
+            bg-white/10  
             p-3 rounded-full
-            dark:ring-1 dark:ring-white/20
-            dark:shadow-[0_0_12px_rgba(255,255,255,0.15)]
+             
           "
         >
           <GiftBoxOutline class="w-6 h-6" />
@@ -43,9 +42,9 @@
         <div
           class="
             flex items-center gap-2 text-sm
-            bg-white/10 dark:bg-white/15
+            
             px-3 py-2 rounded-full
-            dark:ring-1 dark:ring-white/20
+           
           "
         >
           <ClockOutline class="w-4 h-4" />
@@ -55,7 +54,7 @@
         <Button
            
         
-          class="whitespace-nowrap dark:shadow-[0_0_14px_rgba(0,0,0,0.25)]"
+          class="whitespace-nowrap  "
         >
           Claim Offer
         </Button>
@@ -68,7 +67,7 @@
     class="
       pointer-events-none absolute inset-0
       bg-[radial-gradient(600px_at_50%_50%,rgba(255,255,255,0.12),transparent)]
-      opacity-0 dark:opacity-100
+      opacity-0  
       transition-opacity
     "
   ></div>

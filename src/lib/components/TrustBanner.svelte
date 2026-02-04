@@ -29,18 +29,18 @@
 <section
   class="
     py-14
-    bg-muted/50 dark:bg-zinc-900/70
-    border-y border-zinc-200 dark:border-zinc-800
+    bg-muted/50 
+    border-y border-zinc-200  
     transition-colors duration-200
   "
 >
   <div class="container mx-auto px-6">
     <div class="text-center mb-10">
-      <h3 class="text-2xl font-bold text-foreground dark:text-zinc-100 mb-2">
+      <h3 class="text-2xl font-bold text-foreground   mb-2">
         Proven Solutions Trusted by Ambitious Brands
       </h3>
 
-      <p class="text-muted-foreground dark:text-zinc-400">
+      <p class="text-muted-foreground  ">
         Join successful businesses that chose us to grow their online presence
       </p>
     </div>
@@ -57,7 +57,7 @@
         >
           <div
             class="
-              bg-accent/10 dark:bg-accent/20
+              bg-accent/10  
               w-12 h-12 rounded-full
               flex items-center justify-center
               mx-auto mb-3
@@ -65,20 +65,20 @@
           >
             <svelte:component
               this={stat.icon}
-              class="w-6 h-6 text-accent dark:text-accent/90"
+              class="w-6 h-6 text-accent  "
             />
           </div>
 
           <div
             class="
               text-2xl font-bold mb-1
-              text-accent dark:text-accent/90
+              text-accent  
             "
           >
             {stat.value}
           </div>
 
-          <div class="text-sm text-muted-foreground dark:text-zinc-400">
+          <div class="text-sm text-muted-foreground  ">
             {stat.label}
           </div>
         </div>

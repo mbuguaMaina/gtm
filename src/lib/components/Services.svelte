@@ -54,14 +54,14 @@
   ];
 </script>
 
-<section class="py-20 bg-background dark:bg-zinc-900/60">
+<section class="py-20 bg-background  ">
   <div class="container mx-auto px-6">
     <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-foreground dark:text-zinc-100">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-foreground  ">
         Our Core Services
       </h2>
 
-      <p class="text-xl text-muted-foreground dark:text-zinc-400 max-w-3xl mx-auto">
+      <p class="text-xl text-muted-foreground   max-w-3xl mx-auto">
         Comprehensive e-commerce solutions designed to elevate your artisan brand
         and drive meaningful business growth
       </p>
@@ -78,14 +78,8 @@
             relative overflow-hidden
 text-center
 p-3
-            dark:before:absolute
-            dark:before:inset-0
-            dark:before:rounded-xl
-            dark:before:opacity-0
-            dark:before:transition-opacity
-            dark:hover:before:opacity-100
-            dark:before:shadow-[0_0_16px_rgba(var(--accent),0.25)]
-            border-accent/20 dark:border-accent/50
+          
+            border-accent/20  
             rounded-2xl
             shadow-muted shadow-md
           "
@@ -95,17 +89,17 @@ p-3
             <div
               class="
                 mx-auto mb-4 p-3 rounded-full w-fit
-                bg-accent/10 dark:bg-accent/15
+                bg-accent/10  
                 group-hover:bg-accent/20
                 transition-colors
               "
             >
               <service.icon
-                class="w-8 h-8 text-accent dark:text-accent/90"
+                class="w-8 h-8 text-accent  "
               />
             </div>
 
-            <h2 class="text-xl font-semibold dark:text-zinc-100">
+            <h2 class="text-xl font-semibold  ">
               {service.title}
             </h2>
         
@@ -113,7 +107,7 @@ p-3
        
             <p
               class="
-                text-muted-foreground dark:text-zinc-400
+                text-muted-foreground  
                 text-center leading-relaxed
               "
             >
