@@ -8,7 +8,7 @@
   export let highlight: string | undefined;
   $: variantStyles = {
     primary: "bg-gradient-to-r from-primary to-primary/90 text-primary-foreground",
-    secondary: "bg-gradient-to-r from-accent/10 dark:from-accent/20 dark:to-accent/5 to-accent-5 border border-accent/20",
+    secondary: "bg-gradient-to-r from-accent/10   to-accent-5 border border-accent/20",
     urgent: "bg-gradient-to-r from-destructive to-destructive/90 text-destructive-foreground"
   }[variant] ?? "bg-gradient-to-r from-primary to-primary/90 text-primary-foreground";
 </script>
