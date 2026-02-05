@@ -190,13 +190,13 @@
          <li>
 
 <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">
-  <TwitterIcon />
+  <TwitterIcon class="text-blue-500" />
 </a>
          </li>
          <li>
 
 <a href="https://facebook.com/yourusername" target="_blank" rel="noopener noreferrer">
-  <FacebookIcon />
+  <FacebookIcon class="text-blue-500"/>
 </a>
          </li>
          <li>

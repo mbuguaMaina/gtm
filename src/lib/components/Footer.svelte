@@ -9,8 +9,7 @@
       <div class="col-span-1 md:col-span-2">
         <h3 class="text-2xl font-bold mb-4">GGM Technologies</h3>
         <p class="text-primary-foreground/80 mb-6 max-w-md">
-          We specialize in creating beautiful e-commerce experiences for brands of all sizes. 
-          Let's build something amazing together.
+      Building digital experiences that drive growth. Your trusted partner for web development, SEO, and digital marketing in Kenya.
         </p>
         <Button class="bg-accent text-primary-foreground"  size="lg">
           Start Your Project
