@@ -13,7 +13,7 @@
 
 <section class="py-24 relative bg-muted/50 
     border-y border-zinc-200  ">
-  <div class="container mx-auto px-6">
+  <div class="container mx-auto px-2 md:px-6">
     <div class="grid lg:grid-cols-2 gap-16 items-center">
       
       <!-- Left Content -->
@@ -43,7 +43,7 @@
               style={`animation-delay: ${index * 0.1}s`}
             >
               <CheckCheck class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
-              <span class="text-sm text-primary">{reason}</span>
+              <span class="text-sm text-black">{reason}</span>
             </div>
           {/each}
         </div>
@@ -82,10 +82,10 @@
         </div>
 
         <div
-          class="p-8 rounded-2xl bg-primary text-primary-foreground text-center animate-glow-pulse"
+          class="p-8 rounded-2xl bg-card border border-border text-center hover:border-primary/30 transition-colors"
         >
           <div class="text-4xl md:text-5xl text-blue-400 font-bold mb-2">24/7</div>
-          <div class="opacity-90 text-white">Support Available</div>
+          <div class="opacity-90 text-gray-800">Support Available</div>
         </div>
       </div>
     </div>
