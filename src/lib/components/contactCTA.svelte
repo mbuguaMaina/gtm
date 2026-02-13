@@ -52,10 +52,10 @@
           <div>
             <div class="text-sm text-muted mb-1">Email Us</div>
             <a
-              href="mailto:ggmtechnologies@gmail.com"
+              href="mailto:ggmtechhub@gmail.com"
               class="font-medium text-zinc-100 hover:text-[hsl(219,88%,59%)] transition-colors"
             >
-               ggmtechnologies@gmail.com
+               ggmtechhub@gmail.com
             </a>
           </div>
         </div>

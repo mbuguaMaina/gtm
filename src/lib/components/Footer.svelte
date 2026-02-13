@@ -36,7 +36,7 @@
         <div class="space-y-3">
           <div class="flex items-center gap-3 text-primary-foreground/80">
             <Mail class="w-4 h-4" />
-            <span>ggmtechnologies@gmail.com</span>
+            <span>ggmtechhub@gmail.com</span>
           </div>
           <div class="flex items-center gap-3 text-primary-foreground/80">
             <Phone class="w-4 h-4" />

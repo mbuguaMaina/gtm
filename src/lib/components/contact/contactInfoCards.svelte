@@ -12,8 +12,8 @@
     {
       icon: Mail,
       title: "Email",
-      content: "ggmtechnologies@gmail.com",
-      href: "mailto:ggmtechnologies@gmail.com",
+      content: "ggmtechhub@gmail.com",
+      href: "mailto:ggmtechhub@gmail.com",
     },
     {
       icon: Phone,

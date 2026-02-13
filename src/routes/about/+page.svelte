@@ -4,6 +4,7 @@
 	import MissionVission from "$lib/components/about/missionVission.svelte";
 	import WhyChooseUs from "$lib/components/about/whyChooseUs.svelte";
 	import ContactCTA from "$lib/components/contactCTA.svelte";
+	import FinalCTA from "$lib/components/marketing/FinalCTA.svelte";
 	import Services from "$lib/components/Services.svelte";
 
 </script>
@@ -13,3 +14,4 @@
         <Services />
         <WhyChooseUs />
         <ContactCTA />
+		<!-- <FinalCTA /> -->

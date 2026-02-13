@@ -5,22 +5,22 @@
     {
       name: "Twitter",
       icon: Twitter,
-      url: "https://twitter.com/ggmtechnologies",
+      url: "https://twitter.com/ggmtechhub",
     },
     {
       name: "Facebook",
       icon: Facebook,
-      url: "https://facebook.com/ggmtechnologies",
+      url: "https://facebook.com/ggmtechhub",
     },
     {
       name: "LinkedIn",
       icon: Linkedin,
-      url: "https://linkedin.com/company/ggmtechnologies",
+      url: "https://linkedin.com/company/ggmtechhub",
     },
     {
       name: "Instagram",
       icon: Instagram,
-      url: "https://instagram.com/ggmtechnologies",
+      url: "https://instagram.com/ggmtechhub",
     },
   ];
 </script>
