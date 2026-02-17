@@ -5,7 +5,9 @@
   import { applyTheme, getTheme } from "$lib/theme";
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
-	import { slide } from 'svelte/transition';
+ 
+  import { page } from "$app/state";
+
 
   onMount(() => {
    applyTheme(getTheme(), false); 
@@ -14,11 +16,16 @@
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
-<main  transition:slide={{ duration: 300, axis:"x" }}>
+ 
+
+{#key page.url.pathname}
+ <main>
 	<Header />
 	
 	{@render children()}
 
 	<Footer/>
 </main>
+{/key}
+
 

@@ -1,14 +1,15 @@
 <script lang="ts">
   import { page } from '$app/state';
-	import { FacebookIcon, Menu, TwitterIcon } from '@lucide/svelte';
+	import { Facebook, FacebookIcon, Menu, Twitter, TwitterIcon } from '@lucide/svelte';
 	import Drawer from './Drawer.svelte';
- 
+	import ListItem from './listItem.svelte';
+ import { navigationItems } from "$lib/navigations";
    let open = $state(false), toggleOpen = () => open = !open;
 
   const isActive = (path: string) => page.url.pathname === path;
 </script>
 
-<header class="sticky transition duration-300 top-0 z-50 w-full px-2 bg-background/10 backdrop-filter backdrop-blur">
+<header class="fixed transition duration-300 top-0 z-50 w-full px-2 bg-background ">
   <nav class="md:mx-auto   md:max-w-6xl md:px-6 transition-all duration-300 lg:px-12">
     <div class="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-0.5">
 
@@ -101,21 +102,15 @@
 
       <!-- Desktop Navigation (ABSOLUTE DIV KEPT INTACT) -->
       <div class="absolute inset-0 m-auto hidden size-fit lg:block">
-        <ul class="flex gap-8 text-sm">
+        <ul class="flex  text-sm">
+{#each navigationItems as item}
+          <ListItem isActive={isActive}   item={item}>
+            {item.label}  
+            </ListItem>
+            {/each}
 
-          <li>
-            <a
-              href="/"
-              class="block hover:text-blue-500"
-              class:text-blue-500={isActive('/')}
-              class:font-medium={isActive('/')}
-              class:text-muted-foreground={!isActive('/')}
-            >
-              Home
-            </a>
-          </li>
 
-          <li>
+          <!-- <li>
             <a
               href="/about"
               class="block hover:text-blue-500"
@@ -180,7 +175,7 @@
             >
               Contact
             </a>
-          </li>
+          </li> -->
 
         </ul>
       </div>
@@ -190,13 +185,13 @@
          <li>
 
 <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">
-  <TwitterIcon class="text-blue-500" />
+  <Twitter class="text-blue-500" />
 </a>
          </li>
          <li>
 
 <a href="https://facebook.com/yourusername" target="_blank" rel="noopener noreferrer">
-  <FacebookIcon class="text-blue-500"/>
+  <Facebook class="text-blue-500"/>
 </a>
          </li>
          <li>

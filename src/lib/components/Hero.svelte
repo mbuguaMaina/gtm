@@ -1,3 +1,6 @@
+<script>
+
+</script>
 <section
   class="relative h-dvh  flex items-center justify-center overflow-hidden"
 >
@@ -16,10 +19,10 @@
   <!-- Content -->
   <div
     data-lov-id="src/components/Hero.tsx:14:6"
-    class="relative z-10 container mx-auto px-6 text-center text-white"
+    class="relative z-10 container mx-auto px-6 text-center text-white animate-fade-up"
   >
 
-    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 animate-fade-up animation-delay-200">
+    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6  "  >
             We Build{" "}
             <span class="gradient-text">Digital Experiences</span>
             {" "}That Drive Growth

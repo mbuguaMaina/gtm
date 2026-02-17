@@ -5,14 +5,8 @@
  
 </script>
 
-<section
-  class="
-    py-10
-    bg-linear-to-b from-background to-muted
-    
-  "
->
-  <div class="container mx-auto px-2 md:px-6">
+ 
+  <div class="container mx-auto px-2  my-10  md:px-6">
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-bold mb-4 text-foreground  ">
         Featured Case Study
@@ -23,10 +17,10 @@
       </p>
     </div>
 
-    <div class="max-w-6xl mx-auto">
-      <Card class="overflow-hidden border-accent/25   shadow-elegant">
-        <div class="grid md:grid-cols-2 gap-0">
-          <div class="relative">
+ 
+      <div class="overflow-hidden mx-auto border-accent/25 w-full max-w-6xl shadow-elegant">
+        <div class="flex flex-col md:flex-row w-full gap-0">
+          <div class="relative flex-[1.5]">
             <img
               src={caseStudyImage}
               alt="Olethardware.com website showcase"
@@ -42,7 +36,7 @@
             ></div>
           </div>
 
-          <div class="p-8 md:p-12 flex flex-col justify-center">
+          <div class="p-8 md:p-12 flex flex-col flex-1 justify-center">
             <h3 class="text-xl font-bold mb-4 text-foreground  ">
               How We Built a Modern E-Commerce Plartform for Olet Hardware
             </h3>
@@ -134,7 +128,7 @@
             </Button>
           </div>
         </div>
-      </Card>
-    </div>
+      </div>
+  
   </div>
-</section>
+ 

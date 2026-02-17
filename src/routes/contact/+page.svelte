@@ -7,9 +7,11 @@
 	import WhatsappBtn from "$lib/components/contact/whatsappBtn.svelte";
 
 </script>
+<section class="animate-fade-up">
 <ContactHero />
       <ResponseInfo />
       <ContactInfoCards />
       <WhatsappBtn />
       <SocialLinks />
       <Faq />
+	</section>
