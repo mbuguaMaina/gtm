@@ -6,22 +6,22 @@
 </script>
 
  
-  <div class="container mx-auto px-2  my-10  md:px-6">
+  <div class="container mx-auto px-2 rounded-md bg-secondary p-2 my-10  md:px-6">
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-bold mb-4 text-foreground  ">
         Featured Case Study
       </h2>
 
       <p class="text-xl text-muted-foreground   max-w-2xl mx-auto">
-        See how we transformed Olet Hardware's Online presence, attracting over 100,000 customers and increasing sales by 300%.
+        See how we transformed Business's Online presence, attracting more customers and increasing sales by over 25%.
       </p>
     </div>
 
  
-      <div class="overflow-hidden mx-auto border-accent/25 w-full max-w-6xl shadow-elegant">
+      <div class="overflow-hidden rounded-md bg-background  mx-auto border-accent/25 w-full max-w-6xl shadow-elegant">
         <div class="flex flex-col md:flex-row w-full gap-0">
           <div class="relative flex-[1.5]">
-            <img
+            <enhanced:img
               src={caseStudyImage}
               alt="Olethardware.com website showcase"
               class="w-full h-full object-cover"

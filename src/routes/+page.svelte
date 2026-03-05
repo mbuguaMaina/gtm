@@ -2,14 +2,57 @@
 	import CaseStudy from "$lib/components/CaseStudy.svelte";
 	import CTA from "$lib/components/CTA.svelte";
 	import Hero from "$lib/components/Hero.svelte";
+	import Marque from "$lib/components/Marque.svelte";
 	import Pricing from "$lib/components/Pricing.svelte";
 	import PromoBanner from "$lib/components/PromoBanner.svelte";
-	import Services from "$lib/components/Services.svelte";
+	import Services from "$lib/components/services/Services.svelte";
+	import Testimonies from "$lib/components/Testimonies.svelte";
+	 
 	import TrustBanner from "$lib/components/TrustBanner.svelte";
+	import { createMeta } from "$lib/meta";
+	 
+ 
+	import { OrganizationSchema, WebPageSchema, WebsiteSchema } from "$lib/schemas";
+	import SEO from "$lib/SEO.svelte";
+	import { ChevronDown } from "@lucide/svelte";
+	import { ReactSolid } from "flowbite-svelte-icons";
+ 
+
+const meta = createMeta({
+  title: "GGM Technologies | Digital Marketing Agency",
+  description:
+    "GGM Technologies helps businesses grow through SEO, web design and development, and digital marketing.",
+  path: "/",
+  keywords: ["digital marketing", "SEO", "web design", "web development", "e-commerce","SEM","social media marketing","content marketing"]
+})
+
+const schemas = [
+  OrganizationSchema(),
+  WebsiteSchema(),
+  WebPageSchema({
+    title: meta.title,
+    description: meta.description,
+    url: meta.url
+  })
+]
 
 </script>
  
+<SEO {meta} {schemas} />
  <Hero  />
+ <Marque techStack={[
+		"Svelte",
+		"SvelteKit",
+		"TypeScript",
+		"Node.js",
+		"PostgreSQL",
+		"Tailwind",
+		"Cloudflare",
+		"Docker",
+		"Stripe",
+		"Vercel"
+	]} />
+ <TrustBanner />
  <CTA
  variant="secondary"
         title="Ready to Transform Your Business?"
@@ -17,8 +60,9 @@
         buttonText="Get Free Consultation"
         highlight="No commitment required"
    />
-<TrustBanner />
-<Services/>
+
+<!-- <Services/> -->
+ <Services /> 
  <PromoBanner />
  <CaseStudy />
 
@@ -29,6 +73,7 @@
         buttonText="Start Your Project Today"
         highlight="Free SEO audit included"
       />
+      <Testimonies />
        <Pricing/>
 
 

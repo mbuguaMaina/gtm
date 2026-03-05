@@ -1,4 +1,8 @@
 <script lang="ts">
+	import { createMeta } from "$lib/meta";
+	import { ServiceSchema, WebPageSchema } from "$lib/schemas";
+	import SEO from "$lib/SEO.svelte";
+
 	// Svelte 5 runes for reactive state
 	let selectedCategory = $state('all');
 	let currentPage = $state(1);
@@ -110,18 +114,37 @@
 		currentPage = page;
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}
+
+	const meta = createMeta({
+		title: "Blog - GGM Technologies",
+		description:
+			"Stay updated with the latest insights, trends, and innovations in technology",
+		path: "/blog",
+		keywords: ["Blog", "GGM Technologies", "Technology", "Innovation", "Business", "Tutorials"]
+	})
+
+	const schemas = [
+		WebPageSchema({
+			title: meta.title,
+			description: meta.description,
+			url: meta.url
+		}),
+		ServiceSchema({
+			name: "Blog",
+			description: meta.description,
+			url: meta.url
+		})
+	]
 </script>
 
-<svelte:head>
-	<title>Blog - GGM Technologies</title>
-</svelte:head>
+ <SEO {schemas} {meta} />
 
  
 	<!-- Hero Section -->
-	<section class="bg-linear-to-r from-blue-600 via-blue-700 to-blue-800 text-white py-20">
+	<section class="bg-linear-to-r from-green-600 via-green-800 to-green-900 text-white py-20">
 		<div class="container mx-auto px-6 text-center">
 			<h2 class="text-5xl font-bold mb-4">Our Blog</h2>
-			<p class="text-xl text-blue-100 max-w-2xl mx-auto">Stay updated with the latest insights, trends, and innovations in technology</p>
+			<p class="text-xl text-green-100 max-w-2xl mx-auto">Stay updated with the latest insights, trends, and innovations in technology</p>
 		</div>
 	</section>
 
@@ -130,14 +153,14 @@
 		<div class="bg-white rounded-2xl shadow-xl overflow-hidden">
 			<div class="md:flex">
 				<div class="md:w-1/2">
-					<img src={featuredPost.image} alt="Featured" class="w-full h-full object-cover">
+					<enhanced:img src={featuredPost.image} alt="Featured" class="w-full h-full object-cover" />
 				</div>
 				<div class="md:w-1/2 p-8 md:p-12">
-					<span class="inline-block px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold mb-4">Featured</span>
+					<span class="inline-block px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm font-semibold mb-4">Featured</span>
 					<h3 class="text-3xl font-bold text-slate-800 mb-4">{featuredPost.title}</h3>
 					<p class="text-slate-600 mb-6">{featuredPost.excerpt}</p>
 					<div class="flex items-center mb-6">
-						<div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold mr-3">
+						<div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-semibold mr-3">
 							{featuredPost.authorInitials}
 						</div>
 						<div>
@@ -145,7 +168,7 @@
 							<p class="text-xs text-slate-500">{featuredPost.date} · {featuredPost.readTime}</p>
 						</div>
 					</div>
-					<a href="/" class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-800 transition">
+					<a href="/" class="inline-flex items-center text-green-600 font-semibold hover:text-green-800 transition">
 						Read More 
 						<svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
@@ -164,8 +187,8 @@
 					onclick={() => selectCategory(category)}
 					class="px-5 py-2 rounded-full font-medium transition
 						{selectedCategory === category.toLowerCase() 
-							? 'bg-blue-600 text-white hover:bg-blue-700' 
-							: 'bg-white text-slate-600 border border-slate-200 hover:bg-blue-50 hover:text-blue-600'}"
+							? 'bg-green-600 text-white hover:bg-green-700' 
+							: 'bg-white text-slate-600 border border-slate-200 hover:bg-green-50 hover:text-green-600'}"
 				>
 					{category === 'all' ? 'All Posts' : category}
 				</button>
@@ -178,18 +201,19 @@
 		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 			{#each filteredPosts as post (post.id)}
 				<article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-					<img src={post.image} alt="Blog post" class="w-full h-48 object-cover">
+				 
+					<enhanced:img src={post.image} alt="Blog post" class="w-full h-48 object-cover" />
 					<div class="p-6">
-						<span class="inline-block px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs font-semibold mb-3">
+						<span class="inline-block px-3 py-1 bg-green-100 text-green-600 rounded-full text-xs font-semibold mb-3">
 							{post.category}
 						</span>
-						<h3 class="text-xl font-bold text-slate-800 mb-3 hover:text-blue-600 transition cursor-pointer">
+						<h3 class="text-xl font-bold text-slate-800 mb-3 hover:text-green-600 transition cursor-pointer">
 							{post.title}
 						</h3>
 						<p class="text-slate-600 text-sm mb-4">{post.excerpt}</p>
 						<div class="flex items-center justify-between pt-4 border-t border-slate-100">
 							<div class="flex items-center">
-								<div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-semibold mr-2">
+								<div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-semibold mr-2">
 									{post.authorInitials}
 								</div>
 								<span class="text-xs text-slate-600">{post.author}</span>
@@ -211,7 +235,7 @@
 		<div class="flex justify-center mt-12 space-x-2">
 			<button 
 				onclick={() => changePage(Math.max(1, currentPage - 1))}
-				class="px-4 py-2 bg-white text-slate-600 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-200 transition"
+				class="px-4 py-2 bg-white text-slate-600 rounded-lg border border-slate-200 hover:bg-green-50 hover:border-green-200 transition"
 			>
 				Previous
 			</button>
@@ -220,15 +244,15 @@
 					onclick={() => changePage(page)}
 					class="px-4 py-2 rounded-lg font-semibold
 						{currentPage === page 
-							? 'bg-blue-600 text-white' 
-							: 'bg-white text-slate-600 border border-slate-200 hover:bg-blue-50 hover:border-blue-200 transition'}"
+							? 'bg-green-600 text-white' 
+							: 'bg-white text-slate-600 border border-slate-200 hover:bg-green-50 hover:border-green-200 transition'}"
 				>
 					{page}
 				</button>
 			{/each}
 			<button 
 				onclick={() => changePage(Math.min(3, currentPage + 1))}
-				class="px-4 py-2 bg-white text-slate-600 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-200 transition"
+				class="px-4 py-2 bg-white text-slate-600 rounded-lg border border-slate-200 hover:bg-green-50 hover:border-green-200 transition"
 			>
 				Next
 			</button>
@@ -236,21 +260,21 @@
 	</section>
 
 	<!-- Newsletter Section -->
-	<section class="bg-linear-to-r from-blue-600 to-blue-800 text-white py-16">
+	<section class="bg-linear-to-r from-green-600 to-green-800 text-white py-16">
 		<div class="container mx-auto px-6 text-center">
 			<h3 class="text-3xl font-bold mb-4">Subscribe to Our Newsletter</h3>
-			<p class="text-blue-100 mb-8 max-w-xl mx-auto">Get the latest tech insights, industry news, and exclusive updates delivered to your inbox.</p>
+			<p class="text-green-100 mb-8 max-w-xl mx-auto">Get the latest tech insights, industry news, and exclusive updates delivered to your inbox.</p>
 			<form onsubmit={handleSubscribe} class="max-w-md mx-auto flex gap-3">
 				<input 
 					type="email" 
 					bind:value={email}
 					placeholder="Enter your email" 
 					required
-					class="flex-1 px-4 py-3 rounded-lg text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-blue-300"
+					class="flex-1 px-4 py-3 rounded-lg text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-green-300"
 				>
 				<button 
 					type="submit"
-					class="px-6 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition"
+					class="px-6 py-3 bg-white text-green-600 rounded-lg font-semibold hover:bg-green-50 transition"
 				>
 					Subscribe
 				</button>

@@ -1,8 +1,27 @@
 <script>
+	import { onMount } from "svelte";
+	import { fly } from "svelte/transition";
+	import Counter from "./Counter.svelte";
+const services = [
+		"Performance Marketing",
+		"SEO & Content Strategy",
+		"Brand Positioning",
+		"Conversion Optimization"
+	];
+
+	let activeIndex = $state(0);
+
+	onMount(() => {
+		const interval = setInterval(() => {
+			activeIndex = (activeIndex + 1) % services.length;
+		}, 2500);
+
+		return () => clearInterval(interval);
+	});
 
 </script>
 <section
-  class="relative h-dvh  flex items-center justify-center overflow-hidden"
+  class="relative h-[84dvh]  flex items-center justify-center overflow-hidden"
 >
   <!-- Background Image -->
   <div
@@ -21,12 +40,22 @@
     data-lov-id="src/components/Hero.tsx:14:6"
     class="relative z-10 container mx-auto px-6 text-center text-white animate-fade-up"
   >
-
+<!-- 
     <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6  "  >
             We Build{" "}
             <span class="gradient-text">Digital Experiences</span>
             {" "}That Drive Growth
-          </h1>
+          </h1> -->
+
+<h1 in:fly={{ y: 30, duration: 600 }}>
+			 We Build{" "}
+            <span class="gradient-text">Digital Experiences</span>
+              Through
+			<span class="highlight ">
+				{services[activeIndex]}
+			</span>
+		</h1>
+
 
     <p
    
@@ -68,20 +97,68 @@
     >
 
       <div class="text-center">
-        <div class="text-3xl font-bold   mb-2">5+</div>
+      <Counter
+        value={5}
+        duration={1600}
+        suffix="+"
+      />
         <div class="text-lg opacity-80">Years of Experience</div>
       </div>
 
       <div class="text-center">
-        <div class="text-3xl font-bold   mb-2">98%</div>
+      <Counter
+        value={98}
+        duration={1600}
+        suffix="%"
+      />
         <div class="text-lg opacity-80">Client Satisfaction</div>
       </div>
 
       <div class="text-center">
-        <div class="text-3xl font-bold   mb-2">24/7</div>
+      <Counter
+        value={24}
+        duration={1600}
+        suffix="/7"
+      />
         <div class="text-lg opacity-80">Support Available</div>
       </div>
 
     </div>
   </div>
 </section>
+
+<style>
+ 
+
+	h1 {
+		font-size: clamp(2rem, 4vw, 3.5rem);
+		font-weight: 700;
+		line-height: 1.2;
+		margin-bottom: 1rem;
+	}
+
+	.highlight {
+		display: block;
+		color: hsl(198, 93%, 60%);
+		transition: all 0.4s ease;
+	}
+
+	p {
+		font-size: 1.2rem;
+		color: #cbd5e1;
+		margin-bottom: 2rem;
+	}
+
+ 
+
+	button {
+		padding: 0.9rem 1.6rem;
+		font-size: 1rem;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		border: none;
+	}
+
+	 
+</style>

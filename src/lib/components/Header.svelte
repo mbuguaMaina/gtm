@@ -4,13 +4,14 @@
 	import Drawer from './Drawer.svelte';
 	import ListItem from './listItem.svelte';
  import { navigationItems } from "$lib/navigations";
+	import ThemeToggle from './ThemeToggle.svelte';
    let open = $state(false), toggleOpen = () => open = !open;
 
   const isActive = (path: string) => page.url.pathname === path;
 </script>
 
-<header class="fixed transition duration-300 top-0 z-50 w-full px-2 bg-background ">
-  <nav class="md:mx-auto   md:max-w-6xl md:px-6 transition-all duration-300 lg:px-12">
+<header class="fixed  transition duration-300 top-0 z-50 w-full px-2 bg-background ">
+  <nav class="md:mx-auto  px-2 md:max-w-6xl md:px-6 transition-all duration-300 lg:px-12">
     <div class="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-0.5">
 
       <!-- Logo Section -->
@@ -28,75 +29,47 @@
         <div class="lg:hidden">
           <div class="flex items-center bg-background/75  backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
 
-            <!-- HOME -->
-            <a
-
-            href="/"
+        
+{#each navigationItems as item}
+      <a
+              href={item.path}
               class="relative cursor-pointer text-xs font-medium px-3 py-1 rounded-full transition-colors hover:text-blue-500"
-              class:bg-background={isActive('/')}
-              class:text-blue-500={isActive('/')}
-              class:text-foreground={!isActive('/')}
+              class:bg-background={isActive(item.path)}
+              class:text-[#22c55e]={isActive(item.path)}
+              class:text-foreground={!isActive(item.path)}
             >
-              <span class="text-xs">Home</span>
+              <span class="text-xs">{item.label}</span>
 
-              {#if isActive('/')}
-              <div class="absolute inset-0 w-full  rounded-full -z-10">
-                <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-blue-400 rounded-t-full">
-                  <div class="absolute w-8 h-3 bg-blue-400/20 rounded-full blur-sm -top-1 -left-1"></div>
-                  <div class="absolute w-6 h-3 bg-blue-400/20 rounded-full blur-sm -top-0.5"></div>
-                  <div class="absolute w-3 h-2 bg-blue-400/20 rounded-full blur-xs top-0 left-1.5"></div>
-                </div>
-              </div>
-              {/if}
-            </a>
-
-            <!-- ABOUT -->
-            <a
-              href="/about"
-              class="relative cursor-pointer text-xs font-medium px-3 py-1 rounded-full transition-colors hover:text-blue-500"
-              class:bg-background={isActive('/about')}
-              class:text-blue-500={isActive('/about')}
-              class:text-foreground={!isActive('/about')}
-            >
-              <span class="text-xs">About</span>
-
-                {#if isActive('/about')}
+                {#if isActive(item.path)}
                 <div class="absolute inset-0 w-full  rounded-full -z-10">
-                <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-blue-400 rounded-t-full">
-                  <div class="absolute w-8 h-3 bg-blue-400/20 rounded-full blur-sm -top-1 -left-1"></div>
-                  <div class="absolute w-6 h-3 bg-blue-400/20 rounded-full blur-sm -top-0.5"></div>
-                  <div class="absolute w-3 h-2 bg-blue-400/20 rounded-full blur-xs top-0 left-1.5"></div>
+                <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-[#22c55e] rounded-t-full">
+                  <div class="absolute w-8 h-3 bg-[#22c55e]/20 rounded-full blur-sm -top-1 -left-1"></div>
+                  <div class="absolute w-6 h-3 bg-[#22c55e]/20 rounded-full blur-sm -top-0.5"></div>
+                  <div class="absolute w-3 h-2 bg-[#22c55e]/20 rounded-full blur-xs top-0 left-1.5"></div>
                 </div>
               </div>
               {/if}
             </a>
+{/each}
+       
 
-            <!-- CONTACT -->
-            <a
-              href="/contact"
-              class="relative cursor-pointer text-xs font-medium px-3 py-1 rounded-full transition-colors hover:text-blue-500"
-              class:bg-background={isActive('/contact')}
-              class:text-blue-500={isActive('/contact')}
-              class:text-foreground={!isActive('/contact')}
-            >
-              <span class="text-xs">Contact</span>
-                {#if isActive('/account')}
-                <div class="absolute inset-0 w-full  rounded-full -z-10">
-                <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-blue-400 rounded-t-full">
-                  <div class="absolute w-8 h-3 bg-blue-400/20 rounded-full blur-sm -top-1 -left-1"></div>
-                  <div class="absolute w-6 h-3 bg-blue-400/20 rounded-full blur-sm -top-0.5"></div>
-                  <div class="absolute w-3 h-2 bg-blue-400/20 rounded-full blur-xs top-0 left-1.5"></div>
-                </div>
-              </div>
-              {/if}
-            </a>
+           
+      
+
+          
 
           </div>
         </div>
+       
 
         <!-- Mobile Theme Switcher -->
-          <div class="flex items-center bg-background/75 md:hidden  backdrop-blur-lg   px-1.5 py-1.5 rounded-full shadow-lg">
-        <Menu onclick={toggleOpen} />
+          <div class="flex items-center gap-3   md:hidden      px-1.5 py-1.5 ">
+  <ThemeToggle />
+<button  class="relative  h-8 w-8 rounded-md shadow  grid place-items-center bg-background text-foreground">
+<Menu onclick={toggleOpen} class="h-5 w-5 " />
+</button>
+        
+
       </div>
       </div>
 
@@ -109,78 +82,11 @@
             </ListItem>
             {/each}
 
-
-          <!-- <li>
-            <a
-              href="/about"
-              class="block hover:text-blue-500"
-              class:text-blue-500={isActive('/about')}
-              class:font-medium={isActive('/about')}
-              class:text-muted-foreground={!isActive('/about')}
-            >
-              About
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="/services"
-              class="block hover:text-blue-500"
-              class:text-blue-500={isActive('/services')}
-              class:text-muted-foreground={!isActive('/services')}
-            >
-              Services
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="/portfolio"
-              class="block hover:text-blue-500"
-              class:text-blue-500={isActive('/portfolio')}
-              class:text-muted-foreground={!isActive('/portfolio')}
-            >
-              Portfolio
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="/careers"
-              class="block hover:text-blue-500"
-              class:text-blue-500={isActive('/careers')}
-              class:text-muted-foreground={!isActive('/careers')}
-            >
-              Careers
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="/blog"
-              class="block hover:text-blue-500"
-              class:text-blue-500={isActive('/blog')}
-              class:text-muted-foreground={!isActive('/blog')}
-            >
-              Blog
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="/contact"
-              class="block hover:text-blue-500"
-              class:text-blue-500={isActive('/contact')}
-              class:text-muted-foreground={!isActive('/contact')}
-            >
-              Contact
-            </a>
-          </li> -->
-
         </ul>
       </div>
 
       <!-- Desktop Theme Switcher -->
+
       <ul class="hidden lg:flex gap-2 items-center">
          <li>
 
@@ -204,7 +110,11 @@
 
 </a>
          </li>
+          <div class="hidden md:inline-block">
+ <ThemeToggle />
+</div>
       </ul>
+ 
 
     </div>
   </nav>

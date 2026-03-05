@@ -5,7 +5,7 @@
 <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
   <!-- [hsl(220,20%,10%)] Image -->
   <div class="absolute inset-0">
-    <img
+    <enhanced:img
       src={aboutHeroImage}
       alt="GGM Technologies Team"
       class="w-full h-full object-cover"

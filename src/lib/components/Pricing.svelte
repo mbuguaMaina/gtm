@@ -57,7 +57,7 @@
 <section class="py-10 bg-linear-to-b from-muted to-background">
   <div class="container mx-auto px-6">
     <div class="text-center mb-16">
-     <h2 class="text-3xl md:text-4xl font-bold mb-4 bg-linear-to-r from-accent to-accent/80 text-transparent bg-clip-text">
+     <h2 class="text-3xl md:text-4xl font-bold mb-4 bg-linear-to-r  from-accent  to-accent/80 dark:from-white dark:to-white text-transparent bg-clip-text">
   Choose Your Growth Path
 </h2>
 
@@ -70,7 +70,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
       {#each packages as pkg, index}
         <Card
-          class={`relative p-2 overflow-hidden transition-all duration-300 ${
+          class={`relative p-2 overflow-hidden bg-background transition-all duration-300 ${
             pkg.popular 
               ? 'ring border-0 ring-accent shadow-hero transform scale-105' 
               : 'shadow-card hover:shadow-elegant'
@@ -102,7 +102,7 @@
             </ul>
 
             <div class="pt-6">
-              <Button   class="w-full" size="lg">
+              <Button   class="w-full bg-accent" size="lg">
                 Get Started
               </Button>
             </div>

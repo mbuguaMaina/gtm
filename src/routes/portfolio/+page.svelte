@@ -1,8 +1,30 @@
 <script>
+	import { createMeta } from "$lib/meta";
+	import { ServiceSchema, WebPageSchema } from "$lib/schemas";
+	import SEO from "$lib/SEO.svelte";
+
  
  
   import { ArrowRight, ExternalLink } from "@lucide/svelte";
-	import { slide } from "svelte/transition";
+const meta = createMeta({
+  title: "Portfolio | GGM Technologies",
+  description:
+    "A showcase of GGM Technologies' projects, featuring web design, e-commerce, mobile apps, and custom development.",
+  path: "/portfolio",
+  keywords: ["Portfolio", "GGM Technologies", "Web Design", "E-Commerce", "Mobile App", "Custom Development"]
+})
+const schemas = [
+  WebPageSchema({
+    title: meta.title,
+    description: meta.description,
+    url: meta.url
+  }),
+  ServiceSchema({
+    name: "Portfolio",
+    description: meta.description,
+    url: meta.url
+  })
+]
 
   const categories = [
     "All",
@@ -66,7 +88,7 @@
       : projects.filter((p) => p.category === active)
   );
 </script>
-
+<SEO {meta} {schemas} />
 
 <div 
 class="min-h-screen  animate-fade-up ">
@@ -76,7 +98,7 @@ class="min-h-screen  animate-fade-up ">
       <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
         Our Past <span class="text-[#22c55e]">Projects</span>
       </h1>
-      <p class="mt-4 text-lg leading-relaxed text-gray-700">
+      <p class="mt-4 text-lg leading-relaxed text-muted-foreground">
         From e-commerce platforms to custom enterprise solutions — explore the
         projects that showcase our expertise and drive real results.
       </p>
@@ -91,8 +113,8 @@ class="min-h-screen  animate-fade-up ">
           onclick={() => (active = cat)}
           class={`rounded-full px-5 py-2 cursor-pointer text-sm font-medium transition-all ${
             active === cat
-              ? "bg-[#2778e2] text-[#f1f2f5] shadow-lg shadow-[#22c55e]/25"
-              : "border border-[#1e293b] text-gray-400 hover:border-blue-500/50 hover:text-blue-500"
+              ? "bg-[#22c55e] text-[#f1f2f5] shadow-lg shadow-[#22c55e]/25"
+              : "border border-[#1e293b] text-gray-400 hover:border-[#22c55e]/50 hover:text-[#22c55e]"
           }`}
         >
           {cat}
@@ -104,14 +126,14 @@ class="min-h-screen  animate-fade-up ">
   <!-- Featured Case Study -->
   <section class="px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-7xl">
-      <h2 class="mb-8 text-center text-sm font-semibold uppercase tracking-widest text-blue-500">
+      <h2 class="mb-8 text-center text-[#22c55e] text-sm font-semibold uppercase tracking-widest  ">
         Featured Case Study
       </h2>
 
-      <div class="overflow-hidden rounded-2xl border border-[#1e293b] bg-[#1e293b]/30">
+      <div class="overflow-hidden rounded-2xl border border-[#22c55e] bg-[#22c55e]/30">
         <div class="grid items-center md:grid-cols-2">
           <!-- Image -->
-          <div class="flex relative aspect-video items-center justify-center bg-linear-to-br from-[#2291c5]/20 to-[#3f5997]   md:aspect-auto md:h-full">
+          <div class="flex relative aspect-video items-center justify-center bg-linear-to-br from-[#22c55e]/20 to-[#22c55e]   md:aspect-auto md:h-full">
 
             <img
               src="/transformation.png"
@@ -120,7 +142,7 @@ class="min-h-screen  animate-fade-up ">
             />
             <div class="bg-black/50 absolute inset-0"></div>
             <div class="text-center absolute top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%]">
-              <div class="mx-auto mb-3 flex h-20 w-20 items-center justify-center rounded-xl bg-[#2269c5]/20  text-[#136ee6]">
+              <div class="mx-auto mb-3 flex h-20 w-20 items-center justify-center rounded-xl bg-[#22c55e]/20  text-[#22c55e]">
                 <ExternalLink size={32} />
               </div>
               <p class="text-sm text-white">Project Preview</p>
@@ -128,12 +150,12 @@ class="min-h-screen  animate-fade-up ">
           </div>
 
           <!-- Content -->
-          <div class="p-8 lg:p-10 bg-zinc-100 border border-[#b6b9bd]">
-            <span class="inline-block rounded-full bg-[#2269c5] px-3 py-1 text-xs font-semibold text-white">
+          <div class="p-8 lg:p-10  bg-background  ">
+            <span class="inline-block rounded-full bg-[#22c55e] px-3 py-1 text-xs font-semibold  ">
               E-Commerce
             </span>
 
-            <h3 class="mt-4 text-2xl font-bold">Olet Hardware</h3>
+            <h3 class="mt-4 text-2xl   font-bold">Olet Hardware</h3>
 
             <p class="mt-2 text-sm leading-relaxed  ">
               We transformed Olet Hardware's brick-and-mortar business into a
@@ -148,7 +170,7 @@ class="min-h-screen  animate-fade-up ">
                 { label: "Result", value: "Impactful revenue growth" }
               ] as item}
                 <div>
-                  <p class="text-xs font-semibold uppercase text-[#2284c5]">
+                  <p class="text-xs font-semibold uppercase text-[#22c55e]">
                     {item.label}
                   </p>
                   <p class="mt-1 text-sm  ">{item.value}</p>
@@ -182,7 +204,7 @@ class="min-h-screen  animate-fade-up ">
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {#each filtered as project}
           <div
-            class="group overflow-hidden rounded-xl border border-[#70a5ff] bg-[#edeff1] hover:border-[#6ea2e7] hover:scale-[102%] transition-all duration-300 cursor-pointer"
+            class="group overflow-hidden rounded-xl bg-card hover:scale-[102%] transition-all duration-300 cursor-pointer"
           >
             <div class="relative flex aspect-video items-center justify-center bg-linear-to-br from-[#1e293b] to-[#0f172a]">
               <span class="text-3xl font-bold text-white ">
@@ -200,7 +222,7 @@ class="min-h-screen  animate-fade-up ">
             </div>
 
             <div class="p-5">
-              <span class="inline-block rounded-full bg-[#2068d4] px-2.5 py-0.5 text-xs font-semibold text-white">
+              <span class="inline-block rounded-full bg-[#22c55e] px-2.5 py-0.5 text-xs font-semibold text-white">
                 {project.category}
               </span>
 

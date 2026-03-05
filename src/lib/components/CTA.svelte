@@ -7,10 +7,10 @@
   export let buttonText: string;
   export let highlight: string | undefined;
   $: variantStyles = {
-    primary: "bg-gradient-to-r from-primary to-primary/90 text-primary-foreground",
+    primary: "bg-linear-to-r from-accent to-accent/90 text-accent-foreground",
     secondary: "bg-gradient-to-r from-accent/10   to-accent-5 border border-accent/20",
     urgent: "bg-gradient-to-r from-destructive to-destructive/90 text-destructive-foreground"
-  }[variant] ?? "bg-gradient-to-r from-primary to-primary/90 text-primary-foreground";
+  }[variant] ?? "bg-linear-to-r from-accent to-accent/90 text-accent-foreground";
 </script>
 
 <section class={`py-16 ${variantStyles}`}>

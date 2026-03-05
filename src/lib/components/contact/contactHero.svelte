@@ -1,6 +1,10 @@
+<script>
+	import { MessageCircle } from "@lucide/svelte";
+
+</script>
 
 
-<section class="relative overflow-hidden  bg-[url('/transformation.png')] bg-cover bg-center text-white py-20 md:py-28">
+<section class="relative overflow-hidden h-[40dvh] md:h-auto bg-[url('/transformation.png')] bg-cover bg-center text-white py-20 md:py-28 grid place-items-center">
   <!-- overlay -->
 <!-- <div class="inset-0 bg-black/20 z-10 absolute"></div> -->
   <div class="bg-linear-to-r absolute from-blue-600 via-blue-700 to-blue-800 z-10 opacity-15 inset-0 "></div>
@@ -11,13 +15,10 @@
   </div>
 
   <div class="container relative mx-auto px-4 text-center">
-    <!-- <div class="mb-6 inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
-      <MessageCircle class="h-4 w-4" />
-      <span>Let's Start a Conversation</span>
-    </div> -->
+    
     
 
-    <h1 class="mb-6 text-4xl font-bold tracking-tight text-blue-400 md:text-5xl lg:text-6xl">
+    <h1 class="mb-6 text-4xl font-bold tracking-tight text-[#22c55e] md:text-5xl lg:text-6xl">
       Get In Touch
     </h1>
 

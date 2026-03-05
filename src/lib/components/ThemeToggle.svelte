@@ -1,5 +1,7 @@
 <script lang="ts">
   import { applyTheme, getTheme, type Theme } from "$lib/theme";
+	import { Moon , Sun, SunIcon } from "@lucide/svelte";
+	 
 
   let theme: Theme = getTheme();
 
@@ -11,7 +13,7 @@
 
 <button
   on:click={toggle}
-  class="   relative  h-6 w-6 rounded-full bg-secondary text-secondary-foreground"
+  class="   relative  h-8 w-8 rounded-md shadow  grid place-items-center bg-background text-foreground"
 >
-  {theme === "dark" ? "☀" : "🌙"}
+  {#if theme === "dark" } <SunIcon class="h-5 w-5" />  {:else} <Moon class="h-5 w-5 " />{/if}
 </button>

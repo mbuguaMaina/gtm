@@ -1,27 +1,34 @@
 <script lang="ts">
 	import { TrendingUp } from "@lucide/svelte";
   import { StarOutline, UsersOutline, AwardOutline, ArrowUpOutline } from "flowbite-svelte-icons";
+	import Counter from "./Counter.svelte";
 
   const stats = [
     {
       icon: UsersOutline,
-      value: "50+",
-      label: "Happy Clients"
+      value: 50,
+      label: "Happy Clients",
+      suffix:"+"
+      
     },
     {
       icon: StarOutline,
-      value: "4.9/5",
-      label: "Client Rating"
+      value: 4.9,
+      label: "Client Rating",
+      suffix:"/5"
+      
     },
     {
       icon: AwardOutline,
-      value: "98%",
-      label: "Project Success"
+      value: 98,
+      label: "Project Success",
+      suffix:"%"
     },
     {
       icon: TrendingUp,
-      value: "150%",
-      label: "Avg. Sales Increase"
+      value: 150,
+      label: "Avg. Sales Increase",
+      suffix:"%"
     }
   ];
 </script>
@@ -29,8 +36,8 @@
 <section
   class="
     py-14
-    bg-muted/50 
-    border-y border-zinc-200  
+    
+    border-t border-zinc-200  dark:border-slate-500
     transition-colors duration-200
   "
 >
@@ -63,8 +70,7 @@
               mx-auto mb-3
             "
           >
-            <svelte:component
-              this={stat.icon}
+            <stat.icon
               class="w-6 h-6 text-accent  "
             />
           </div>
@@ -75,7 +81,12 @@
               text-accent  
             "
           >
-            {stat.value}
+          <Counter
+        value={stat.value}
+        duration={1600}
+        suffix={stat.suffix}
+      />
+          
           </div>
 
           <div class="text-sm text-muted-foreground  ">

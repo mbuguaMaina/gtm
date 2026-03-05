@@ -7,16 +7,23 @@
 	import Footer from '$lib/components/Footer.svelte';
  
   import { page } from "$app/state";
+import ProjectModal from "$lib/components/ProjectModal.svelte";
+
+	let openModal = $state(false);
+
 
 
   onMount(() => {
    applyTheme(getTheme(), false); 
   });
 	let { children } = $props();
+ 
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
  
+<ProjectModal bind:open={openModal}  />
+
 
 {#key page.url.pathname}
  <main>
@@ -24,7 +31,7 @@
 	
 	{@render children()}
 
-	<Footer/>
+	<Footer bind:openModal={openModal} />
 </main>
 {/key}
 

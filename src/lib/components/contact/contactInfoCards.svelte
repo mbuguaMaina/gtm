@@ -51,17 +51,17 @@
     </div>
 
     <!-- Cards -->
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="grid gap-6 grid-cols-2 lg:grid-cols-4">
       {#each contactInfo as item}
         {@const Icon = item.icon}
 
         <div
-          class="group border-0 bg-[hsl(210,40%,96%)]/50 shadow-sm rounded-2xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+          class="group border-0 bg-background shadow-sm rounded-2xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
         >
           <div class="flex flex-col items-center p-6 text-center">
             <!-- Icon -->
             <div
-              class="mb-4 rounded-full bg-linear-to-br from-[hsl(217,91%,60%)] to-[hsl(195,85%,50%)] p-3 text-white transition-transform duration-300 group-hover:scale-110"
+              class="mb-4 rounded-full bg-linear-to-br from-[#22c55e] to-[#2de26f] p-3 text-white transition-transform duration-300 group-hover:scale-110"
             >
               <Icon class="h-6 w-6  " />
             </div>
