@@ -2,7 +2,8 @@
 	import { onMount } from "svelte";
 	import { fly } from "svelte/transition";
 	import Counter from "./Counter.svelte";
-	import ProjectModal from "./ProjectModal.svelte";
+	import WebsiteAuditModal from "./WebsiteAuditModal.svelte";
+	import { ArrowBigRight, ChevronRight } from "@lucide/svelte";
 const services = [
 		"Performance Marketing",
 		"SEO & Content Strategy",
@@ -45,7 +46,7 @@ const services = [
 
 <h1 in:fly={{ y: 30, duration: 600 }}>
 			 We Build 
-            <span class="text-[hsl(198,93%,60%)]">Digital Products</span>
+            <span class="text-green-500">Digital Products</span>
                People Actually Want to Use
 			 
 		</h1>
@@ -62,20 +63,20 @@ const services = [
     <!-- Buttons -->
     <div
   
-      class="flex  flex-row gap-1 md:gap-4 justify-evenly md:justify-center items-center"
+      class="flex flex-wrap-reverse   gap-3 md:gap-4 justify-evenly md:justify-center items-center"
     >
       <a href="/portfolio"
      
         class="inline-flex items-center justify-center gap-2 font-medium
-               bg-linear-to-r from-accent to-accent text-black  
-               hover:from-accent hover:to-accent shadow-hero transition-all
+                 text-green-500     
+              border-2 border-green-500
                duration-300 transform hover:scale-105 h-11 rounded-md
                text-lg px-8 py-3"
       >
-        Our Work
+        Our Work <ArrowBigRight />
       </a>
 
-     <ProjectModal title="Get Started" />
+     <WebsiteAuditModal />
     </div>
 
     <!-- Stats -->

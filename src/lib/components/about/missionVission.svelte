@@ -23,12 +23,12 @@
   ];
 </script>
 
-<section class="py-24 bg-linear-to-r from-accent/10   to-accent-5 border border-accent/20">
+<section class="pt-16 pb-0 bg-linear-to-r from-secondary/10   to-secondary-5 border border-secondary/20">
   <div class="container mx-auto px-6">
     
     <div class="text-center mb-16 animate-fade-up">
       <h2 class="text-3xl md:text-4xl font-bold mb-4">
-        What <span class="gradient-text">Drives Us</span>
+        What <span class=" bg-clip-text text-transparent bg-linear-to-br from-green-300 to-green-500">Drives Us</span>
       </h2>
       <p class="text-muted-foreground max-w-2xl mx-auto">
         Our core values and vision guide every project we undertake
@@ -42,10 +42,10 @@
           style={`animation-delay: ${index * 0.15}s`}
         >
           <div
-            class="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors"
+            class="w-14 h-14 rounded-xl bg-green-100 flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors"
           >
             <card.icon
-              class="w-7 h-7 text-blue-600"
+              class="w-7 h-7 text-green-600"
             />
           </div>
 

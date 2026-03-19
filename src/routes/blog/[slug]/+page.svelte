@@ -227,7 +227,7 @@ function formatDate(date: string) {
   const icons = [Twitter, Facebook, Linkedin]
 
 </script>
-<article class=" mx-auto pb-10 max-w-7xl">
+<article class=" mx-auto pb-10 animate-fade-up container max-w-7xl">
 
 
 <section class="mx-auto max-w-5xl">
@@ -293,11 +293,12 @@ alt="Featured image for {post.title}"
 </div>
 </div>
 </section>
-<div class="  max-w-3xl mx-auto my-10">
+<div class="w-11/12  max-w-3xl mx-auto  ">
 
 <PortableText
   value={post.body}
   components={portableComponents}
+
 />
 <div
   style="margin-top:3rem; display:flex; align-items:center; gap:0.75rem;"
@@ -311,23 +312,23 @@ alt="Featured image for {post.title}"
   {#each icons as Icon}
     <button
       
-      class="bg-slate-50 cursor-pointer dark:bg-slate-800 text-slate-700 p-2 rounded-full dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition"
+      class="bg-green-100 cursor-pointer dark:bg-slate-800 text-slate-700 p-2 rounded-full dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition"
     >
-      <Icon style="width:16px;height:16px;" />
+      <Icon  size={24} class="text-green-500" />
     </button>
   {/each}
 </div>
 
-<div class="max-w-180 mx-auto px-6 py-16">
-  <div class="rounded-xl border border-gray-200 dark:border-slate-800  bg-white cursor-pointer dark:bg-slate-900 text-slate-700 p-2 dark:text-slate-200   shadow-sm overflow-hidden">
-    <div class="p-8 flex flex-col gap-5">
+<div class="max-w-180 mx-auto md:px-6 py-16 ">
+  <div class="rounded-xl relative border border-gray-200 dark:border-slate-800  bg-white cursor-pointer dark:bg-slate-900 text-slate-700 p-2 dark:text-slate-200   shadow-sm  ">
+    <div class="md:p-8 p-2 flex flex-col gap-5">
       
       <div class="flex gap-5 items-start flex-wrap">
         
         <img
           src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=160&h=160&fit=crop&crop=face"
           alt="Alex Chen"
-          class="w-20 h-20 rounded-full object-cover border-2 border-gray-200 shrink-0"
+          class="w-20 h-20 absolute md:relative  top-0 left-1/2 transform z-999  -translate-1/2 md:translate-0 md:left-auto md:top-auto rounded-full object-cover border-2 border-gray-200 shrink-0"
         />
 
         <div class="flex-1">

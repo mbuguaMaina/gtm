@@ -4,7 +4,7 @@
 </script>
 
 
-<section class="relative overflow-hidden h-[40dvh] md:h-auto   bg-background bg-center text-white py-20 md:py-28 grid place-items-center">
+<section class="relative overflow-hidden h-[40dvh] md:h-auto     bg-center   py-20 md:py-28 grid place-items-center">
   <!-- overlay -->
  
   

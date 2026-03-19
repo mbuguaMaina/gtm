@@ -19,14 +19,14 @@
       <!-- Left Content -->
       <div class="animate-fade-up text-center lg:text-left"  >
         <span
-          class="inline-block px-4 py-1.5 rounded-full bg-blue-400/10 text-blue-500 text-sm font-medium mb-6 border border-blue-300/20"
+          class="inline-block px-4 py-1.5 rounded-full bg-green-400/10 text-green-500 text-sm font-medium mb-6 border border-green-300/20"
         >
           Why Choose Us
         </span>
 
         <h2 class="text-3xl md:text-4xl font-bold mb-6">
           Your Trusted Partner for
-          <span class="bg-clip-text text-transparent bg-linear-to-r from-[hsl(231,94%,55%)] to-[hsl(197,87%,56%)]"> Digital Growth</span>
+          <span class="bg-clip-text text-transparent bg-linear-to-r from-green-400 to-green-500"> Digital Growth</span>
         </h2>
 
         <p class="text-[hsl(215,20%,65%)] mb-8 leading-relaxed">
@@ -42,7 +42,7 @@
               class="flex items-start gap-3 animate-fade-up bg-secondary/50 border border-border rounded-lg p-4"
               style={`animation-delay: ${index * 0.1}s`}
             >
-              <CheckCheck class="w-5 h-5 text-blue-500 shrink-0 mt-0.5  " />
+              <CheckCheck class="w-5 h-5 text-green-500 shrink-0 mt-0.5  " />
               <span class="text-sm  ">{reason}</span>
             </div>
           {/each}
@@ -55,18 +55,18 @@
         style="animation-delay: 0.3s"
       >
         <div
-          class="p-8 rounded-2xl bg-card border border-border text-center hover:border-blue-200 transition-colors"
+          class="p-8 rounded-2xl bg-card border border-border text-center hover:border-green-200 transition-colors"
         >
-          <div class="text-4xl md:text-5xl font-bold text-blue-400 mb-2">
+          <div class="text-4xl md:text-5xl font-bold text-green-400 mb-2">
             50+
           </div>
           <div class="text-muted-foreground">Happy Clients</div>
         </div>
 
         <div
-          class="p-8 rounded-2xl bg-card border border-border text-center hover:border-blue-200 transition-colors"
+          class="p-8 rounded-2xl bg-card border border-border text-center hover:border-green-200 transition-colors"
         >
-          <div class="text-4xl md:text-5xl font-bold text-blue-400 mb-2">
+          <div class="text-4xl md:text-5xl font-bold text-green-400 mb-2">
             4.9
           </div>
           <div class="text-muted-foreground">Client Rating</div>
@@ -75,7 +75,7 @@
         <div
           class="p-8 rounded-2xl bg-card border border-border text-center hover:border-primary/30 transition-colors"
         >
-          <div class="text-4xl md:text-5xl font-bold text-blue-400 mb-2">
+          <div class="text-4xl md:text-5xl font-bold text-green-400 mb-2">
             150%
           </div>
           <div class="text-muted-foreground">Avg. Sales Increase</div>
@@ -84,7 +84,7 @@
         <div
           class="p-8 rounded-2xl bg-card border border-border text-center hover:border-primary/30 transition-colors"
         >
-          <div class="text-4xl md:text-5xl text-blue-400 font-bold mb-2">24/7</div>
+          <div class="text-4xl md:text-5xl text-green-400 font-bold mb-2">24/7</div>
           <div class="opacity-90  ">Support Available</div>
         </div>
       </div>

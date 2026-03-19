@@ -4,7 +4,7 @@
 </script>
 
 <section
-  class="relative min-h-[70vh] flex items-center justify-center overflow-hidden
+  class="relative min-h-[70vh] mt-8 flex items-center justify-center overflow-hidden
   "
 >
   <!-- Image -->
@@ -16,12 +16,7 @@
     <div
       class="
       absolute inset-0
-      bg-linear-to-b
-      
-
-    from-[hsl(220,20%,10%)]/80
-     via-[hsl(220,20%,10%)]/70
- to-[hsl(220,20%,10%)]
+   
       "
     />
   </div>
@@ -33,10 +28,10 @@
     <span
       class="
       inline-block px-4 py-2 rounded-full
-      bg-blue-100 text-blue-600 border border-blue-200
+      bg-green-100 text-green-600 border border-green-200
 
       dark:bg-[hsl(216,88%,84%)]/10
-      dark:text-blue-400
+      dark:text-green-400
       dark:border-[hsl(216,88%,84%)]/20
 
       text-sm font-medium mb-6
@@ -49,12 +44,10 @@
       class="
       text-4xl md:text-6xl lg:text-7xl
       font-bold mb-6 tracking-tight
-
  
- text-white
       "
     >
-      Building <span class="gradient-text">Digital Excellence</span>
+      Building <span class="bg-clip-text text-transparent bg-linear-to-br from-green-400 to-green-600">Digital Excellence</span>
       <br />
       in Kenya
     </h1>
@@ -72,19 +65,19 @@
     </p>
 
     <!-- Stats -->
-    <div class="flex flex-wrap gap-8 justify-center text-center">
+    <div class="flex  gap-8 justify-center text-center">
 
       <div class="animate-scale-in" style="animation-delay: 0.2s">
-        <Counter duration={1000} suffix="+" value={5} color="text-blue-600
-          dark:text-blue-400"/>
+        <Counter duration={1000} suffix="+" value={5} color="text-green-600
+          dark:text-green-400"/>
         <div class="text-sm text-gray-400">
           Years Experience
         </div>
       </div>
 
       <div class="animate-scale-in" style="animation-delay: 0.3s">
-       <Counter duration={1000} suffix="+" value={5} color="text-blue-600
-          dark:text-blue-400"/>
+       <Counter duration={1000} suffix="+" value={5} color="text-green-600
+          dark:text-green-400"/>
 
         <div class="text-sm text-gray-400">
           Happy Clients
@@ -93,8 +86,8 @@
       </div>
 
       <div class="animate-scale-in" style="animation-delay: 0.4s">
-         <Counter duration={1000} suffix="%" value={98} color="text-blue-600
-          dark:text-blue-400"/>
+         <Counter duration={1000} suffix="%" value={98} color="text-green-600
+          dark:text-green-400"/>
         <div class="text-sm text-gray-400">
           Success Rate
         </div>

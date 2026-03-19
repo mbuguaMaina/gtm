@@ -2,14 +2,15 @@
  
   import {Button } from "flowbite-svelte";
   import { GiftBoxOutline, ClockOutline } from "flowbite-svelte-icons";
+	import WebsiteAuditModal from "./WebsiteAuditModal.svelte";
 </script>
 
 <section
   class="
     py-12
-    bg-linear-to-r from-accent to-accent/90
+    bg-linear-to-r from-secondary to-secondary/90
      
-    text-accent-foreground
+   
     relative
     overflow-hidden
   "
@@ -51,13 +52,7 @@
           <span>Ends March 21st</span>
         </div>
 
-        <Button
-           
-        
-          class="whitespace-nowrap  "
-        >
-          Claim Offer
-        </Button>
+        <WebsiteAuditModal  buttonLabel="Claim Offer"/>
       </div>
     </div>
   </div>

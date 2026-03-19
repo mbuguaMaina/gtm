@@ -92,7 +92,7 @@ const schemas = [
 
 <div 
 class="min-h-screen  animate-fade-up ">
-  <section class="relative overflow-hidden px-4 py-20 text-center sm:px-6 lg:px-8">
+  <section class="relative overflow-hidden px-4 pt-20 pb-8 text-center sm:px-6 lg:px-8">
     <div class="absolute inset-0 bg-linear-to-b from-[#22c55e]/5 to-transparent" ></div>
     <div class="relative mx-auto max-w-3xl">
       <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
@@ -106,12 +106,12 @@ class="min-h-screen  animate-fade-up ">
   </section>
 
   <!-- Filters -->
-  <section class="px-4 sm:px-6 lg:px-8">
+  <section class="md:px-4 sm:px-6 lg:px-8">
     <div class="mx-auto flex max-w-5xl flex-wrap justify-center gap-2">
       {#each categories as cat}
         <button
           onclick={() => (active = cat)}
-          class={`rounded-full px-5 py-2 cursor-pointer text-sm font-medium transition-all ${
+          class={`rounded-full px-2.5 py-1 md:px-5 md:py-2 cursor-pointer text-sm font-medium transition-all ${
             active === cat
               ? "bg-[#22c55e] text-[#f1f2f5] shadow-lg shadow-[#22c55e]/25"
               : "border border-[#1e293b] text-gray-400 hover:border-[#22c55e]/50 hover:text-[#22c55e]"
@@ -124,7 +124,7 @@ class="min-h-screen  animate-fade-up ">
   </section>
 
   <!-- Featured Case Study -->
-  <section class="px-4 py-16 sm:px-6 lg:px-8">
+  <section class="px-4 pt-8 md:py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-7xl">
       <h2 class="mb-8 text-center text-[#22c55e] text-sm font-semibold uppercase tracking-widest  ">
         Featured Case Study
@@ -180,7 +180,7 @@ class="min-h-screen  animate-fade-up ">
 
             <div class="mt-6 flex flex-wrap gap-2">
               {#each ["Next.js", "React", "Node.js", "Mpesa API","MongoDB", "Tailwind CSS","JWT","etc"] as tag}
-                <span class="rounded-md border border-[#1e293b] bg-[#0f172a] px-2.5 py-1 text-xs text-gray-400">
+                <span class="rounded-md border border-accent/20 bg-accent/70 px-2.5 py-1 text-xs ">
                   {tag}
                 </span>
               {/each}

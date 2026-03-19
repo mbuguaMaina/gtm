@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
-	import { Facebook, FacebookIcon, Menu, Twitter, TwitterIcon } from '@lucide/svelte';
+	import { Facebook,   Twitter  } from '@lucide/svelte';
 	import Drawer from './Drawer.svelte';
 	import ListItem from './listItem.svelte';
  import { navigationItems } from "$lib/navigations";
@@ -13,10 +13,10 @@
 </script>
 
 <header class="fixed  transition duration-300 top-0 z-50 w-full px-2 bg-background ">
-  <nav class="md:mx-auto  px-1 md:max-w-6xl md:px-6 transition-all duration-300 lg:px-12">
-    <div class="relative flex flex-wrap items-center justify-between gap-2 md:gap-6 py-3 lg:gap-0 lg:py-0.5">
+  <nav class="md:mx-auto shadow-md rounded-md md:p-1.5   md:max-w-6xl md:px-6 transition-all duration-300 lg:px-12">
+    <div class="relative flex flex-wrap items-center justify-between gap-2 md:gap-6 py-1.5  md:py-3 lg:gap-0 lg:py-0.5">
       <!-- Logo Section -->
-      <div class="flex w-full justify-between lg:w-auto items-center">
+      <div class="flex w-full  justify-between lg:w-auto items-center">
         <a
           class="group flex items-center space-x-2 transition-all duration-200"
           aria-label="GGM Technologies - Home"
@@ -26,8 +26,8 @@
         
         </a>
         <!-- Mobile Menu Links -->
-        <div class="lg:hidden">
-          <div class="flex items-center    bg-background/60 dark:bg-slate-900 backdrop-blur-lg   py-1 px-1 rounded-full shadow-lg">
+       
+          <div class="flex items-center  lg:hidden  bg-background/60 dark:bg-slate-900 backdrop-blur-lg   py-1 px-1 rounded-full shadow-lg">
 
         
 {#each navigationItems as item}
@@ -52,13 +52,11 @@
             </a>
 {/each}
           </div>
-        </div>
+     
         <!-- Mobile Theme Switcher -->
-          <div class="flex items-center gap-1 md:gap-3   md:hidden      px-1.5 py-1.5 ">
+          <div class="flex items-center gap-1 md:gap-3   md:hidden       py-1.5 ">
   <ThemeToggle />
-<!-- <button  class="relative  h-8 w-8 rounded-md shadow  grid place-items-center bg-zinc-100 dark:bg-slate-800 text-foreground">
-<Menu onclick={toggleOpen} class="h-5 w-5 " />
-</button> -->
+ 
       </div>
       </div>
 
@@ -75,16 +73,16 @@
       </div>
       <!-- Desktop Theme Switcher -->
       <ul class="hidden lg:flex gap-2 items-center">
-         <li class="p-1 rounded bg-gray-100  dark:bg-slate-800 ">
+         <li class="p-1 rounded bg-zinc-100  dark:bg-slate-800 ">
 
 <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">
-  <Twitter class="text-slate-900 dark:text-slate-50" />
+  <Twitter class="text-green-500  " />
 </a>
          </li>
-         <li class="p-1 rounded bg-gray-100   dark:bg-slate-800 ">
+         <li class="p-1 rounded bg-zinc-100   dark:bg-slate-800 ">
 
 <a href="https://facebook.com/yourusername" target="_blank" rel="noopener noreferrer">
-  <Facebook class="text-slate-900 dark:text-slate-50"/>
+  <Facebook class="text-green-500  "/>
 </a>
          </li>
          <li>

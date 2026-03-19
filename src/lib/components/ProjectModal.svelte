@@ -17,10 +17,12 @@
     title       = $bindable("Start Your Project"),
     description = $bindable(""),
     package: pkg,
+    className = $bindable(""),
   }: {
     title?:       string;
     description?: string;
     package?:     PricingPackage;
+    className?:    string;
   } = $props();
 
   // ── MODAL STATE ────────────────────────────────────────────
@@ -358,7 +360,9 @@
   <!-- GENERIC BUTTON -->
   <button
     onclick={openModal}
-    class="inline-flex items-center gap-2 rounded-xl bg-green-500 px-5 py-3 text-sm font-bold text-green-950 shadow-lg shadow-green-500/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-green-400 hover:shadow-green-400/30 active:scale-95 dark:bg-green-400 dark:text-green-950 dark:hover:bg-green-300"
+    class="inline-flex items-center gap-2 rounded-xl bg-green-500
+     px-5 py-3 text-sm font-bold text-green-950 shadow-lg shadow-green-500/20 transition-all duration-200 
+     hover:-translate-y-0.5 hover:bg-green-400 hover:shadow-green-400/30 active:scale-95 dark:bg-green-400 dark:text-green-950 dark:hover:bg-green-300 {className}"
   >
     <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none">
       <path d="M10 2l8 4.5v7L10 18l-8-4.5v-7L10 2z" stroke="currentColor" stroke-width="1.5"/>

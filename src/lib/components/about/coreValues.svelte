@@ -79,12 +79,12 @@
         >
           <!-- Icon -->
           <div
-            class="w-12 h-12 rounded-lg bg-white
+            class="w-12 h-12 rounded-lg bg-accent/20
                    flex items-center justify-center shrink-0
                    group-hover:scale-110 transition-transform"
           >
             <value.icon
-              class="w-6 h-6 text-blue-400"
+              class="w-6 h-6 text-green-400"
             />
           </div>
 

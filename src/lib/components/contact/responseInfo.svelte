@@ -3,7 +3,7 @@
 	import { CheckCircleOutline } from "flowbite-svelte-icons";
 </script>
 
-<section class="border-y border-gray-600 bg-linear-to-r from-[hsl(217,91%,60%)]/5 to-[hsl(195,85%,50%)]/5 py-8">
+<section class="border-y border-accent/10 bg-linear-to-r from-[hsl(217,91%,60%)]/5 to-[hsl(195,85%,50%)]/5 py-8">
   <div class="container mx-auto px-4">
     <div class="flex flex-col items-center justify-center gap-4 text-center sm:flex-row sm:gap-8">
       

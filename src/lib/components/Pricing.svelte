@@ -132,7 +132,7 @@ a.href = "https://wa.me/254700412990"
 a.target = "_blank"
 a.click()
 
-        }} class="bg-blue-500 text-white hover:bg-accent " size="lg">
+        }} class="bg-green-500 text-white hover:bg-accent " size="lg">
         Schedule a Consultation
       </Button>
     </div>

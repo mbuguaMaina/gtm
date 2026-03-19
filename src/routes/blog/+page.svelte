@@ -139,9 +139,11 @@
 
  <SEO {schemas} {meta} />
 
- 
+ <article class=" animate-fade-up">
+
+
 	<!-- Hero Section -->
-	<section class="bg-linear-to-r from-green-600 via-green-800 to-green-900 text-white py-20">
+	<section class="bg-linear-to-r from-green-600 via-green-800 to-green-900 text-white py-20 ">
 		<div class="container mx-auto px-6 text-center">
 			<h2 class="text-5xl font-bold mb-4">Our Blog</h2>
 			<p class="text-xl text-green-100 max-w-2xl mx-auto">Stay updated with the latest insights, trends, and innovations in technology</p>
@@ -282,13 +284,7 @@
 		</div>
 	</section>
  
-
+ </article>
  
 
-<style>
-	:global(body) {
-		font-family: 'Inter', sans-serif;
-		margin: 0;
-		padding: 0;
-	}
-</style>
+ 

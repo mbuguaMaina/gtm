@@ -26,8 +26,8 @@
     },
     {
       icon: TrendingUp,
-      value: 150,
-      label: "Avg. Sales Increase",
+      value: 99,
+      label: "Response Rate",
       suffix:"%"
     }
   ];
@@ -83,7 +83,7 @@
           >
           <Counter
         value={stat.value}
-        duration={1600}
+        duration={1200}
         suffix={stat.suffix}
       />
           

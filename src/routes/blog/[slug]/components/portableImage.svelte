@@ -7,5 +7,5 @@ let {portableText = $bindable()} = $props()
 <img
   src={value.asset.url}
   alt={value.alt || ""}
-  class={`rounded-xl my-4 w-full object-cover h-100`}
+  class={`rounded-xl my-4 w-full object-cover h-50 md:h-90`}
 />

@@ -2,7 +2,12 @@
 	import { createMeta } from "$lib/meta";
 	import { ServiceSchema, WebPageSchema } from "$lib/schemas";
 	import SEO from "$lib/SEO.svelte";
-	import { Menu, MenuIcon } from "@lucide/svelte";
+	import {   MenuIcon } from "@lucide/svelte";
+	import { onMount } from "svelte";
+
+ import { page } from "$app/state";
+	import ProjectModal from "$lib/components/ProjectModal.svelte";
+
 const meta = createMeta({
   title: "Digital Marketing and Web Development Services in Kenya | GGM Technologies",
   description:
@@ -23,7 +28,12 @@ const schemas = [
     url: meta.url
   })
 ]
- 
+ onMount(() => {
+  const tag = page.url.searchParams.get("tag");
+  if (tag ) {
+    activePage = tag;
+  }
+  })
 
 
 let activePage = "seo";
@@ -365,9 +375,7 @@ const services:any = {
 	>
 	 <MenuIcon  size={24}/>  other services
 	</button>
-<div class="rounded-full p-3 py-2 bg-green-300 border border-green-500 text-green-500">
-  {services[activePage]?.hero?.tag}
-</div>
+
 	<!-- sidebar -->
 	<aside
 		class={`fixed  md:top-4  z-50 w-65 min-h-screen pt-10 md:pt-8 bg-[#141414] border-r border-white/10
@@ -404,11 +412,10 @@ const services:any = {
 			{/each}
 		</nav>
 
-		<button
-			class="mx-6 mb-6 mt-auto bg-lime-400 text-black px-4 py-2 rounded text-sm"
-		>
-			Get Quote →
-		</button>
+		 <div class="w-full grid place-items-center">
+       <ProjectModal title="	Get Quote →"  className="bg-lime-400" />
+     </div>
+   
 	</aside>
 
 	<!-- main -->
@@ -422,9 +429,10 @@ const services:any = {
 				<!-- hero -->
 				<section class="px-6 md:px-16 md:py-10 py-5 border-b border-white/10">
 
-					<div class="text-xs tracking-[0.2em] text-lime-400 border border-lime-400 inline-block px-2 py-1 mb-6">
+					<div class="text-xs tracking-[0.2em] block max-w-1/3 text-center border-dotted text-lime-400 border-2 rounded-xl border-lime-400  mt-12 mb-6 px-2 py-1  ">
 						{activePage.toUpperCase()} 
 					</div>
+       
 
 					<h1 class="text-5xl md:text-7xl font-bold leading-none mb-6">
 						{services[activePage].hero.title.split(' ').slice(0, services[activePage].hero.title.split(' ').length - 1).join(' ')} <br />
