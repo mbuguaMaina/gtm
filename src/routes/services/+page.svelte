@@ -95,7 +95,7 @@ const services:any = {
 
   ppc: {
     hero: {
-      tag: "Service 02 / 07",
+      tag: "PPC",
       title: "Paid Ads Campaigns",
       description:
         "Run profitable campaigns on Google, Facebook and TikTok with data-driven targeting.",
@@ -144,7 +144,7 @@ const services:any = {
 
   social: {
     hero: {
-      tag: "Service 03 / 07",
+      tag: "SMM",
       title: "Social Media Management",
       description:
         "Grow your brand on Instagram, Facebook, TikTok and LinkedIn with consistent content.",
@@ -193,7 +193,7 @@ const services:any = {
 
   webdesign: {
     hero: {
-      tag: "Service 04 / 07",
+      tag: "Web Design",
       title: "Website Design",
       description:
         "Modern UI/UX design that makes your brand look premium and professional.",
@@ -242,7 +242,7 @@ const services:any = {
 
   webdev: {
     hero: {
-      tag: "Service 05 / 07",
+      tag: "Web Development",
       title: "Web Development",
       description:
         "High-performance websites and web apps built for speed and scale.",
@@ -291,7 +291,7 @@ const services:any = {
 
   maintenance: {
     hero: {
-      tag: "Service 06 / 07",
+      tag: "Maintenance",
       title: "Maintenance & Support",
       description:
         "We keep your website secure, fast and always running.",
@@ -365,7 +365,9 @@ const services:any = {
 	>
 	 <MenuIcon  size={24}/>  other services
 	</button>
-
+<div class="rounded-full p-3 py-2 bg-green-300 border border-green-500 text-green-500">
+  {services[activePage]?.hero?.tag}
+</div>
 	<!-- sidebar -->
 	<aside
 		class={`fixed  md:top-4  z-50 w-65 min-h-screen pt-10 md:pt-8 bg-[#141414] border-r border-white/10
