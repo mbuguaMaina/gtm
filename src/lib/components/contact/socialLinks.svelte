@@ -25,7 +25,7 @@
   ];
 </script>
 
-<section class="py-12 md:py-16">
+<section class="py-6 md:py-16">
   <div class="container mx-auto px-4 text-center">
     <h2 class="mb-4 text-2xl font-bold text-foreground md:text-3xl">
       Follow Us
@@ -41,7 +41,7 @@
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`Follow us on ${social.name}`}
-          class="group flex h-14 w-14 items-center justify-center rounded-full border border-border bg-[hsl(0,0%,100%)] text-[hsl(215,16%,47%)] shadow-sm transition-all duration-300 hover:border-[#3c83f6] hover:bg-linear-to-br hover:from-blue-500 hover:to-[hsl(195,85%,50%)] hover:text-white hover:shadow-lg hover:scale-110"
+          class="group flex h-14 w-14 items-center justify-center rounded-full border border-background cursor-pointer bg-secondary   shadow-sm transition-all duration-300 hover:border-[#3c83f6] hover:bg-linear-to-br hover:from-blue-500 hover:to-[hsl(195,85%,50%)] hover:text-white hover:shadow-lg hover:scale-110"
         >
           <svelte:component this={social.icon} class="h-5 w-5" />
         </a>

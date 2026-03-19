@@ -2,6 +2,7 @@
 	import { onMount } from "svelte";
 	import { fly } from "svelte/transition";
 	import Counter from "./Counter.svelte";
+	import ProjectModal from "./ProjectModal.svelte";
 const services = [
 		"Performance Marketing",
 		"SEO & Content Strategy",
@@ -21,7 +22,7 @@ const services = [
 
 </script>
 <section
-  class="relative h-[84dvh]  flex items-center justify-center overflow-hidden"
+  class="  h-[84dvh]  flex items-center justify-center overflow-hidden"
 >
   <!-- Background Image -->
   <div
@@ -38,22 +39,15 @@ const services = [
   <!-- Content -->
   <div
     data-lov-id="src/components/Hero.tsx:14:6"
-    class="relative z-10 container mx-auto px-6 text-center text-white animate-fade-up"
+    class="  z-10 container mx-auto px-6 text-center text-white animate-fade-up"
   >
-<!-- 
-    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6  "  >
-            We Build{" "}
-            <span class="gradient-text">Digital Experiences</span>
-            {" "}That Drive Growth
-          </h1> -->
+ 
 
 <h1 in:fly={{ y: 30, duration: 600 }}>
-			 We Build{" "}
-            <span class="gradient-text">Digital Experiences</span>
-              Through
-			<span class="highlight ">
-				{services[activeIndex]}
-			</span>
+			 We Build 
+            <span class="text-[hsl(198,93%,60%)]">Digital Products</span>
+               People Actually Want to Use
+			 
 		</h1>
 
 
@@ -61,33 +55,27 @@ const services = [
    
       class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-90"
     >
-    Transform your online presence with cutting-edge web development, strategic SEO, and stunning design solutions that convert visitors into customers.
+    <!-- Transform your online presence with cutting-edge web development, strategic SEO, and stunning design solutions that convert visitors into customers. -->
+     From high-converting websites to scalable web applications and marketing systems, we help businesses grow with confidence.
     </p>
 
     <!-- Buttons -->
     <div
   
-      class="flex  flex-row gap-1 md:gap-4 justify-between md:justify-center items-center"
+      class="flex  flex-row gap-1 md:gap-4 justify-evenly md:justify-center items-center"
     >
-      <button
+      <a href="/portfolio"
      
         class="inline-flex items-center justify-center gap-2 font-medium
-               bg-linear-to-r from-accent to-accent/90 text-accent-foreground
-               hover:from-accent/90 hover:to-accent shadow-hero transition-all
+               bg-linear-to-r from-accent to-accent text-black  
+               hover:from-accent hover:to-accent shadow-hero transition-all
                duration-300 transform hover:scale-105 h-11 rounded-md
                text-lg px-8 py-3"
       >
         Our Work
-      </button>
+      </a>
 
-      <button
-   
-        class="inline-flex items-center justify-center gap-2 font-medium
-               border bg-green-500 h-11 rounded-md text-lg px-8 py-3
-                "
-      >
-        Get Started
-      </button>
+     <ProjectModal title="Get Started" />
     </div>
 
     <!-- Stats -->
@@ -131,17 +119,13 @@ const services = [
  
 
 	h1 {
-		font-size: clamp(2rem, 4vw, 3.5rem);
+		font-size: clamp(2rem, 4vw, 2.7rem);
 		font-weight: 700;
 		line-height: 1.2;
 		margin-bottom: 1rem;
 	}
 
-	.highlight {
-		display: block;
-		color: hsl(198, 93%, 60%);
-		transition: all 0.4s ease;
-	}
+ 
 
 	p {
 		font-size: 1.2rem;

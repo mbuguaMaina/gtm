@@ -13,7 +13,7 @@
 
 <button
   on:click={toggle}
-  class="   relative  h-8 w-8 rounded-md shadow  grid place-items-center bg-background text-foreground"
+  class="   relative  h-8 w-8 rounded-md shadow  grid place-items-center bg-gray-100 dark:bg-slate-800 text-foreground"
 >
   {#if theme === "dark" } <SunIcon class="h-5 w-5" />  {:else} <Moon class="h-5 w-5 " />{/if}
 </button>

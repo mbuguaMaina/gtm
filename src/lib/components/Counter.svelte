@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 
 	
-let {value = $bindable(100), duration=$bindable(1600), suffix=$bindable('')} = $props()
+let {value = $bindable(100), duration=$bindable(1600), suffix=$bindable(''),color=$bindable('')} = $props()
 	let count = $state(0);
 
 	function easeOutCubic(t:any) {
@@ -27,4 +27,4 @@ let {value = $bindable(100), duration=$bindable(1600), suffix=$bindable('')} = $
 	});
 </script>
 
-<span class="text-3xl mb-2 font-bold">{count}{suffix}</span>
+<span class={`text-3xl mb-2 font-bold ${color}`}>{count}{suffix}</span>

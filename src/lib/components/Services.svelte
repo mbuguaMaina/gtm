@@ -14,47 +14,66 @@
     ArrowUpDownOutline
   } from "flowbite-svelte-icons";
 
-  const services = [
-    {
-      icon: PaletteOutline,
-      title: "Web Design & Development",
-      description:
-        "Custom e-commerce solutions built on Shopify, WooCommerce, or bespoke platforms. We create beautiful, conversion-focused designs."
-    },
-    {
-      icon: SearchOutline,
-      title: "SEO & Content Strategy",
-      description:
-        "We don't just build sites, we help them get found. Includes on-page SEO, blog setup, and comprehensive keyword research."
-    },
-    {
-      icon: PhoneOutline,
-      title: "Social Media Advertising",
-      description:
-        "Targeted ad campaigns across Facebook, Instagram, and Google to drive qualified traffic and increase sales."
-    },
-    {
-      icon: CodeOutline,
-      title: "Custom Development",
-      description:
-        "Tailored solutions for unique business needs. API integrations, custom features, and advanced functionality."
-    },
-    {
-      icon: MobilePhoneOutline,
-      title: "Mobile Optimization",
-      description:
-        "Responsive designs that work flawlessly across all devices. Your customers can shop anywhere, anytime."
-    },
-    {
-      icon: ArrowUpDownOutline ,
-      title: "Growth Analytics",
-      description:
-        "Comprehensive tracking and reporting to measure success and identify opportunities for continuous improvement."
-    }
-  ];
+ const services = [
+  {
+    icon: CodeOutline,
+    title: "Web Development",
+    description:
+      "Custom websites, dashboards, and web apps built for performance, scalability, and SEO. We develop fast, secure, and modern systems."
+  },
+
+  {
+    icon: PaletteOutline,
+    title: "UI / UX & Web Design",
+    description:
+      "Modern, conversion-focused designs that make your brand look professional. We design interfaces that are clean, fast, and easy to use."
+  },
+
+  {
+    icon: SearchOutline,
+    title: "SEO Optimization",
+    description:
+      "Improve your Google rankings with technical SEO, keyword strategy, and on-page optimization to bring consistent organic traffic."
+  },
+
+  {
+    icon: PhoneOutline,
+    title: "Digital Marketing",
+    description:
+      "Complete marketing strategies including content, funnels, and campaign planning to grow your business online."
+  },
+
+  {
+    icon: MobilePhoneOutline,
+    title: "Social Media Management",
+    description:
+      "We manage your Facebook, Instagram, TikTok, and LinkedIn pages with professional content, posting, and audience growth."
+  },
+
+  {
+    icon: ArrowUpDownOutline,
+    title: "Ads & PPC Campaigns",
+    description:
+      "Google Ads, Facebook Ads, and TikTok Ads campaigns focused on leads, sales, and measurable ROI."
+  },
+
+  {
+    icon: CodeOutline,
+    title: "Website Maintenance & Support",
+    description:
+      "Security updates, backups, bug fixes, and performance monitoring to keep your website running smoothly."
+  },
+
+  {
+    icon: SearchOutline,
+    title: "Analytics & Growth Tracking",
+    description:
+      "We track traffic, conversions, and user behavior to improve performance and make data-driven decisions."
+  }
+];
 </script>
 
-<section class="py-20 bg-background  ">
+<section class="pb-5 bg-background  ">
   <div class="container mx-auto px-6">
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-bold mb-4 text-foreground  ">
@@ -62,8 +81,7 @@
       </h2>
 
       <p class="text-xl text-muted-foreground   max-w-3xl mx-auto">
-        Comprehensive e-commerce solutions designed to elevate your artisan brand
-        and drive meaningful business growth
+       Full-service digital solutions for businesses — web development, marketing, SEO, and management.
       </p>
     </div>
 
@@ -78,7 +96,7 @@
             relative overflow-hidden
 text-center
 p-3
-          
+          bg-secondary
             border-accent/20  
             rounded-2xl
             shadow-muted shadow-md

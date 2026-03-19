@@ -14,14 +14,13 @@
  
 	import { OrganizationSchema, WebPageSchema, WebsiteSchema } from "$lib/schemas";
 	import SEO from "$lib/SEO.svelte";
-	import { ChevronDown } from "@lucide/svelte";
-	import { ReactSolid } from "flowbite-svelte-icons";
+	
  
 
 const meta = createMeta({
-  title: "GGM Technologies | Digital Marketing Agency",
+  title: "GGM Technologies | Web Development & Digital Marketing Agency",
   description:
-    "GGM Technologies helps businesses grow through SEO, web design and development, and digital marketing.",
+    "GGM Technologies builds high-performing websites, web apps, and digital marketing strategies that help businesses grow and scale.",
   path: "/",
   keywords: ["digital marketing", "SEO", "web design", "web development", "e-commerce","SEM","social media marketing","content marketing"]
 })

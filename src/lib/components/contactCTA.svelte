@@ -14,7 +14,7 @@
         Ready to <span class="gradient-text">Transform</span> Your Business?
       </h2>
 
-      <p class="text-muted text-lg mb-10 max-w-2xl mx-auto">
+      <p class="text-white/75 text-lg mb-10 max-w-2xl mx-auto">
         Get a free consultation and discover how we can help you build a
         stunning digital presence that converts visitors into customers.
       </p>
@@ -32,11 +32,11 @@
         </button>
 
         <!-- Outline -->
-        <button
-          class="inline-flex items-center justify-center px-6 py-3 rounded-lg  border border-blue-400 text-white hover:text-blue-500 transition"
+        <a         href="/portfolio"
+          class="inline-flex items-center cursor-pointer justify-center px-6 py-3 rounded-lg  border border-blue-400 text-white hover:text-blue-500 transition"
         >
           View Our Work
-        </button>
+        </a>
       </div>
 
       <!-- Contact Info -->
@@ -50,7 +50,7 @@
           </div>
 
           <div>
-            <div class="text-sm text-muted mb-1">Email Us</div>
+            <div class="text-sm text-white/75 mb-1">Email Us</div>
             <a
               href="mailto:ggmtechhub@gmail.com"
               class="font-medium text-zinc-100 hover:text-[hsl(219,88%,59%)] transition-colors"
@@ -69,7 +69,7 @@
           </div>
 
           <div>
-            <div class="text-sm text-muted mb-1">Call Us</div>
+            <div class="text-sm text-white/75 mb-1">Call Us</div>
             <a
               href="tel:+254700000000"
               class="font-medium text-zinc-100 hover:text-[hsl(219,88%,59%)] transition-colors"

@@ -52,7 +52,7 @@
   <!-- Background accent -->
   <!-- svelte-ignore element_invalid_self_closing_tag -->
   <div
-    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 rounded-full bg-linear-to-r from-secondary to-secondary/90 text-primary-foreground blur-3xl"
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 rounded-full   blur-3xl"
   />
 
   <div class="container mx-auto px-6 relative z-10">
@@ -72,8 +72,8 @@
       {#each values as value, index}
         <div
           class="group flex items-start gap-4 p-6 rounded-xl
-                 bg-blue-50/70 hover:bg-blue-50/70
-                 border border-transparent hover:border-blue-bg-blue-50/70
+                  bg-secondary
+                 border border-transparent  
                  transition-all duration-300 animate-fade-up"
           style="animation-delay: {index * 0.1}s"
         >

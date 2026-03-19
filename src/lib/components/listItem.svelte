@@ -18,44 +18,22 @@ const { isActive,  children, item={}}:{isActive:(path:string)=>boolean,  childre
   }
 </script>
 
-<li
-  bind:this={liEl}
-  class="relative group p-3"
-  onmouseenter={updatePosition}
->
-  <a
-    href={item.path}
-    class="block hover:text-blue-500 py-2 transition-colors text-black dark:text-white duration-200 px-3 rounded-full"
-    class:text-blue-500={isActive(item.path)}
-    class:bg-blue-100={isActive(item.path)}
-    class:font-medium={isActive(item.path)}
-    class:text-muted-foreground={!isActive(item.path)}
-  >
-    {@render children()}
-  </a>
-{#if item.children}
+ <a
+              href={item.path}
+              class="relative cursor-pointer text-xs font-medium px-3 py-1 rounded-full transition-colors hover:text-green-500"
+              class:bg-background={isActive(item.path)}
+              class:text-[#22c55e]={isActive(item.path)}
+              class:text-foreground={!isActive(item.path)}
+            >
+              <span class="text-base">{@render children()}</span>
 
-  <div
-  transition:slide={{
-    duration: 300,
-     
-      axis: "y"
-  }} 
-    bind:this={tooltipEl}
-    class={`absolute top-14  hidden group-hover:block
-      min-w-80 max-w-sm translate-y-20
-      bg-white text-black text-sm p-4 rounded-md shadow-lg
-      transition-all  ease-out
-      duration-300
-        group-hover:translate-y-0
-      ${align === "right" ? "right-0  translate-x-1/2" : "left-0 -translate-x-1/2"}
-    `}
-  >
-   <ul class="flex gap-2 justify-between w-full">
-    {#each item.children as child}
-        <a class="bg-gray-300 p-2 px-4 rounded-full" href={child.path}>{child.label}</a>
-    {/each}
-   </ul>
-  </div>
-  {/if}
-</li>
+                {#if isActive(item.path)}
+                <div class="absolute inset-0 w-full  rounded-full -z-10">
+                <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-[#22c55e] rounded-t-full">
+                  <div class="absolute w-8 h-3 bg-[#22c55e]/20 rounded-full blur-sm -top-1 -left-1"></div>
+                  <div class="absolute w-6 h-3 bg-[#22c55e]/20 rounded-full blur-sm -top-0.5"></div>
+                  <div class="absolute w-3 h-2 bg-[#22c55e]/20 rounded-full blur-xs top-0 left-1.5"></div>
+                </div>
+              </div>
+              {/if}
+            </a>

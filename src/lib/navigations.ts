@@ -1,6 +1,6 @@
 import { Contact, Notebook } from "@lucide/svelte";
 import { Gallery } from "flowbite-svelte";
-import { HomeOutline } from "flowbite-svelte-icons";
+import { HomeOutline, UsersGroupSolid } from "flowbite-svelte-icons";
 
 export const navigationItems = [
   {
@@ -12,6 +12,11 @@ export const navigationItems = [
     path: "/portfolio",
     label: "Portfolio",
     Icon: Contact,
+  },
+  {
+    path: "/about",
+    label: "About",
+    Icon: UsersGroupSolid,
   },
   {
     path: "/contact",

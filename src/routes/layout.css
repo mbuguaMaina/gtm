@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
 @import "tailwindcss";
 @tailwind utilities;
-
+@plugin "@tailwindcss/typography";
+ 
+@custom-variant dark (&:where(.dark, .dark *));
 /* ================================
    Tailwind v4 Token Registration
 ================================ */
@@ -114,7 +117,7 @@
   --primary: 217 91% 60%;
   --primary-foreground: 0 0% 98%;
 
-  --secondary: 220 15% 20%;
+  --secondary: 210 25% 18%;
   --secondary-foreground: 0 0% 98%;
 
   --muted: 220 15% 18%;

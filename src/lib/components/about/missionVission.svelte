@@ -38,11 +38,11 @@
     <div class="grid md:grid-cols-3 gap-8">
       {#each cards as card, index}
         <div
-          class="group relative p-8 rounded-2xl bg-zinc-50 border border-blue-100 hover:border-blue-200 transition-all duration-300 animate-fade-up"
+          class="group relative p-8 rounded-2xl  bg-secondary transition-all duration-300 animate-fade-up"
           style={`animation-delay: ${index * 0.15}s`}
         >
           <div
-            class="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center mb-6 group-hover:bg-blue-200 transition-colors"
+            class="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors"
           >
             <card.icon
               class="w-7 h-7 text-blue-600"

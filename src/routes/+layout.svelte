@@ -22,7 +22,7 @@ import ProjectModal from "$lib/components/ProjectModal.svelte";
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
  
-<ProjectModal bind:open={openModal}  />
+ 
 
 
 {#key page.url.pathname}

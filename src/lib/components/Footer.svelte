@@ -1,6 +1,7 @@
 <script lang="ts">
   import {Button} from "flowbite-svelte";
   import { Mail, Phone, MapPin } from "@lucide/svelte";
+	import ProjectModal from "./ProjectModal.svelte";
  
  
   let {openModal = $bindable(false)}:{openModal:boolean} = $props();
@@ -17,9 +18,10 @@
         <p class="text-white mb-6 max-w-md">
       Building digital experiences that drive growth. Your trusted partner for web development, SEO, and digital marketing in Kenya.
         </p>
-        <Button onclick={() => openModal = !openModal} class="bg-[#22c55e] text-zinc-100"  size="lg">
+        <!-- <Button onclick={() => openModal = !openModal} class="bg-[#22c55e] text-zinc-100"  size="lg">
           Start Your Project
-        </Button>
+        </Button> -->
+        <ProjectModal />
       </div>
 
       <div>

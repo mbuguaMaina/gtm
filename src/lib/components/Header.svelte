@@ -5,15 +5,16 @@
 	import ListItem from './listItem.svelte';
  import { navigationItems } from "$lib/navigations";
 	import ThemeToggle from './ThemeToggle.svelte';
+   import logo from "$lib/assets/circularlogo.png";
    let open = $state(false), toggleOpen = () => open = !open;
+
 
   const isActive = (path: string) => page.url.pathname === path;
 </script>
 
 <header class="fixed  transition duration-300 top-0 z-50 w-full px-2 bg-background ">
-  <nav class="md:mx-auto  px-2 md:max-w-6xl md:px-6 transition-all duration-300 lg:px-12">
-    <div class="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-0.5">
-
+  <nav class="md:mx-auto  px-1 md:max-w-6xl md:px-6 transition-all duration-300 lg:px-12">
+    <div class="relative flex flex-wrap items-center justify-between gap-2 md:gap-6 py-3 lg:gap-0 lg:py-0.5">
       <!-- Logo Section -->
       <div class="flex w-full justify-between lg:w-auto items-center">
         <a
@@ -21,19 +22,18 @@
           aria-label="GGM Technologies - Home"
           href="/"
         >
-          <img src="/circularlogo.png" class="w-10 h-10 object-contain  " alt="GGM Technologies - logo">
+          <enhanced:img src={logo} class="w-10 h-10 object-contain  " alt="GGM Technologies - logo" />
         
         </a>
-
         <!-- Mobile Menu Links -->
         <div class="lg:hidden">
-          <div class="flex items-center bg-background/75  backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
+          <div class="flex items-center    bg-background/60 dark:bg-slate-900 backdrop-blur-lg   py-1 px-1 rounded-full shadow-lg">
 
         
 {#each navigationItems as item}
       <a
               href={item.path}
-              class="relative cursor-pointer text-xs font-medium px-3 py-1 rounded-full transition-colors hover:text-blue-500"
+              class="relative cursor-pointer text-xs font-medium px-3 py-1 rounded-full transition-colors hover:text-green-500"
               class:bg-background={isActive(item.path)}
               class:text-[#22c55e]={isActive(item.path)}
               class:text-foreground={!isActive(item.path)}
@@ -51,25 +51,14 @@
               {/if}
             </a>
 {/each}
-       
-
-           
-      
-
-          
-
           </div>
         </div>
-       
-
         <!-- Mobile Theme Switcher -->
-          <div class="flex items-center gap-3   md:hidden      px-1.5 py-1.5 ">
+          <div class="flex items-center gap-1 md:gap-3   md:hidden      px-1.5 py-1.5 ">
   <ThemeToggle />
-<button  class="relative  h-8 w-8 rounded-md shadow  grid place-items-center bg-background text-foreground">
+<!-- <button  class="relative  h-8 w-8 rounded-md shadow  grid place-items-center bg-zinc-100 dark:bg-slate-800 text-foreground">
 <Menu onclick={toggleOpen} class="h-5 w-5 " />
-</button>
-        
-
+</button> -->
       </div>
       </div>
 
@@ -84,20 +73,18 @@
 
         </ul>
       </div>
-
       <!-- Desktop Theme Switcher -->
-
       <ul class="hidden lg:flex gap-2 items-center">
-         <li>
+         <li class="p-1 rounded bg-gray-100  dark:bg-slate-800 ">
 
 <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">
-  <Twitter class="text-blue-500" />
+  <Twitter class="text-slate-900 dark:text-slate-50" />
 </a>
          </li>
-         <li>
+         <li class="p-1 rounded bg-gray-100   dark:bg-slate-800 ">
 
 <a href="https://facebook.com/yourusername" target="_blank" rel="noopener noreferrer">
-  <Facebook class="text-blue-500"/>
+  <Facebook class="text-slate-900 dark:text-slate-50"/>
 </a>
          </li>
          <li>
@@ -114,8 +101,6 @@
  <ThemeToggle />
 </div>
       </ul>
- 
-
     </div>
   </nav>
 </header>

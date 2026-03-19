@@ -19,6 +19,13 @@
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
         
         <Button
+        onclick={()=> {
+let a = document.createElement("a");
+a.href = "https://wa.me/254700412990"
+a.target = "_blank"
+a.click()
+
+        }}
           size="lg"
           class="bg-[hsl(0,0%,100%)] text-[hsl(209,100%,18%)] hover:bg-[hsl(0,0%,100%)]/90 text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
         >

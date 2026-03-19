@@ -1,6 +1,7 @@
 <script lang="ts">
   import {Button,Card} from "flowbite-svelte";
   import { Check, Star } from "@lucide/svelte";
+	import ProjectModal from "./ProjectModal.svelte";
 
   const packages = [
     {
@@ -101,10 +102,20 @@
               {/each}
             </ul>
 
-            <div class="pt-6">
-              <Button   class="w-full bg-accent" size="lg">
+            <div class="pt-6 w-11/12 mx-auto">
+              <!-- <Button   class="w-full " size="lg">
                 Get Started
-              </Button>
+              </Button> -->
+
+               <ProjectModal title="Get Started" package={{
+                planName: pkg.name,
+                serviceName: pkg.description,
+                serviceVal: pkg.name.toLowerCase().replace(/\s+/g, '-'),
+                price: pkg.price,
+                features: pkg.features,
+                isFeatured: pkg.popular
+                
+              }}  />
             </div>
           </div>
         </Card>
@@ -115,7 +126,13 @@
       <p class="text-muted-foreground mb-4">
         Need something different? Let's discuss your specific requirements.
       </p>
-      <Button class="bg-blue-500 text-white hover:bg-accent " size="lg">
+      <Button  onclick={()=> {
+let a = document.createElement("a");
+a.href = "https://wa.me/254700412990"
+a.target = "_blank"
+a.click()
+
+        }} class="bg-blue-500 text-white hover:bg-accent " size="lg">
         Schedule a Consultation
       </Button>
     </div>
