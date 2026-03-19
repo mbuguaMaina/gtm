@@ -4,7 +4,7 @@
 </script>
 
 <section
-  class="relative min-h-[70vh] mt-8 flex items-center justify-center overflow-hidden
+  class="relative min-h-[70vh] mt-6 flex items-center justify-center overflow-hidden
   "
 >
   <!-- Image -->
