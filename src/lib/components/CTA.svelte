@@ -2,6 +2,7 @@
   import { Button } from "flowbite-svelte";
   import { ArrowRight, Sparkles } from "@lucide/svelte";
 	import WebsiteAuditModal from "./WebsiteAuditModal.svelte";
+	import WhatsappBtn from "./contact/whatsappBtn.svelte";
   export let variant: "primary" | "secondary" | "urgent" = "primary";
   export let title: string;
   export let description: string;
@@ -27,7 +28,7 @@
       <h2 class="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
       <p class="text-lg md:text-xl mb-8 opacity-90">{description}</p>
 
-      <WebsiteAuditModal />
+     <WhatsappBtn />
     </div>
   </div>
 </section>

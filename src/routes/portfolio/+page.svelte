@@ -124,7 +124,7 @@ class="min-h-screen  animate-fade-up ">
   </section>
 
   <!-- Featured Case Study -->
-  <section class="px-4 pt-8 md:py-16 sm:px-6 lg:px-8">
+  <section class="px-4 py-8 md:py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-7xl">
       <h2 class="mb-8 text-center text-[#22c55e] text-sm font-semibold uppercase tracking-widest  ">
         Featured Case Study
@@ -204,7 +204,7 @@ class="min-h-screen  animate-fade-up ">
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {#each filtered as project}
           <div
-            class="group overflow-hidden rounded-xl bg-card hover:scale-[102%] transition-all duration-300 cursor-pointer"
+            class="group overflow-hidden rounded-xl bg-secondary hover:scale-[102%] transition-all duration-300 cursor-pointer"
           >
             <div class="relative flex aspect-video items-center justify-center bg-linear-to-br from-[#1e293b] to-[#0f172a]">
               <span class="text-3xl font-bold text-white ">

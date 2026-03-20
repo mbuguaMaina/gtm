@@ -152,22 +152,22 @@
 
 	<!-- Featured Post -->
 	<section class="container mx-auto px-6 -mt-16 mb-16">
-		<div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+		<div class="bg-secondary rounded-2xl shadow-xl overflow-hidden">
 			<div class="md:flex">
 				<div class="md:w-1/2">
 					<enhanced:img src={featuredPost.image} alt="Featured" class="w-full h-full object-cover" />
 				</div>
 				<div class="md:w-1/2 p-8 md:p-12">
 					<span class="inline-block px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm font-semibold mb-4">Featured</span>
-					<h3 class="text-3xl font-bold text-slate-800 mb-4">{featuredPost.title}</h3>
-					<p class="text-slate-600 mb-6">{featuredPost.excerpt}</p>
+					<h3 class="text-3xl font-bold   mb-4">{featuredPost.title}</h3>
+					<p class="  mb-6">{featuredPost.excerpt}</p>
 					<div class="flex items-center mb-6">
-						<div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-semibold mr-3">
+						<div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center   font-semibold mr-3">
 							{featuredPost.authorInitials}
 						</div>
 						<div>
-							<p class="text-sm font-semibold text-slate-800">{featuredPost.author}</p>
-							<p class="text-xs text-slate-500">{featuredPost.date} · {featuredPost.readTime}</p>
+							<p class="text-sm font-semibold  ">{featuredPost.author}</p>
+							<p class="text-xs  ">{featuredPost.date} · {featuredPost.readTime}</p>
 						</div>
 					</div>
 					<a href="/" class="inline-flex items-center text-green-600 font-semibold hover:text-green-800 transition">
@@ -202,25 +202,25 @@
 	<section class="container mx-auto px-6 pb-20">
 		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 			{#each filteredPosts as post (post.id)}
-				<article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+				<article class="bg-secondary rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
 				 
 					<enhanced:img src={post.image} alt="Blog post" class="w-full h-48 object-cover" />
 					<div class="p-6">
 						<span class="inline-block px-3 py-1 bg-green-100 text-green-600 rounded-full text-xs font-semibold mb-3">
 							{post.category}
 						</span>
-						<h3 class="text-xl font-bold text-slate-800 mb-3 hover:text-green-600 transition cursor-pointer">
+						<h3 class="text-xl font-bold  mb-3 hover:text-green-600 transition cursor-pointer">
 							{post.title}
 						</h3>
-						<p class="text-slate-600 text-sm mb-4">{post.excerpt}</p>
-						<div class="flex items-center justify-between pt-4 border-t border-slate-100">
+						<p class="  text-sm mb-4">{post.excerpt}</p>
+						<div class="flex items-center justify-between pt-4 border-t border-accent/30">
 							<div class="flex items-center">
-								<div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-semibold mr-2">
+								<div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center   text-xs font-semibold mr-2">
 									{post.authorInitials}
 								</div>
-								<span class="text-xs text-slate-600">{post.author}</span>
+								<span class="text-xs  ">{post.author}</span>
 							</div>
-							<span class="text-xs text-slate-500">{post.date}</span>
+							<span class="text-xs  ">{post.date}</span>
 						</div>
 					</div>
 				</article>

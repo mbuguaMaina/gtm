@@ -116,7 +116,7 @@
               </div>
             </div>
 
-            <Button   class="w-fit bg-accent gap-1  group">
+            <!-- <Button   class="w-fit bg-accent gap-1  group">
               View Full Case Study
               <ArrowRight
                 class="
@@ -125,7 +125,7 @@
                   transition-transform
                 "
               />
-            </Button>
+            </Button> -->
           </div>
         </div>
       </div>

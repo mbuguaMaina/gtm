@@ -33,7 +33,16 @@ const schemas = [
 <ContactHero />
       <ResponseInfo />
       <ContactInfoCards />
-      <WhatsappBtn />
+      <div class="flex flex-col text-center items-center justify-center w-full  ">
+  <h2 class="mb-4 text-2xl font-bold text-foreground md:text-3xl">
+        Prefer WhatsApp?
+      </h2>
+      <p class="mb-6 text-muted-foreground">
+        Get instant responses by starting a WhatsApp conversation with our team.
+      </p>
+    <WhatsappBtn />
+      </div>
+  
       <SocialLinks />
       <Faq />
 	</section>

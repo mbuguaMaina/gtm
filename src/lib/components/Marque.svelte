@@ -10,12 +10,15 @@
 	<div class="marquee">
 		<div class="track">
 			{#each [...techStack, ...techStack] as tech}
-                {#if typeof tech !== "string"}
+                {#if typeof tech.name !== "string"}
             
                     <!-- svelte-ignore element_invalid_self_closing_tag -->
     <tech class="text-foreground" />
                 {:else}
-				<div class="item">{tech}</div>
+				<div class="item flex items-center gap-1">
+			<img src={tech.logo} alt={tech.name} class="w-6 h-6 object-contain rounded-full"/>		{tech.name}
+				
+				</div>
                 {/if}
 			{/each}
 		</div>

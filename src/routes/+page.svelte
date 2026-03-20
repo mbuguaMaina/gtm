@@ -1,13 +1,13 @@
 <script>
+	import { customers } from "$lib";
 	import CaseStudy from "$lib/components/CaseStudy.svelte";
 	import CTA from "$lib/components/CTA.svelte";
 	import Hero from "$lib/components/Hero.svelte";
 	import Marque from "$lib/components/Marque.svelte";
 	import Pricing from "$lib/components/Pricing.svelte";
 	import PromoBanner from "$lib/components/PromoBanner.svelte";
-	import Services from "$lib/components/services/Services.svelte";
+	import Services from "$lib/components/Services.svelte";
 	import Testimonies from "$lib/components/Testimonies.svelte";
-	 
 	import TrustBanner from "$lib/components/TrustBanner.svelte";
 	import { createMeta } from "$lib/meta";
 	 
@@ -39,18 +39,7 @@ const schemas = [
  
 <SEO {meta} {schemas} />
  <Hero  />
- <Marque techStack={[
-		"Svelte",
-		"SvelteKit",
-		"TypeScript",
-		"Node.js",
-		"PostgreSQL",
-		"Tailwind",
-		"Cloudflare",
-		"Docker",
-		"Stripe",
-		"Vercel"
-	]} />
+ <Marque techStack={customers} />
  <TrustBanner />
  <CTA
  variant="secondary"

@@ -36,7 +36,7 @@
   ];
 </script>
 
-<section class="py-16 md:py-20">
+<section class="pt-16 md:py-20">
   <div class="container mx-auto px-4">
     <!-- Heading -->
     <div class="mb-12 text-center">
