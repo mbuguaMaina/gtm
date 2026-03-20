@@ -6,6 +6,16 @@ import { enhancedImages } from '@sveltejs/enhanced-img';
 
 
 export default defineConfig({
+	  optimizeDeps: {
+    // Tell Vite to pre-bundle three and its addons together.
+    // Without this, "three/addons/..." imports fail in dev mode.
+    include: [
+      'three',
+      'three/addons/controls/OrbitControls.js',
+      'three/addons/loaders/GLTFLoader.js',
+      'three/addons/loaders/DRACOLoader.js',
+    ],
+  },
 	plugins: [enhancedImages(),tailwindcss(), sveltekit()],
 	 ssr: {
     noExternal: ['@lucide/svelte'] // important!
