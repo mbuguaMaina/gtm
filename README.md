@@ -1,42 +1,33 @@
-# sv
+# GGM Technologies
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A modern web development and marketing agency platform built with SvelteKit, featuring responsive design, interactive components, and integrated marketing tools for client projects.
 
-## Creating a project
+## Table of Contents
+- [Description](#description)
+- [Features](#features)
+- [Authors](#authors)
+- [Changelog](#changelog)
+ 
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Description
+GGM Technologies is a comprehensive web development and marketing agency solution. This project provides a SvelteKit-based application for managing client websites, marketing campaigns, and analytics integrations. It leverages modern web technologies to deliver fast, scalable, and user-friendly experiences.
 
-```sh
-# create a new project
-npx sv create my-app
-```
+## Features
+- **Responsive Web Design**: Built with Tailwind CSS for mobile-first, adaptive layouts.
+- **Interactive Components**: Utilizes Svelte for dynamic UI elements and Three.js for 3D visualizations.
+- **Content Management**: Integrated with PortableText for rich content handling.
+- **Marketing Integrations**: Support for analytics, social media pixels, and tracking tools.
+- **SEO Optimization**: Enhanced with mdsvex for markdown-based content and typography plugins.
+- **Development Tools**: Includes linting, formatting, and testing with Vitest and Playwright.
 
-To recreate this project with the same configuration:
+ 
+## Authors
+- GGM Technologies Team <ggmtechhub@gmail.com>
 
-```sh
-# recreate this project
-pnpm dlx sv create --template minimal --types ts --add prettier vitest="usages:unit,component" tailwindcss="plugins:none" mdsvex --install pnpm .
-```
+## Changelog
+### Version 0.0.1 (March 20, 2026)
+- Initial release with SvelteKit setup, Tailwind integration, and basic components.
 
-## Developing
+See [CHANGELOG.md](./CHANGELOG.md) for full history.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+ 
