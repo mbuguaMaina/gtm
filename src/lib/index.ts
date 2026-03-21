@@ -53,13 +53,13 @@ import SearchOutline from "flowbite-svelte-icons/SearchOutline.svelte";
       "Improve your Google rankings with technical SEO, keyword strategy, and on-page optimization to bring consistent organic traffic."
   },
 
-  {
-      tag: "digital-marketing",
-    icon: PhoneOutline,
-    title: "Digital Marketing",
-    description:
-      "Complete marketing strategies including content, funnels, and campaign planning to grow your business online."
-  },
+  // {
+  //     tag: "digital-marketing",
+  //   icon: PhoneOutline,
+  //   title: "Digital Marketing",
+  //   description:
+  //     "Complete marketing strategies including content, funnels, and campaign planning to grow your business online."
+  // },
 
   {
       tag: "social-media-management",
