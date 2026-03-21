@@ -42,7 +42,17 @@ const schemas = [
       </p>
     <WhatsappBtn />
       </div>
-  
+  <section class="py-6 md:py-16">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="mb-4 text-2xl font-bold text-foreground md:text-3xl">
+      Follow Us
+    </h2>
+    <p class="mb-8 text-[hsl(215,16%,47%)]">
+      Stay updated with our latest projects and insights.
+    </p>
       <SocialLinks />
+  </div>
+  </section>
+  
       <Faq />
 	</section>

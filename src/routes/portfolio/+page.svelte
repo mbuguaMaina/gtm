@@ -186,12 +186,12 @@ class="min-h-screen  animate-fade-up ">
               {/each}
             </div>
 
-            <a
+            <!-- <a
               href="/"
               class="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#22c55e] px-6 py-2.5 text-sm font-semibold text-[#0f172a] transition-colors hover:bg-[#16a34a]"
             >
               View Case Study <ArrowRight size={16} />
-            </a>
+            </a> -->
           </div>
         </div>
       </div>

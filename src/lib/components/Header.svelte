@@ -74,7 +74,7 @@
       </div>
       <!-- Desktop Theme Switcher -->
       <ul class="hidden lg:flex gap-2 items-center">
-   <SocialLinks />
+   <SocialLinks size="sm"/>
           <div class="hidden md:inline-block">
  <ThemeToggle />
 </div>

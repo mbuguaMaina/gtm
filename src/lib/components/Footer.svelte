@@ -1,5 +1,4 @@
 <script lang="ts">
-  import {Button} from "flowbite-svelte";
   import { Mail, Phone, MapPin } from "@lucide/svelte";
 	import ProjectModal from "./ProjectModal.svelte";
  
@@ -36,8 +35,8 @@
 <div>
   <h4 class="font-semibold mb-4">Company</h4>
   <ul class="space-y-3"><li><a href="/about" class="text-zinc-100/80  transition-colors duration-300">About Us</a></li>
-    <li><a href="/projects" class="text-zinc-100/80  transition-colors duration-300">Our Work</a></li>
-    <li><a href="/careers" class="text-zinc-100/80  transition-colors duration-300">Careers</a></li>
+    <li><a href="/portfolio" class="text-zinc-100/80  transition-colors duration-300">Our Work</a></li>
+    <!-- <li><a href="/careers" class="text-zinc-100/80  transition-colors duration-300">Careers</a></li> -->
     <li><a href="/blog" class="text-zinc-100/80  transition-colors duration-300">Blog</a></li></ul></div>
       <div>
         <h4 class="font-semibold mb-4">Contact</h4>

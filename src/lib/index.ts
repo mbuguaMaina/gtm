@@ -375,18 +375,21 @@ export const customers =
     name: "Olet Hardware",
     logo: "/customers/olet.png",
     testimonial:
-      "GGM Technologies transformed our online presence. Our new website is stunning and has attracted more customers. Their team was professional, responsive, and delivered on time. Highly recommend for any business looking to grow online."
-  },{
-
-    name:"OutdoorQuest",
+      "GGM Technologies transformed our online presence. Our new website is stunning and has attracted more customers. Their team was professional, responsive, and delivered on time. Highly recommend for any business looking to grow online.",
+    url: "https://olethardware.com"
+  },
+  {
+    name: "OutdoorQuest",
     logo: "/customers/outdoorquest.png",
     testimonial:
-      "Working with GGM Technologies was a game-changer for our business. They built us a beautiful, user-friendly website that perfectly captures our brand. We've seen a significant increase in traffic and sales since the launch. Their team is talented, communicative, and truly cares about their clients' success."
+      "Working with GGM Technologies was a game-changer for our business. They built us a beautiful, user-friendly website that perfectly captures our brand. We've seen a significant increase in traffic and sales since the launch. Their team is talented, communicative, and truly cares about their clients' success.",
+    url: "https://outdoorquest.co.ke"
   },
   {
     name: "GGM Technologies",
     logo: "/customers/ggm.png",
     testimonial:
-      "GGM Technologies transformed our online presence. Our new website is stunning and has attracted more customers. Their team was professional, responsive, and delivered on time. Highly recommend for any business looking to grow online."
+      "GGM Technologies transformed our online presence. Our new website is stunning and has attracted more customers. Their team was professional, responsive, and delivered on time. Highly recommend for any business looking to grow online.",
+    url: "https://ggmtechnologies.co.ke"
   }
 ]

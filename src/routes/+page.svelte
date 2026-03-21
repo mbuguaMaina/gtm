@@ -39,7 +39,7 @@ const schemas = [
  
 <SEO {meta} {schemas} />
  <Hero  />
- <Marque techStack={customers} />
+ <Marque techStack={customers} speed={20} />
  <TrustBanner />
  <CTA
  variant="secondary"

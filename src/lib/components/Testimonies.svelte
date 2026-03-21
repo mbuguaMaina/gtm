@@ -3,30 +3,9 @@
 	import { onMount } from "svelte";
 	import Rating from "./Rating.svelte";
 
-	const testimonials = [
-		{
-			name: "John Mwangi",
-			role: "Contractor",
-			text: "The doors I purchased from Olet Hardware were extremely high quality. Delivery was fast and the finishing was perfect."
-		},
-		{
-			name: "Grace Wanjiku",
-			role: "Home Owner",
-			text: "Amazing customer service and durable products. My mahogany doors still look brand new after years."
-		},
-		{
-			name: "Peter Otieno",
-			role: "Interior Designer",
-			text: "I recommend Olet Hardware to my clients because the craftsmanship of their wood products is excellent."
-		},
-		{
-			name: "Samuel Kariuki",
-			role: "Builder",
-			text: "Reliable supplier for construction materials. The quality of their MDF boards and doors is unmatched."
-		}
-	];
+	 let {testimonials=$bindable([])} = $props()
 
-	let index = 0;
+	let index = $state(0);
 	let interval: any;
 
 	function next() {
@@ -43,12 +22,10 @@
 	});
 </script>
 
- <!-- <div class="embedsocial-hashtag" data-ref="b0cd1f7540358120e23e1b24956b083de72f1482"> <a class="feed-powered-by-es feed-powered-by-es-feed-img es-widget-branding" href="https://embedsocial.com/" target="_blank" title="Widget by EmbedSocial" > <img src="https://embedsocial.com/cdn/icon/embedsocial-logo.webp" alt="EmbedSocial"> <div class="es-widget-branding-text">Widget by EmbedSocial</div> </a> </div> 
- 
- 
- <script lang="ts"> (function(d, s, id) { var js:any; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "https://embedsocial.com/cdn/ht.js"; d.getElementsByTagName("head")[0].appendChild(js); }(document, "script", "EmbedSocialHashtagScript")); </script>  -->
-
-<section class="py-20 container mx-auto relative overflow-hidden">
+  {#if testimonials.length === 0}
+	 <p> </p>
+  {:else}
+	<section class="py-16">
 
 	<div class="text-center mb-12 px-4">
 		<h2 class="text-3xl font-bold text-foreground">
@@ -129,3 +106,4 @@
 
 
 </section>
+{/if}

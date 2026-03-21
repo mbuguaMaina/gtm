@@ -29,24 +29,22 @@ const schemas = [
     url: meta.url
   })
 ]
+let activePage = $state("seo-optimization");
  onMount(() => {
   const tag = page.url.searchParams.get("tag");
   if (tag ) {
     activePage = tag;
   }
   })
-
-
-let activePage = "seo-optimization";
-	let sidebarOpen = false;
-
-
-
+	let sidebarOpen = $state(false);
 	function setPage(id:any) {
 		activePage = id;
 		sidebarOpen = false;
 	}
  
+  $effect(()=>{
+	console.log(activePage)
+ })
 </script>
  <SEO {meta} {schemas} />
  

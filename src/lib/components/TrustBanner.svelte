@@ -36,8 +36,7 @@
 <section
   class="
     py-14
-    
-    border-t border-zinc-200  dark:border-slate-500
+    border-t border-zinc-200  dark:border-slate-800
     transition-colors duration-200
   "
 >
