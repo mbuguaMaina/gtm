@@ -1,644 +1,413 @@
-<script lang="ts">
-  // Svelte 5 runes
-  let darkMode = $state(false);
-  let hasOpenings = $state(true); // Toggle to simulate both states
-  let submitted = $state(false);
-  let submitting = $state(false);
-  let activeTab = $state('all');
+<script>
+	// Set this to true when you have open positions, false when you don't
+	let hasOpenPositions = $state(false);
 
-  // Form state
-  let form = $state({
-    name: '',
-    email: '',
-    phone: '',
-    role: '',
-    experience: '',
-    portfolio: '',
-    linkedin: '',
-    message: ''
-  });
+	// Job listings data
+	const jobs = [
+		{
+			id: 1,
+			title: 'Senior Software Engineer',
+			location: 'Nairobi, Kenya',
+			type: 'Full-time',
+			posted: '2 days ago',
+			description:
+				"We're looking for an experienced software engineer to lead development on our core platform. You'll work with modern technologies and mentor junior developers.",
+			skills: ['React', 'Node.js', 'AWS', 'MongoDB']
+		},
+		{
+			id: 2,
+			title: 'Product Designer (UI/UX)',
+			location: 'Nairobi, Kenya / Remote',
+			type: 'Full-time',
+			posted: '1 week ago',
+			description:
+				"Join our design team to create beautiful, intuitive user experiences. You'll work on products used by thousands of users daily.",
+			skills: ['Figma', 'Adobe XD', 'User Research', 'Prototyping']
+		},
+		{
+			id: 3,
+			title: 'DevOps Engineer',
+			location: 'Nairobi, Kenya',
+			type: 'Full-time',
+			posted: '3 days ago',
+			description:
+				"Help us build and maintain robust infrastructure. You'll automate deployments, ensure system reliability, and optimize performance.",
+			skills: ['Docker', 'Kubernetes', 'AWS', 'CI/CD']
+		},
+		{
+			id: 4,
+			title: 'Data Scientist',
+			location: 'Nairobi, Kenya / Remote',
+			type: 'Full-time',
+			posted: '5 days ago',
+			description:
+				'Use data to drive insights and build predictive models. Work with large datasets and cutting-edge machine learning techniques.',
+			skills: ['Python', 'Machine Learning', 'TensorFlow', 'SQL']
+		},
+		{
+			id: 5,
+			title: 'Marketing Manager',
+			location: 'Nairobi, Kenya',
+			type: 'Full-time',
+			posted: '1 week ago',
+			description:
+				"Lead our marketing efforts and brand strategy. You'll develop campaigns, manage budgets, and grow our market presence.",
+			skills: ['Digital Marketing', 'SEO/SEM', 'Content Strategy', 'Analytics']
+		}
+	];
 
-  let formErrors:any = $state({});
+	const benefits = [
+		{
+			title: 'Innovation First',
+			description:
+				'Work with cutting-edge technologies and contribute to groundbreaking projects that shape the future.',
+			icon: 'lightning'
+		},
+		{
+			title: 'Collaborative Culture',
+			description:
+				'Join a diverse team of talented professionals who support each other and grow together.',
+			icon: 'team'
+		},
+		{
+			title: 'Learning & Development',
+			description:
+				'Access continuous learning opportunities, training programs, and career advancement paths.',
+			icon: 'book'
+		},
+		{
+			title: 'Work-Life Balance',
+			description:
+				'Flexible working hours, remote work options, and generous leave policies to maintain your wellbeing.',
+			icon: 'smile'
+		},
+		{
+			title: 'Competitive Compensation',
+			description:
+				'Attractive salary packages, performance bonuses, and comprehensive benefits including health insurance.',
+			icon: 'dollar'
+		},
+		{
+			title: 'Global Impact',
+			description:
+				"Work on projects that reach users worldwide and make a meaningful difference in people's lives.",
+			icon: 'globe'
+		}
+	];
 
-  const jobOpenings = [
-    {
-      id: 1,
-      title: 'Full-Stack Web Developer',
-      department: 'Engineering',
-      type: 'Full-time',
-      location: 'Nairobi, Kenya',
-      tags: ['engineering'],
-      description: 'Build scalable, performant web applications using modern JavaScript frameworks. Work closely with our design and product teams to deliver exceptional user experiences.',
-      requirements: ['3+ years with React/Vue/Svelte', 'Node.js & REST API experience', 'Git & CI/CD familiarity', 'Strong problem-solving skills'],
-      posted: '5 days ago'
-    },
-    {
-      id: 2,
-      title: 'UI/UX Designer',
-      department: 'Design',
-      type: 'Full-time',
-      location: 'Nairobi, Kenya (Hybrid)',
-      tags: ['design'],
-      description: "Craft intuitive, conversion-focused digital experiences that make our clients look world-class. You'll lead design from wireframe to final handoff.",
-      requirements: ['Figma & prototyping mastery', '2+ years UI/UX portfolio', 'Understanding of web development constraints', 'Strong visual communication skills'],
-      posted: '1 week ago'
-    },
-    {
-      id: 3,
-      title: 'Digital Marketing Strategist',
-      department: 'Marketing',
-      type: 'Full-time',
-      location: 'Nairobi, Kenya',
-      tags: ['marketing'],
-      description: 'Drive client growth through data-led SEO strategies, PPC campaigns, and social media marketing. Own campaign performance from planning to reporting.',
-      requirements: ['Google Ads & Meta Ads certified', 'SEO tools proficiency (Semrush/Ahrefs)', 'Analytical & reporting skills', 'Content strategy experience'],
-      posted: '3 days ago'
-    },
-    {
-      id: 4,
-      title: 'Sales & Business Development Executive',
-      department: 'Sales',
-      type: 'Full-time',
-      location: 'Nairobi, Kenya',
-      tags: ['sales'],
-      description: 'Identify and close new business opportunities, build long-term client relationships, and help ambitious brands discover how GGM Technologies can transform their digital presence.',
-      requirements: ['2+ years in tech/agency sales', 'Strong communication & negotiation', 'CRM experience', 'Self-driven with a growth mindset'],
-      posted: '2 weeks ago'
-    }
-  ];
-
-  const tabs = [
-    { id: 'all', label: 'All Roles' },
-    { id: 'engineering', label: 'Engineering' },
-    { id: 'design', label: 'Design' },
-    { id: 'marketing', label: 'Marketing' },
-    { id: 'sales', label: 'Sales' }
-  ];
-
-  const filteredJobs = $derived(
-    activeTab === 'all'
-      ? jobOpenings
-      : jobOpenings.filter(j => j.tags.includes(activeTab))
-  );
-
-  const roleOptions = [
-    'Web Developer (Frontend)',
-    'Web Developer (Backend)',
-    'Full-Stack Developer',
-    'UI/UX Designer',
-    'Graphic Designer',
-    'Digital Marketing Specialist',
-    'SEO Specialist',
-    'Social Media Manager',
-    'Sales Executive',
-    'Project Manager',
-    'Content Writer',
-    'Other'
-  ];
-
-  function validateForm() {
-    const errors:any = {};
-    if (!form.name.trim()) errors.name = 'Full name is required';
-    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errors.email = 'Valid email is required';
-    if (!form.role) errors.role = 'Please select a role you are interested in';
-    if (!form.experience) errors.experience = 'Please indicate your experience level';
-    formErrors = errors;
-    return Object.keys(errors).length === 0;
-  }
-
-  async function handleSubmit() {
-    if (!validateForm()) return;
-    submitting = true;
-    // Simulate API call
-    await new Promise(r => setTimeout(r, 1800));
-    submitting = false;
-    submitted = true;
-  }
-
-  function resetForm() {
-    form = { name: '', email: '', phone: '', role: '', experience: '', portfolio: '', linkedin: '', message: '' };
-    formErrors = {};
-    submitted = false;
-  }
-
-  function toggleDark() {
-    darkMode = !darkMode;
-  }
+	const hiringSteps = [
+		{
+			number: 1,
+			title: 'Apply',
+			description: 'Submit your application with your resume and cover letter'
+		},
+		{
+			number: 2,
+			title: 'Screen',
+			description: 'Initial phone or video call to discuss your background and goals'
+		},
+		{
+			number: 3,
+			title: 'Interview',
+			description: 'Technical and cultural fit interviews with team members'
+		},
+		{
+			number: 4,
+			title: 'Offer',
+			description: 'Receive your offer and join the GGM Technologies family'
+		}
+	];
 </script>
 
-<!-- Root wrapper with dark mode class -->
-<div class={darkMode ? 'dark' : ''}>
-  <div class="min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300 font-sans">
+<!-- Hero Section -->
+<section class="bg-linear-to-br from-green-600 via-green-700 to-green-900 text-white py-20">
+	<div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+		<h1 class="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl">Join Our Team</h1>
+		<p class="mx-auto mb-8 max-w-3xl text-xl text-green-100 md:text-2xl">
+			Build the future of technology with us. We're looking for talented individuals passionate
+			about innovation.
+		</p>
+		<a
+			href="#openings"
+			class="inline-block rounded-lg bg-white px-8 py-3 font-semibold text-green-600 transition hover:bg-green-50"
+		>
+			View Open Positions
+		</a>
+	</div>
+</section>
 
-    <!-- ───────── NAV ───────── -->
-    <nav class="sticky top-0 z-50 bg-white/90 dark:bg-gray-950/90 backdrop-blur border-b border-gray-100 dark:border-gray-800 transition-colors duration-300">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <!-- Logo -->
-        <a href="https://ggmtechnologies.co.ke" class="flex items-center gap-2.5 group" target="_blank" rel="noopener noreferrer">
-          <div class="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-            <span class="text-white font-black text-xs tracking-tight">GGM</span>
-          </div>
-          <span class="font-bold text-gray-900 dark:text-white text-sm tracking-tight hidden sm:block">
-            GGM <span class="text-blue-600">Technologies</span>
-          </span>
-        </a>
+<!-- Why Join Us Section -->
+<section class="bg-background py-16">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div class="mb-12 text-center">
+			<h2 class="mb-4 text-3xl font-bold text-foreground md:text-4xl">Why Join GGM Technologies?</h2>
+			<p class="mx-auto max-w-2xl text-lg text-muted-foreground">
+				We offer more than just a job. We provide a platform for growth, innovation, and making a
+				real impact.
+			</p>
+		</div>
 
-        <div class="flex items-center gap-3">
-          <!-- Dev toggle for demo: switch between openings states -->
-          <button
-            onclick={() => hasOpenings = !hasOpenings}
-            class="text-xs px-3 py-1.5 rounded-full border border-dashed border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-blue-400 transition-colors"
-            title="Toggle openings state (demo)"
-          >
-            {hasOpenings ? '📋 Has Openings' : '📭 No Openings'}
-          </button>
+		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+			{#each benefits as benefit}
+				<div class="rounded-xl bg-green-50 dark:bg-secondary p-6 transition hover:shadow-lg">
+					<div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-green-600">
+						{#if benefit.icon === 'lightning'}
+							<svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M13 10V3L4 14h7v7l9-11h-7z"
+								></path>
+							</svg>
+						{:else if benefit.icon === 'team'}
+							<svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+								></path>
+							</svg>
+						{:else if benefit.icon === 'book'}
+							<svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+								></path>
+							</svg>
+						{:else if benefit.icon === 'smile'}
+							<svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+								></path>
+							</svg>
+						{:else if benefit.icon === 'dollar'}
+							<svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+								></path>
+							</svg>
+						{:else if benefit.icon === 'globe'}
+							<svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+								></path>
+							</svg>
+						{/if}
+					</div>
+					<h3 class="mb-2 text-xl font-semibold text-foreground">{benefit.title}</h3>
+					<p class="text-muted-foreground">{benefit.description}</p>
+				</div>
+			{/each}
+		</div>
+	</div>
+</section>
 
-          <!-- Dark mode toggle -->
-          <button
-            onclick={toggleDark}
-            class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors"
-            aria-label="Toggle dark mode"
-          >
-            {#if darkMode}
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
-              </svg>
-            {:else}
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
-              </svg>
-            {/if}
-          </button>
+<!-- Open Positions Section -->
+<section id="openings" class=" py-16">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div class="mb-12 text-center">
+			<h2 class="mb-4 text-3xl font-bold text-foreground md:text-4xl">Open Positions</h2>
+			{#if hasOpenPositions}
+				<p class="text-lg text-muted-foreground">Explore opportunities to join our growing team</p>
+			{/if}
+		</div>
 
-          <a
-            href="https://ggmtechnologies.co.ke/contact"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold transition-colors shadow-sm"
-          >
-            Contact Us
-          </a>
-        </div>
-      </div>
-    </nav>
+		{#if !hasOpenPositions}
+			<!-- No Positions Available Message -->
+			<div class="mx-auto max-w-3xl">
+				<div class="rounded-xl border border-secondary bg-secondary p-12 text-center shadow-sm">
+					<div class="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full dark:bg-background bg-green-100">
+						<svg class="h-10 w-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+							></path>
+						</svg>
+					</div>
+					<h3 class="mb-4 text-2xl font-bold text-foreground">No Open Positions at the Moment</h3>
+					<p class="mb-6 text-lg text-muted-foreground">
+						Thank you for your interest in joining GGM Technologies! While we don't have any open
+						positions right now, we're always growing and would love to hear from talented individuals
+						like you.
+					</p>
+					<p class="mb-8 text-gray-600">
+						We encourage you to submit your resume for future opportunities. We'll keep your
+						information on file and reach out when a position that matches your skills becomes
+						available.
+					</p>
+					<div class="flex flex-col justify-center gap-4 sm:flex-row">
+						<a href="mailto:ggmtechhub@gmail.com"
+							class="rounded-lg bg-green-600 px-8 py-3 font-medium text-white transition hover:bg-green-700"
+						>
+							Submit Your Resume
+						</a>
+						<a
+							href="mailto:ggmtechhub@gmail.com"
+							class="rounded-lg border-2 border-green-600 bg-white px-8 py-3 font-medium text-green-600 transition hover:bg-green-50"
+						>
+							Contact HR Team
+						</a>
+					</div>
+					<div class="mt-8 border-t border-gray-200 pt-8">
+						<p class="text-sm text-gray-500">
+							Want to stay updated? Follow us on social media or check back regularly for new
+							opportunities.
+						</p>
+					</div>
+				</div>
+			</div>
+		{:else}
+			<!-- Job Listings -->
+			<div class="space-y-6">
+				{#each jobs as job (job.id)}
+					<div
+						class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+					>
+						<div class="flex flex-col md:flex-row md:items-center md:justify-between">
+							<div class="flex-1">
+								<h3 class="mb-2 text-xl font-semibold text-gray-900">{job.title}</h3>
+								<div class="mb-3 flex flex-wrap gap-4 text-sm text-gray-600">
+									<span class="flex items-center">
+										<svg class="mr-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+											></path>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+											></path>
+										</svg>
+										{job.location}
+									</span>
+									<span class="flex items-center">
+										<svg class="mr-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+											></path>
+										</svg>
+										{job.type}
+									</span>
+									<span class="flex items-center">
+										<svg class="mr-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+											></path>
+										</svg>
+										Posted {job.posted}
+									</span>
+								</div>
+								<p class="mb-3 text-gray-600">
+									{job.description}
+								</p>
+								<div class="flex flex-wrap gap-2">
+									{#each job.skills as skill}
+										<span
+											class="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700"
+										>
+											{skill}
+										</span>
+									{/each}
+								</div>
+							</div>
+							<div class="mt-4 md:ml-6 md:mt-0">
+								<button
+									class="w-full rounded-lg bg-green-600 px-6 py-2 font-medium text-white transition hover:bg-green-700 md:w-auto"
+								>
+									Apply Now
+								</button>
+							</div>
+						</div>
+					</div>
+				{/each}
+			</div>
 
-    <!-- ───────── HERO ───────── -->
-    <section class="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 dark:from-blue-800 dark:via-blue-900 dark:to-gray-950 text-white py-20 sm:py-28">
-      <!-- Background grid pattern -->
-      <div class="absolute inset-0 opacity-10" style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='1'%3E%3Ccircle cx='20' cy='20' r='1'/%3E%3C/g%3E%3C/svg%3E&quot;);"></div>
+			<!-- Can't find position -->
+			<div class="mt-12 rounded-xl border border-green-100 bg-green-50 p-8 text-center">
+				<h3 class="mb-3 text-2xl font-semibold text-gray-900">Don't see the right position?</h3>
+				<p class="mx-auto mb-6 max-w-2xl text-gray-600">
+					We're always looking for talented individuals. Send us your resume and tell us what makes
+					you special.
+				</p>
+				<button
+					class="rounded-lg bg-green-600 px-8 py-3 font-medium text-white transition hover:bg-green-700"
+				>
+					Submit General Application
+				</button>
+			</div>
+		{/if}
+	</div>
+</section>
 
-      <!-- Decorative blobs -->
-      <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
-      <div class="absolute bottom-0 left-0 w-72 h-72 bg-blue-400/20 rounded-full -translate-x-1/2 translate-y-1/2 blur-2xl"></div>
+<!-- Application Process -->
+<section class="bg-white dark:bg-background py-16">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div class="mb-12 text-center">
+			<h2 class="mb-4 text-3xl font-bold text-foreground md:text-4xl">Our Hiring Process</h2>
+			<p class="text-lg text-muted-foreground">Simple, transparent, and designed to get to know you better</p>
+		</div>
 
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur text-blue-100 text-sm font-medium mb-6 border border-white/20">
-          <span class={`w-2 h-2 rounded-full ${hasOpenings ? 'bg-green-400 animate-pulse' : 'bg-amber-400'}`}></span>
-          {hasOpenings ? 'We\'re Actively Hiring' : 'No Active Openings'}
-        </span>
+		<div class="grid gap-8 md:grid-cols-4">
+			{#each hiringSteps as step}
+				<div class="text-center">
+					<div
+						class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-600 text-2xl font-bold text-white"
+					>
+						{step.number}
+					</div>
+					<h3 class="mb-2 text-lg font-semibold text-foreground">{step.title}</h3>
+					<p class="text-muted-foreground">{step.description}</p>
+				</div>
+			{/each}
+		</div>
+	</div>
+</section>
 
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-tight">
-          Build the Future of<br/>
-          <span class="text-blue-200">Digital Africa</span> with Us
-        </h1>
-
-        <p class="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto mb-10 leading-relaxed">
-          GGM Technologies is a Nairobi-based agency crafting websites, digital campaigns, and web applications that help African businesses compete globally. Join our team of builders and creators.
-        </p>
-
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          {#if hasOpenings}
-            <a
-              href="#openings"
-              class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white text-blue-700 font-bold hover:bg-blue-50 transition-colors shadow-lg shadow-blue-900/30 text-sm"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-              </svg>
-              View Open Roles
-            </a>
-          {/if}
-          <a
-            href="#register"
-            class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white/10 backdrop-blur border border-white/30 text-white font-semibold hover:bg-white/20 transition-colors text-sm"
-          >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-            </svg>
-            Stay Notified
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ───────── VALUES / CULTURE ───────── -->
-    <section class="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white mb-3">Why Join GGM Technologies?</h2>
-          <p class="text-gray-500 dark:text-gray-400 max-w-xl mx-auto">We're a team that ships real products, learns fast, and supports each other's growth.</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {#each [
-            { icon: '🚀', title: 'Real Impact', desc: 'Your work ships to actual clients and drives their business growth from day one.' },
-            { icon: '🌍', title: 'Kenyan-First', desc: 'We understand the African market deeply and build digital products that truly fit it.' },
-            { icon: '📚', title: 'Continuous Learning', desc: 'Monthly skill sessions, tool access, and a culture that values curiosity and growth.' },
-            { icon: '💡', title: 'Creative Freedom', desc: 'We value bold ideas. If you have a better way to do something, we want to hear it.' }
-          ] as value}
-            <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 hover:shadow-md dark:hover:shadow-gray-900/50 transition-all duration-200 group">
-              <div class="text-3xl mb-4">{value.icon}</div>
-              <h3 class="font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{value.title}</h3>
-              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{value.desc}</p>
-            </div>
-          {/each}
-        </div>
-      </div>
-    </section>
-
-    <!-- ───────── JOB OPENINGS (when hasOpenings = true) ───────── -->
-    {#if hasOpenings}
-      <section id="openings" class="py-16 bg-white dark:bg-gray-950 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
-            <div>
-              <h2 class="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white mb-1">Open Positions</h2>
-              <p class="text-gray-500 dark:text-gray-400">
-                {filteredJobs.length} role{filteredJobs.length !== 1 ? 's' : ''} available
-              </p>
-            </div>
-
-            <!-- Filter tabs -->
-            <div class="flex gap-2 flex-wrap">
-              {#each tabs as tab}
-                <button
-                  onclick={() => activeTab = tab.id}
-                  class={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors ${
-                    activeTab === tab.id
-                      ? 'bg-blue-600 text-white shadow-sm'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              {/each}
-            </div>
-          </div>
-
-          {#if filteredJobs.length === 0}
-            <div class="text-center py-16 text-gray-400 dark:text-gray-600">
-              <div class="text-5xl mb-4">🔍</div>
-              <p class="font-semibold text-gray-500 dark:text-gray-400">No roles in this department right now.</p>
-              <button onclick={() => activeTab = 'all'} class="mt-3 text-blue-600 text-sm hover:underline">View all roles</button>
-            </div>
-          {:else}
-            <div class="grid gap-5">
-              {#each filteredJobs as job}
-                <div class="group bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-lg dark:hover:shadow-blue-900/20 transition-all duration-200">
-                  <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                    <div class="flex-1">
-                      <div class="flex items-center gap-3 flex-wrap mb-2">
-                        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 border border-blue-100 dark:border-blue-800">
-                          {job.department}
-                        </span>
-                        <span class="text-xs text-gray-400 dark:text-gray-500">{job.posted}</span>
-                      </div>
-
-                      <h3 class="text-lg font-black text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                        {job.title}
-                      </h3>
-
-                      <div class="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mb-3 flex-wrap">
-                        <span class="flex items-center gap-1">
-                          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                          </svg>
-                          {job.location}
-                        </span>
-                        <span class="flex items-center gap-1">
-                          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                          </svg>
-                          {job.type}
-                        </span>
-                      </div>
-
-                      <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4">{job.description}</p>
-
-                      <div class="flex flex-wrap gap-2">
-                        {#each job.requirements as req}
-                          <span class="text-xs px-2.5 py-1 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400 border border-gray-100 dark:border-gray-700">
-                            {req}
-                          </span>
-                        {/each}
-                      </div>
-                    </div>
-
-                    <div class="sm:ml-6 flex sm:flex-col gap-3 sm:items-end sm:justify-start">
-                      <a
-                        href="#register"
-                        onclick={() => { form.role = job.title; }}
-                        class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold transition-colors shadow-sm whitespace-nowrap"
-                      >
-                        Apply Now
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              {/each}
-            </div>
-          {/if}
-        </div>
-      </section>
-    {:else}
-      <!-- ───────── NO OPENINGS STATE ───────── -->
-      <section class="py-20 bg-white dark:bg-gray-950 transition-colors duration-300">
-        <div class="max-w-2xl mx-auto px-4 sm:px-6 text-center">
-          <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-amber-50 dark:bg-amber-900/20 flex items-center justify-center text-4xl">
-            📭
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white mb-4">
-            No Open Positions Right Now
-          </h2>
-          <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-6 text-base">
-            We don't have any active job openings at the moment, but our team is always growing. 
-            Exceptional talent finds a home here — register below and we'll reach out when a role matches your profile.
-          </p>
-
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
-            {#each [
-              { label: 'Avg. Response Time', value: '3 Days' },
-              { label: 'Roles We Hire For', value: '10+' },
-              { label: 'Team Members', value: 'Growing 🌱' }
-            ] as stat}
-              <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 border border-gray-100 dark:border-gray-800">
-                <div class="text-xl font-black text-blue-600 dark:text-blue-400 mb-1">{stat.value}</div>
-                <div class="text-xs text-gray-500 dark:text-gray-400">{stat.label}</div>
-              </div>
-            {/each}
-          </div>
-
-          <div class="flex items-center gap-3 p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 text-left">
-            <div class="w-10 h-10 flex-shrink-0 bg-blue-100 dark:bg-blue-900/40 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-            </div>
-            <p class="text-sm text-blue-800 dark:text-blue-300">
-              <strong>Tip:</strong> Register your interest below — we'll email you when a matching role opens. It takes less than 2 minutes.
-            </p>
-          </div>
-        </div>
-      </section>
-    {/if}
-
-    <!-- ───────── REGISTER FORM ───────── -->
-    <section id="register" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6">
-        <!-- Section header -->
-        <div class="text-center mb-10">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-xs font-semibold mb-4 border border-blue-200 dark:border-blue-800">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-            </svg>
-            Opportunity Alerts
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white mb-3">
-            Register Your Interest
-          </h2>
-          <p class="text-gray-500 dark:text-gray-400 max-w-lg mx-auto text-sm leading-relaxed">
-            {hasOpenings
-              ? "Don't see the right fit? Register and we'll notify you when a matching role opens."
-              : "Be the first to know when we open new positions. Fill in your details and we'll reach out."}
-          </p>
-        </div>
-
-        <!-- Form card -->
-        <div class="bg-white dark:bg-gray-950 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden">
-
-          {#if submitted}
-            <!-- Success state -->
-            <div class="p-10 sm:p-14 text-center">
-              <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-green-50 dark:bg-green-900/20 flex items-center justify-center">
-                <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-3">You're on the list! 🎉</h3>
-              <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-6 max-w-sm mx-auto">
-                Thanks for your interest in joining GGM Technologies. We've received your details and will get back to you as soon as a matching opportunity arises.
-              </p>
-              <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <button
-                  onclick={resetForm}
-                  class="px-6 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
-                >
-                  Submit Another
-                </button>
-                <a
-                  href="https://ggmtechnologies.co.ke"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold transition-colors"
-                >
-                  Visit Our Website
-                </a>
-              </div>
-            </div>
-          {:else}
-            <!-- Form -->
-            <div class="p-6 sm:p-10">
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-
-                <!-- Name -->
-                <div class="sm:col-span-2 sm:grid sm:grid-cols-2 sm:gap-5">
-                  <div>
-                    <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5" for="name">
-                      Full Name <span class="text-red-500">*</span>
-                    </label>
-                    <input
-                      id="name"
-                      type="text"
-                      bind:value={form.name}
-                      placeholder="e.g. Jane Wanjiku"
-                      class={`w-full px-4 py-2.5 rounded-xl border text-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/30 ${
-                        formErrors.name
-                          ? 'border-red-400 dark:border-red-600'
-                          : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500'
-                      }`}
-                    />
-                    {#if formErrors.name}
-                      <p class="mt-1 text-xs text-red-500">{formErrors.name}</p>
-                    {/if}
-                  </div>
-
-                  <!-- Email -->
-                  <div>
-                    <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5" for="email">
-                      Email Address <span class="text-red-500">*</span>
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      bind:value={form.email}
-                      placeholder="you@email.com"
-                      class={`w-full px-4 py-2.5 rounded-xl border text-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/30 ${
-                        formErrors.email
-                          ? 'border-red-400 dark:border-red-600'
-                          : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500'
-                      }`}
-                    />
-                    {#if formErrors.email}
-                      <p class="mt-1 text-xs text-red-500">{formErrors.email}</p>
-                    {/if}
-                  </div>
-                </div>
-
-                <!-- Phone -->
-                <div>
-                  <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5" for="phone">
-                    Phone Number
-                  </label>
-                  <input
-                    id="phone"
-                    type="tel"
-                    bind:value={form.phone}
-                    placeholder="+254 7XX XXX XXX"
-                    class="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 text-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/30"
-                  />
-                </div>
-
-                <!-- Role of Interest -->
-                <div>
-                  <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5" for="role">
-                    Role of Interest <span class="text-red-500">*</span>
-                  </label>
-                  <select
-                    id="role"
-                    bind:value={form.role}
-                    class={`w-full px-4 py-2.5 rounded-xl border text-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/30 ${
-                      formErrors.role
-                        ? 'border-red-400 dark:border-red-600'
-                        : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500'
-                    }`}
-                  >
-                    <option value="">Select a role...</option>
-                    {#each roleOptions as opt}
-                      <option value={opt}>{opt}</option>
-                    {/each}
-                  </select>
-                  {#if formErrors.role}
-                    <p class="mt-1 text-xs text-red-500">{formErrors.role}</p>
-                  {/if}
-                </div>
-
-                <!-- Experience Level -->
-                <div>
-                  <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5" for="experience">
-                    Experience Level <span class="text-red-500">*</span>
-                  </label>
-                  <select
-                    id="experience"
-                    bind:value={form.experience}
-                    class={`w-full px-4 py-2.5 rounded-xl border text-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/30 ${
-                      formErrors.experience
-                        ? 'border-red-400 dark:border-red-600'
-                        : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500'
-                    }`}
-                  >
-                    <option value="">Select level...</option>
-                    <option value="intern">Intern / Student</option>
-                    <option value="junior">Junior (0–2 years)</option>
-                    <option value="mid">Mid-level (2–5 years)</option>
-                    <option value="senior">Senior (5+ years)</option>
-                    <option value="lead">Lead / Manager</option>
-                  </select>
-                  {#if formErrors.experience}
-                    <p class="mt-1 text-xs text-red-500">{formErrors.experience}</p>
-                  {/if}
-                </div>
-
-                <!-- Portfolio -->
-                <div>
-                  <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5" for="portfolio">
-                    Portfolio / Website
-                  </label>
-                  <input
-                    id="portfolio"
-                    type="url"
-                    bind:value={form.portfolio}
-                    placeholder="https://yoursite.com"
-                    class="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 text-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/30"
-                  />
-                </div>
-
-                <!-- LinkedIn -->
-                <div>
-                  <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5" for="linkedin">
-                    LinkedIn Profile
-                  </label>
-                  <input
-                    id="linkedin"
-                    type="url"
-                    bind:value={form.linkedin}
-                    placeholder="https://linkedin.com/in/..."
-                    class="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 text-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/30"
-                  />
-                </div>
-
-                <!-- Message -->
-                <div class="sm:col-span-2">
-                  <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5" for="message">
-                    Tell us about yourself
-                  </label>
-                  <textarea
-                    id="message"
-                    bind:value={form.message}
-                    rows="4"
-                    placeholder="Briefly describe your background, what you're passionate about, and why you want to join GGM Technologies..."
-                    class="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 text-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/30 resize-none"
-                  ></textarea>
-                </div>
-
-              </div>
-
-              <!-- Privacy note + Submit -->
-              <div class="mt-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <p class="text-xs text-gray-400 dark:text-gray-600 flex-1">
-                  By registering, you agree to GGM Technologies storing your details to match you with future opportunities. We'll never share your data.
-                </p>
-                <button
-                  onclick={handleSubmit}
-                  disabled={submitting}
-                  class="flex-shrink-0 inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:opacity-70 disabled:cursor-not-allowed text-white text-sm font-bold transition-colors shadow-sm shadow-blue-600/20 w-full sm:w-auto justify-center"
-                >
-                  {#if submitting}
-                    <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
-                    </svg>
-                    Submitting...
-                  {:else}
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                    </svg>
-                    Register My Interest
-                  {/if}
-                </button>
-              </div>
-            </div>
-          {/if}
-        </div>
-      </div>
-    </section>
-
-   
-
-  </div>
-</div>
- 
-   
+<!-- CTA Section -->
+<section class="bg-linear-to-r from-green-600 to-green-800 py-16 text-white">
+	<div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+		<h2 class="mb-4 text-3xl font-bold md:text-4xl">Ready to Make an Impact?</h2>
+		<p class="mb-8 text-xl text-green-100">
+			Join us in shaping the future of technology in Kenya and beyond.
+		</p>
+		<div class="flex flex-col justify-center gap-4 sm:flex-row">
+			<a
+				href="#openings"
+				class="inline-block rounded-lg bg-white px-8 py-3 font-semibold text-green-600 transition hover:bg-green-50"
+			>
+				View Open Positions
+			</a>
+			<a
+				href="mailto:ggmtechhub@gmail.com"
+				class="inline-block rounded-lg border-2 border-white bg-green-700 px-8 py-3 font-semibold text-white transition hover:bg-green-800"
+			>
+				Contact HR Team
+			</a>
+		</div>
+	</div>
+</section>

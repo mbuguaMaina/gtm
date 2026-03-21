@@ -12,7 +12,7 @@
 </script>
 
 <section class="py-10 relative bg-muted/50 
-    border-y border-zinc-200  ">
+    border-y border-zinc-200 dark:border-zinc-800 transition-colors duration-200">
   <div class="container mx-auto px-2 md:px-6">
     <div class="grid lg:grid-cols-2 gap-16 items-center">
       

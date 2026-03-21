@@ -2,57 +2,9 @@
   import {Button,Card} from "flowbite-svelte";
   import { Check, Star } from "@lucide/svelte";
 	import ProjectModal from "./ProjectModal.svelte";
+	import { packages } from "$lib";
 
-  const packages = [
-    {
-      name: "The Launchpad",
-      price: "20,000",
-      description: "Perfect for new  brands ready to go online",
-      features: [
-        "Domain Name Registration",
-        "SSL Certificate",
-        "Custom domain setup",
-        "Website hosting",
-        "Custom e-commerce website design",
-        "Mobile-responsive development",
-        "Basic SEO optimization",
-        "Product catalog setup",
-        "Payment gateway integration",
-        "7 days of support",
-      ],
-      popular: false,
-    },
-    {
-      name: "The Accelerator",
-      price: "45,000",
-      description: "Everything you need to launch and grow your online presence",
-      features: [
-        "Everything in Launchpad",
-        "Advanced SEO & content strategy",
-        "Social media ad campaign setup",
-        "Google Analytics & tracking",
-        "Blog setup & content guidance",
-        "14 days of support",
-        "Performance optimization",
-      ],
-      popular: true,
-    },
-    {
-      name: "Custom Package",
-      price: "From 80,000",
-      description: "Tailored solutions for established brands with specific needs",
-      features: [
-        "Everything in Accelerator",
-        "Custom functionality development",
-        "Advanced integrations",
-        "Multi-platform setup",
-        "Dedicated project manager",
-        "30 months of support",
-        "Ongoing maintenance options",
-      ],
-      popular: false,
-    },
-  ];
+  
 </script>
 
 <section class="py-10 bg-linear-to-b from-muted to-background">
@@ -68,8 +20,8 @@
       </p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      {#each packages as pkg, index}
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mx-auto">
+      {#each packages as pkg (pkg.name)}
         <Card
           class={`relative p-2 overflow-hidden bg-background transition-all duration-300 ${
             pkg.popular 

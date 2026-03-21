@@ -7,7 +7,8 @@
 	import NavItem from "./ui/navItem.svelte";
 	import { X } from "@lucide/svelte";
 	import { HomeOutline } from "flowbite-svelte-icons";
-	import { navigationItems } from "$lib/navigations";
+	import { navigationItems } from "$lib";
+	 
 
   let {open=$bindable(false)} = $props();
  

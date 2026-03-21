@@ -1,12 +1,12 @@
 <script lang="ts">
   import { page } from '$app/state';
-	import { Facebook,   Twitter  } from '@lucide/svelte';
+ 
 	import Drawer from './Drawer.svelte';
 	import ListItem from './listItem.svelte';
- import { navigationItems } from "$lib/navigations";
 	import ThemeToggle from './ThemeToggle.svelte';
    import logo from "$lib/assets/circularlogo.png";
 	import SocialLinks from './contact/socialLinks.svelte';
+	import { navigationItems } from '$lib';
    let open = $state(false), toggleOpen = () => open = !open;
 
 
@@ -14,11 +14,12 @@
 </script>
 
 <header class="fixed  transition duration-300 top-0 z-50 w-full px-2 bg-background ">
-  <nav class="md:mx-auto shadow-md rounded-md md:p-1.5   md:max-w-6xl md:px-6 transition-all duration-300 lg:px-12">
+  <nav class="md:mx-auto   md:p-1.5   md:max-w-7xl md:px-6 transition-all duration-300 lg:px-12">
     <div class="relative flex flex-wrap items-center justify-between gap-2 md:gap-6 py-1.5  md:py-3 lg:gap-0 lg:py-0.5">
       <!-- Logo Section -->
       <div class="flex w-full  justify-between lg:w-auto items-center">
-        <a
+      <div class="flex items-center gap-1">
+         <a
           class="group flex items-center space-x-2 transition-all duration-200"
           aria-label="GGM Technologies - Home"
           href="/"
@@ -26,6 +27,9 @@
           <enhanced:img src={logo} class="w-10 h-10 object-contain  " alt="GGM Technologies - logo" />
         
         </a>
+        <span class="hidden md:inline-block text-lg  font-bold text-transparent bg-clip-text bg-linear-to-r from-green-700 to-emerald-700">GGM Technologies</span>
+      </div>
+       
         <!-- Mobile Menu Links -->
        
           <div class="flex items-center  lg:hidden  bg-background/60 dark:bg-slate-900 backdrop-blur-lg   py-1 px-1 rounded-full shadow-lg">

@@ -1,7 +1,8 @@
 import { Facebook, Instagram, Linkedin, Twitter } from "@lucide/svelte";
-import { ArrowUpDownOutline, CodeOutline,   MobilePhoneOutline, PaletteOutline, PhoneOutline } from "flowbite-svelte-icons";
+import { ArrowUpDownOutline, CodeOutline,   MobilePhoneOutline, PaletteOutline, PhoneOutline, ToolsOutline } from "flowbite-svelte-icons";
 import SearchOutline from "flowbite-svelte-icons/SearchOutline.svelte";
-
+import { Contact, Notebook } from "@lucide/svelte";
+import { HomeOutline, UsersGroupSolid } from "flowbite-svelte-icons";
 // place files you want to import through the `$lib` alias in this folder.
   export const socialLinks = [
     // {
@@ -27,7 +28,68 @@ import SearchOutline from "flowbite-svelte-icons/SearchOutline.svelte";
     },
   ];
 
-
+export const packages = [
+  {
+    name: "The Portfolio",
+    price: "15,000",
+    description: "A clean personal site to showcase your work and get noticed",
+    features: [
+      "Domain name registration",
+      "SSL certificate",
+      "Up to 5 pages (Home, About, Portfolio, Services, Contact)",
+      "Mobile-responsive design",
+      "Contact form integration",
+      "Basic SEO setup",
+      "Social media links",
+      "3 days of support",
+    ],
+    popular: false,
+  },
+  {
+    name: "The Launchpad",
+    price: "25,000",
+    description: "Perfect for new brands ready to go online",
+    features: [
+      "Everything in Portfolio",
+      "Custom e-commerce website design",
+      "Product catalog setup",
+      "Payment gateway integration (M-Pesa, PayHero, etc.)",
+      "Website hosting",
+      "Basic SEO optimization",
+      "7 days of support",
+    ],
+    popular: false,
+  },
+  {
+    name: "The Accelerator",
+    price: "45,000",
+    description: "Everything you need to launch and grow your online presence",
+    features: [
+      "Everything in Launchpad",
+      "Advanced SEO & content strategy",
+      "Google Analytics & tracking",
+      "Blog setup & content guidance",
+      "Performance optimization",
+      "14 days of support",
+    ],
+    popular: true,
+  },
+  {
+    name: "Custom Package",
+    price: "From 80,000",
+    description: "Tailored solutions for established brands with specific needs",
+    features: [
+      "Everything in Accelerator",
+      "Custom functionality development",
+      "Advanced integrations",
+      "Multi-platform setup",
+      "Dedicated project manager",
+      "Ongoing maintenance options",
+      "30 days of support",
+    ],
+    popular: false,
+  },
+];
   export  const services = [
   {
     tag: "web-development",
@@ -393,3 +455,38 @@ export const customers =
     url: "https://ggmtechnologies.co.ke"
   }
 ]
+
+
+
+export const navigationItems = [
+  {
+    path: "/services",
+    label: "Services",
+    Icon: HomeOutline,
+  },
+  {
+    path: "/pricing",
+    label: "Pricing",
+    Icon: ToolsOutline,
+  },
+  {
+    path: "/portfolio",
+    label: "Portfolio",
+    Icon: Contact,
+  },
+  {
+    path: "/about",
+    label: "About",
+    Icon: UsersGroupSolid,
+  },
+  {
+    path: "/contact",
+    label: "Contact",
+    Icon: Contact,
+  },
+  {
+    path: "/blog",
+    label: "Blog",
+    Icon: Notebook,
+  }
+];
