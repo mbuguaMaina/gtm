@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%sveltekit.head%
 		<script>
-  const theme = localStorage.getItem("theme") ?? "dark;"
+  const theme = localStorage.getItem("theme") ?? "dark"
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
   if (theme === "dark" || (theme === "system" && prefersDark)) {
