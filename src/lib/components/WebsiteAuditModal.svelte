@@ -115,7 +115,7 @@
           </p>
 
           <div class="field">
-            <label for="audit-phone">Phone Number</label>
+            <label for="audit-phone">Whatsapp Number</label>
             <div class="input-wrap" class:shake={shakePhone}>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"
                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">

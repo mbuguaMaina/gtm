@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { customers } from "$lib";
 	import CaseStudy from "$lib/components/CaseStudy.svelte";
 	import CTA from "$lib/components/CTA.svelte";
@@ -10,11 +10,11 @@
 	import Testimonies from "$lib/components/Testimonies.svelte";
 	import TrustBanner from "$lib/components/TrustBanner.svelte";
 	import { createMeta } from "$lib/meta";
-	 
- 
 	import { OrganizationSchema, WebPageSchema, WebsiteSchema } from "$lib/schemas";
 	import SEO from "$lib/SEO.svelte";
+	import type { PageProps } from "./$types";
 	
+  let { data }: PageProps = $props();
  
 
 const meta = createMeta({
@@ -52,7 +52,7 @@ const schemas = [
 <!-- <Services/> -->
  <Services /> 
  <PromoBanner />
- <CaseStudy />
+ <CaseStudy caseStudy={data.caseStudy} />
 
  <CTA 
  variant="primary"

@@ -42,9 +42,11 @@ let activePage = $state("seo-optimization");
 		sidebarOpen = false;
 	}
  
-  $effect(()=>{
-	console.log(activePage)
- })
+ 
+
+
+ 
+
 </script>
  <SEO {meta} {schemas} />
  

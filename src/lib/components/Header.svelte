@@ -6,7 +6,8 @@
 	import ThemeToggle from './ThemeToggle.svelte';
    import logo from "$lib/assets/circularlogo.png";
 	import SocialLinks from './contact/socialLinks.svelte';
-	import { navigationItems } from '$lib';
+	import { essentialnavigationItems, navigationItems } from '$lib';
+	import { AlignRight } from '@lucide/svelte';
    let open = $state(false), toggleOpen = () => open = !open;
 
 
@@ -18,24 +19,24 @@
     <div class="relative flex flex-wrap items-center justify-between gap-2 md:gap-6 py-1.5  md:py-3 lg:gap-0 lg:py-0.5">
       <!-- Logo Section -->
       <div class="flex w-full  justify-between lg:w-auto items-center">
-      <div class="flex items-center gap-1">
+     
          <a
-          class="group flex items-center space-x-2 transition-all duration-200"
+          class="group  flex gap-1 items-center   space-x-2 transition-all duration-200"
           aria-label="GGM Technologies - Home"
           href="/"
         >
-          <enhanced:img src={logo} class="w-10 h-10 object-contain  " alt="GGM Technologies - logo" />
-        
+          <enhanced:img src={logo} class="w-8 h-8 object-contain  " alt="GGM Technologies - logo" />
+         <span class="hidden md:inline-block text-lg  font-bold text-transparent bg-clip-text bg-linear-to-r from-green-500 to-green-600">GGM Technologies</span>
         </a>
-        <span class="hidden md:inline-block text-lg  font-bold text-transparent bg-clip-text bg-linear-to-r from-green-700 to-emerald-700">GGM Technologies</span>
-      </div>
+       
+ 
        
         <!-- Mobile Menu Links -->
        
           <div class="flex items-center  lg:hidden  bg-background/60 dark:bg-slate-900 backdrop-blur-lg   py-1 px-1 rounded-full shadow-lg">
 
         
-{#each navigationItems as item}
+{#each essentialnavigationItems as item}
       <a
               href={item.path}
               class="relative cursor-pointer text-xs font-medium px-3 py-1 rounded-full transition-colors hover:text-green-500"
@@ -56,12 +57,13 @@
               {/if}
             </a>
 {/each}
+
           </div>
      
         <!-- Mobile Theme Switcher -->
           <div class="flex items-center gap-1 md:gap-3   md:hidden       py-1.5 ">
   <ThemeToggle />
- 
+ <AlignRight onclick={toggleOpen}/>
       </div>
       </div>
 

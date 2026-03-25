@@ -1,18 +1,19 @@
 <script lang="ts">
-  import { Button } from "flowbite-svelte";
-  import { ArrowRight, Sparkles } from "@lucide/svelte";
-	import WebsiteAuditModal from "./WebsiteAuditModal.svelte";
+ 
+  import {  Sparkles } from "@lucide/svelte";
+ 
 	import WhatsappBtn from "./contact/whatsappBtn.svelte";
-  export let variant: "primary" | "secondary" | "urgent" = "primary";
-  export let title: string;
-  export let description: string;
-  export let buttonText: string;
-  export let highlight: string | undefined;
-  $: variantStyles = {
+ 
+ 
+  let {variant=$bindable("primary"), title=$bindable(""), description=$bindable(""), highlight=$bindable("")}:{
+variant?:"primary" | "secondary" | "urgent"  , title?:string, description?:string, highlight?:string
+  } = $props()
+  
+  let variantStyles = $derived({
     primary: "bg-linear-to-r from-secondary to-secondary/90 ",
     secondary: "bg-gradient-to-r from-secondary to-secondary/90 border border-accent/20",
     urgent: "bg-gradient-to-r from-destructive to-destructive/90 text-destructive-foreground"
-  }[variant] ?? "bg-linear-to-r from-secondary to-secondary/90 ";
+  }[variant] ?? "bg-linear-to-r from-secondary to-secondary/90 ");
 </script>
 
 <section class={`py-16 ${variantStyles}`}>

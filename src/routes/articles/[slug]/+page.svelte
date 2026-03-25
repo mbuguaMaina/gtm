@@ -2,6 +2,7 @@
   import { PortableText } from "@portabletext/svelte"
 	import { portableComponents } from "./components/portableComponents.svelte";
 	import { Facebook, Linkedin, Twitter } from "@lucide/svelte";
+	import ShareButton from "$lib/components/ShareButton.svelte";
     const post:any = {
   title: "The Art of Building Products That People Actually Want to Use",
 
@@ -222,8 +223,9 @@ function formatDate(date: string) {
   })
 }
 
-
-
+let {data} = $props()
+ const postData:any = $derived(data.post)
+ $inspect(postData)
   const icons = [Twitter, Facebook, Linkedin]
 
 </script>
@@ -235,40 +237,40 @@ function formatDate(date: string) {
 
 <header class="mx-auto px-6 pt-12 pb-8">
 
-<a href="/blog" class="flex my-3.5 pb-2 items-center gap-2 text-sm font-medium text-muted-foreground">
-← Back to blogs
+<a href="/articles" class="flex my-3.5 pb-2 items-center gap-2 text-sm font-medium text-muted-foreground">
+← Back to articles
 </a>
 
-<div class="flex flex-wrap gap-2 mb-6">
+<!-- <div class="flex flex-wrap gap-2 mb-6">
 {#each post.tags as tag}
 <span class="inline-flex items-center rounded-md bg-slate-100 dark:bg-slate-800 dark:text-slate-100 font-medium text-xs tracking-widest uppercase px-3 py-1">
 {tag}
 </span>
 {/each}
-</div>
+</div> -->
 
 <h1 class="font-serif text-[clamp(2rem,5vw,3rem)] font-bold leading-[1.1] tracking-tight text-foreground">
-{post.title}
+{postData.title}
 </h1>
 
 <p class="mt-6 text-[clamp(1.125rem,2vw,1.25rem)] leading-relaxed text-muted-foreground ">
-{post.description}
+{postData.shortDescription}
 </p>
 <!-- author info and date -->
 
 <div class="mt-8 flex items-center gap-4">
 
 <img
-src={post.author.image?.asset?.url}
-alt={post.author.name}
+src={postData.authors?.[0].authorPhoto}
+alt={postData.authors?.[0].name}
 class="w-12 h-12 rounded-full object-cover border-2 border-slate-200"
 />
 
 <div>
-<p class="font-semibold m-0">{post.author.name}</p>
+<p class="font-semibold m-0">{postData.authors?.[0].name}</p>
 
 <div class="flex items-center gap-3 text-sm text-slate-500 mt-0.5">
-<span>{formatDate(post.createdAt)}</span>
+<span>{formatDate(postData._createdAt)}</span>
 </div>
 
 </div>
@@ -281,12 +283,12 @@ class="w-12 h-12 rounded-full object-cover border-2 border-slate-200"
 <!-- FEATURED IMAGE -->
 
 <div class="px-6">
-<div class="overflow-hidden rounded-2xl">
-{#if post?.mainImage?.asset?.url}
+<div class="overflow-hidden border mb-6 border-accent/20 rounded-2xl">
+{#if postData?.mainImage}
 <img
-src={post?.mainImage?.asset?.url}
-class="w-full aspect-2/1 object-cover object-center block"
-alt="Featured image for {post.title}"
+src={postData?.mainImage}
+class="w-full aspect-2/1  object-cover object-center block"
+alt="Featured image for {postData.title}"
 />
 {/if}
 
@@ -296,30 +298,38 @@ alt="Featured image for {post.title}"
 <div class="w-11/12  max-w-3xl mx-auto  ">
 
 <PortableText
-  value={post.body}
+  value={postData.content}
   components={portableComponents}
 
 />
+
+
 <div
-  style="margin-top:3rem; display:flex; align-items:center; gap:0.75rem;"
+  style="margin-top:3rem; "
 >
   <span
-    style="font-size:0.875rem; font-weight:500;"
+  class="font-bold pb-4"
+    
   >
     Share this article :
   </span>
-
-  {#each icons as Icon}
+   
+<ShareButton
+  url="https://ggmtechnologies.co.ke/{postData.slug}"
+  title="Your Post Title"
+  description="Optional post excerpt"
+/> 
+  <!-- {#each icons as Icon}
     <button
       
       class="bg-green-100 cursor-pointer dark:bg-slate-800 text-slate-700 p-2 rounded-full dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition"
     >
       <Icon  size={24} class="text-green-500" />
     </button>
-  {/each}
+  {/each} -->
 </div>
 
-<div class="max-w-180 mx-auto md:px-6 py-16 ">
+<!-- <div class="max-w-180 mx-auto md:px-6 py-16 ">
   <div class="rounded-xl relative border border-gray-200 dark:border-slate-800  bg-white cursor-pointer dark:bg-slate-900 text-slate-700 p-2 dark:text-slate-200   shadow-sm  ">
     <div class="md:p-8 p-2 flex flex-col gap-5">
       
@@ -338,13 +348,11 @@ alt="Featured image for {post.title}"
           </p>
 
           <p class="mt-1 text-xl font-bold ">
-            Alex Chen
+            {postData.authors?.[0].title}
           </p>
 
           <p class="mt-2 text-base leading-relaxed text-gray-500">
-            Product designer and engineer with 10 years of experience building
-            tools for creative professionals. Currently leading design at a
-            stealth startup. Writes about the craft of product building.
+            {postData.authors?.[0].bio}
           </p>
 
           <div class="mt-4 flex gap-2">
@@ -365,7 +373,7 @@ alt="Featured image for {post.title}"
 
     </div>
   </div>
-</div>
+</div> -->
 </div>
 
 

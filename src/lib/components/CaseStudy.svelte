@@ -1,8 +1,15 @@
 <script lang="ts">
- import {Button,Card} from "flowbite-svelte"
-  import caseStudyImage from "../assets/olethardware-case-study.jpg";
-	import { ArrowRight, Lightbulb, Target, TrendingUp } from "@lucide/svelte";
+	import { getImageUrl } from "$lib/sanity";
+
  
+  import caseStudyImage from "../assets/olethardware-case-study.jpg";
+	import {   Lightbulb, Target, TrendingUp } from "@lucide/svelte";
+  
+let { caseStudy=$bindable() } = $props();
+ 
+$effect(() => {
+  console.log("Received case study data:", caseStudy);
+}); 
 </script>
 
  
@@ -20,11 +27,11 @@
  
       <div class="overflow-hidden rounded-md bg-background  mx-auto border-accent/25 w-full max-w-6xl shadow-elegant">
         <div class="flex flex-col md:flex-row w-full gap-0">
-          <div class="relative flex-[1.5]">
+          <div class="relative flex-[1.2]">
             <enhanced:img
-              src={caseStudyImage}
+              src={getImageUrl(caseStudy.coverImage)!}
               alt="Olethardware.com website showcase"
-              class="w-full h-full object-cover"
+              class="   object-cover "
             />
 
             <div
@@ -36,13 +43,13 @@
             ></div>
           </div>
 
-          <div class="p-8 md:p-12 flex flex-col flex-1 justify-center">
+          <div class=" px-7 flex flex-col flex-1 justify-center">
             <h3 class="text-xl font-bold mb-4 text-foreground  ">
-              How We Built a Modern E-Commerce Plartform for Olet Hardware
+              {caseStudy.title}
             </h3>
 
-            <p class="text-lg text-muted-foreground  ">
-              Transforming its online presence to attract customers who value their time while showcasing high-value products.
+            <p class="text-sm text-muted-foreground pb-6  ">
+         {     caseStudy.excerpt}
             </p>
 
             <div class="space-y-6 mb-8">
@@ -63,8 +70,7 @@
                     The Challenge
                   </h4>
                   <p class="text-sm text-muted-foreground  ">
-                   Olet Hardware needed professional online presence to
-                    showcase products and attract high-end clients.
+                   {caseStudy.challenge}
                   </p>
                 </div>
               </div>
@@ -86,8 +92,7 @@
                     The Solution
                   </h4>
                   <p class="text-sm text-muted-foreground ">
-                    Clean, elegant website with intuitive navigation, high-quality
-                    product gallery, and mobile optimization.
+                    {caseStudy.solution}
                   </p>
                 </div>
               </div>
@@ -109,8 +114,7 @@
                     The Result
                   </h4>
                   <p class="text-sm text-muted-foreground  ">
-                    Professional digital showroom with custom product categories
-                    and exceptional user experience.
+                    {caseStudy.results}
                   </p>
                 </div>
               </div>

@@ -458,6 +458,29 @@ export const customers =
 
 
 
+export const essentialnavigationItems = [
+  {
+    path: "/services",
+    label: "Services",
+    Icon: HomeOutline,
+  },
+  {
+    path: "/pricing",
+    label: "Pricing",
+    Icon: ToolsOutline,
+  },
+  
+  {
+    path: "/about",
+    label: "About",
+    Icon: UsersGroupSolid,
+  },
+  {
+    path: "/contact",
+    label: "Contact",
+    Icon: Contact,
+  } 
+];
 export const navigationItems = [
   {
     path: "/services",
@@ -485,8 +508,21 @@ export const navigationItems = [
     Icon: Contact,
   },
   {
-    path: "/blog",
-    label: "Blog",
+    path: "/articles",
+    label: "Articles",
     Icon: Notebook,
   }
 ];
+
+export function getShareUrls(url: string, title: string, description?: string) {
+  const encoded = encodeURIComponent(url)
+  const encodedTitle = encodeURIComponent(title)
+  const encodedDesc = encodeURIComponent(description ?? '')
+
+  return {
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encoded}`,
+    twitter: `https://twitter.com/intent/tweet?url=${encoded}&text=${encodedTitle}`,
+    linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encoded}`,
+    instagram: null, // Instagram has no web share API
+  }
+}

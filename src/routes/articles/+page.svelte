@@ -8,90 +8,23 @@
 	let currentPage = $state(1);
 	let email = $state('');
 	let mobileMenuOpen = $state(false);
-
+let {data}=$props()
+ 
 	// Blog posts data
-	const blogPosts = [
-		{
-			id: 1,
-			title: 'AI Integration: Best Practices for 2026',
-			excerpt: 'Discover how businesses can effectively integrate AI solutions to improve efficiency and customer experience.',
-			category: 'Technology',
-			author: 'Sarah Kimani',
-			authorInitials: 'SK',
-			date: 'Jan 28, 2026',
-			image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80'
-		},
-		{
-			id: 2,
-			title: 'Cybersecurity Trends You Can\'t Ignore',
-			excerpt: 'Learn about the latest cybersecurity threats and how to protect your organization in an evolving digital landscape.',
-			category: 'Innovation',
-			author: 'David Ochieng',
-			authorInitials: 'DO',
-			date: 'Jan 25, 2026',
-			image: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=80'
-		},
-		{
-			id: 3,
-			title: 'Digital Transformation for SMEs',
-			excerpt: 'A comprehensive guide to help small and medium enterprises navigate their digital transformation journey.',
-			category: 'Business',
-			author: 'Mary Akinyi',
-			authorInitials: 'MA',
-			date: 'Jan 20, 2026',
-			image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80'
-		},
-		{
-			id: 4,
-			title: 'Building Scalable Web Applications',
-			excerpt: 'Step-by-step guide on designing and deploying web applications that can grow with your business needs.',
-			category: 'Tutorials',
-			author: 'Peter Kariuki',
-			authorInitials: 'PK',
-			date: 'Jan 15, 2026',
-			image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80'
-		},
-		{
-			id: 5,
-			title: 'Mobile App Development Trends',
-			excerpt: 'Explore the latest trends in mobile development and what frameworks are leading the industry forward.',
-			category: 'Technology',
-			author: 'Grace Njeri',
-			authorInitials: 'GN',
-			date: 'Jan 10, 2026',
-			image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80'
-		},
-		{
-			id: 6,
-			title: 'Remote Work: Tools & Best Practices',
-			excerpt: 'Essential tools and strategies for managing remote teams effectively in the modern workplace.',
-			category: 'Business',
-			author: 'Tom Maina',
-			authorInitials: 'TM',
-			date: 'Jan 5, 2026',
-			image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80'
-		}
-	];
+	const blogPosts = $derived(data.allPosts)
 
-	const featuredPost = {
-		title: 'The Future of Cloud Computing in Kenya',
-		excerpt: 'Exploring how cloud technology is transforming businesses across East Africa and what it means for local enterprises looking to scale.',
-		author: 'John Mwangi',
-		authorInitials: 'JM',
-		date: 'February 3, 2026',
-		readTime: '8 min read',
-		image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80'
-	};
+	const featuredPost = $derived(data.featuredPosts[0])
+ 
 
-	const categories = ['all', 'Technology', 'Innovation', 'Business', 'Tutorials'];
+	const categories:any[] = $derived(['all', ...new Set(blogPosts.category)]);
 
 	// Derived state for filtered posts
 	let filteredPosts = $derived(
 		selectedCategory === 'all' 
 			? blogPosts 
-			: blogPosts.filter(post => post.category.toLowerCase() === selectedCategory.toLowerCase())
+			: blogPosts.filter((blogPosts:any) => blogPosts.category.toLowerCase() === selectedCategory.toLowerCase())
 	);
-
+$inspect(filteredPosts)
 	// Functions
 	function selectCategory(category:any) {
 		selectedCategory = category.toLowerCase();
@@ -116,11 +49,11 @@
 	}
 
 	const meta = createMeta({
-		title: "Blog - GGM Technologies",
+		title: "Articles - GGM Technologies",
 		description:
 			"Stay updated with the latest insights, trends, and innovations in technology",
-		path: "/blog",
-		keywords: ["Blog", "GGM Technologies", "Technology", "Innovation", "Business", "Tutorials"]
+		path: "/articles",
+		keywords: ["Articles","Blog", "GGM Technologies", "Technology", "Innovation", "Business", "Tutorials"]
 	})
 
 	const schemas = [
@@ -130,11 +63,13 @@
 			url: meta.url
 		}),
 		ServiceSchema({
-			name: "Blog",
+			name: "Articles",
 			description: meta.description,
 			url: meta.url
 		})
 	]
+
+
 </script>
 
  <SEO {schemas} {meta} />
@@ -145,7 +80,7 @@
 	<!-- Hero Section -->
 	<section class="bg-linear-to-r from-green-600 via-green-800 to-green-900 text-white py-20 ">
 		<div class="container mx-auto px-6 text-center">
-			<h2 class="text-5xl font-bold mb-4">Our Blog</h2>
+			<h2 class="text-5xl font-bold mb-4">Our Articles</h2>
 			<p class="text-xl text-green-100 max-w-2xl mx-auto">Stay updated with the latest insights, trends, and innovations in technology</p>
 		</div>
 	</section>
@@ -155,7 +90,7 @@
 		<div class="bg-secondary rounded-2xl shadow-xl overflow-hidden">
 			<div class="md:flex">
 				<div class="md:w-1/2">
-					<enhanced:img src={featuredPost.image} alt="Featured" class="w-full h-full object-cover" />
+					<enhanced:img src={featuredPost.mainImage} alt="Featured" class="w-full h-full object-cover" />
 				</div>
 				<div class="md:w-1/2 p-8 md:p-12">
 					<span class="inline-block px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm font-semibold mb-4">Featured</span>
@@ -163,14 +98,14 @@
 					<p class="  mb-6">{featuredPost.excerpt}</p>
 					<div class="flex items-center mb-6">
 						<div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center   font-semibold mr-3">
-							{featuredPost.authorInitials}
+							{featuredPost.authors?.[0].name.slice(0,1)}
 						</div>
 						<div>
 							<p class="text-sm font-semibold  ">{featuredPost.author}</p>
 							<p class="text-xs  ">{featuredPost.date} · {featuredPost.readTime}</p>
 						</div>
 					</div>
-					<a href="/" class="inline-flex items-center text-green-600 font-semibold hover:text-green-800 transition">
+					<a href="/articles/{featuredPost.slug}" class="inline-flex items-center text-green-600 font-semibold hover:text-green-800 transition">
 						Read More 
 						<svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
@@ -201,13 +136,13 @@
 	<!-- Blog Posts Grid -->
 	<section class="container mx-auto px-6 pb-20">
 		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-			{#each filteredPosts as post (post.id)}
-				<article class="bg-secondary rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+			{#each filteredPosts as post (post._id)}
+				<a href="/articles/{post.slug}" class="bg-secondary border dark:border-green-500/10 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
 				 
-					<enhanced:img src={post.image} alt="Blog post" class="w-full h-48 object-cover" />
+					<enhanced:img src={post.mainImage} alt="Blog post" class="w-full h-48 object-cover" />
 					<div class="p-6">
 						<span class="inline-block px-3 py-1 bg-green-100 text-green-600 rounded-full text-xs font-semibold mb-3">
-							{post.category}
+							{post.category.title}
 						</span>
 						<h3 class="text-xl font-bold  mb-3 hover:text-green-600 transition cursor-pointer">
 							{post.title}
@@ -216,14 +151,14 @@
 						<div class="flex items-center justify-between pt-4 border-t border-accent/30">
 							<div class="flex items-center">
 								<div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center   text-xs font-semibold mr-2">
-									{post.authorInitials}
+									{post.authors?.[0].name.slice(0,1)}
 								</div>
 								<span class="text-xs  ">{post.author}</span>
 							</div>
 							<span class="text-xs  ">{post.date}</span>
 						</div>
 					</div>
-				</article>
+				</a>
 			{/each}
 		</div>
 
@@ -233,7 +168,7 @@
 			</div>
 		{/if}
 
-		<!-- Pagination -->
+		 
 		<div class="flex justify-center mt-12 space-x-2">
 			<button 
 				onclick={() => changePage(Math.max(1, currentPage - 1))}

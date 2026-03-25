@@ -4,9 +4,7 @@
  
  
   let {openModal = $bindable(false)}:{openModal:boolean} = $props();
-  $effect(() => {
-    console.log(openModal)
-  })
+  
 </script>
 
 <footer class="bg-zinc-950 text-zinc-100 py-16">
@@ -37,7 +35,7 @@
   <ul class="space-y-3"><li><a href="/about" class="text-zinc-100/80  transition-colors duration-300">About Us</a></li>
     <li><a href="/portfolio" class="text-zinc-100/80  transition-colors duration-300">Our Work</a></li>
     <!-- <li><a href="/careers" class="text-zinc-100/80  transition-colors duration-300">Careers</a></li> -->
-    <li><a href="/blog" class="text-zinc-100/80  transition-colors duration-300">Blog</a></li></ul></div>
+    <li><a href="/articles" class="text-zinc-100/80  transition-colors duration-300">Blog</a></li></ul></div>
       <div>
         <h4 class="font-semibold mb-4">Contact</h4>
         <div class="space-y-3">
