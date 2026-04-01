@@ -45,7 +45,7 @@
   <div class="container mx-auto px-4">
     <!-- Heading -->
     <div class="mb-12 text-center">
-      <h2 class="mb-4 text-3xl font-bold text-[hsl(0,0%,100%)] md:text-4xl">
+      <h2 class="mb-4 text-3xl font-bold text-foreground md:text-4xl">
         Frequently Asked Questions
       </h2>
 

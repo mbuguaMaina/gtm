@@ -1,14 +1,15 @@
 <script lang="ts">
+	import { Mail } from '@lucide/svelte';
   import { onMount } from 'svelte';
 
   interface Props {
     buttonLabel?: string;
-    onSubmit?: (data: { phone: string; website: string }) => void;
+   
   }
 
   let {
     buttonLabel = 'Get Your Free Website Audit',
-    onSubmit,
+    
   }: Props = $props();
 
   let isOpen     = $state(false);
@@ -16,13 +17,16 @@
   let submitted  = $state(false);
   let phone      = $state('');
   let website    = $state('');
+  let email    = $state('');
   let shakePhone = $state(false);
   let shakeUrl   = $state(false);
+  let shakeEmail   = $state(false);
 
   function open() {
     submitted = false;
     phone     = '';
     website   = '';
+    email = "";
     isOpen    = true;
     document.body.style.overflow = 'hidden';
   }
@@ -40,23 +44,34 @@
     if ((e.target as HTMLElement).classList.contains('overlay')) close();
   }
 
-  function triggerShake(field: 'phone' | 'url') {
+  function triggerShake(field: 'phone' | 'url' | 'email') {
     if (field === 'phone') {
       shakePhone = false;
       requestAnimationFrame(() => { shakePhone = true; });
       setTimeout(() => { shakePhone = false; }, 450);
-    } else {
+    } else if(field === "url") {
       shakeUrl = false;
       requestAnimationFrame(() => { shakeUrl = true; });
       setTimeout(() => { shakeUrl = false; }, 450);
+    }else{
+      shakeEmail = false;
+      requestAnimationFrame(() => { shakeEmail = true; });
+      setTimeout(() => { shakeEmail = false; }, 450);
     }
   }
+const  onSubmit = async (data: { phone: string; website: string , email:string}) => {
+const res = await fetch("/emails/requestAudit",{
+  method:"post",
+  body:JSON.stringify(data)
+})
+ 
+}
 
   function handleSubmit() {
     if (!phone.trim())   { triggerShake('phone'); return; }
     if (!website.trim()) { triggerShake('url');   return; }
     submitted = true;
-    onSubmit?.({ phone: phone.trim(), website: website.trim() });
+    onSubmit?.({ phone: phone.trim(), website: website.trim(), email:email.trim() });
   }
 
   onMount(() => {
@@ -64,6 +79,15 @@
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
   });
+ function portal(node: HTMLElement) {
+    document.body.appendChild(node);
+    return {
+      destroy() {
+        node.remove();
+      },
+    };
+  }
+
 </script>
 
 
@@ -80,6 +104,7 @@
   <!-- svelte-ignore a11y_no_static_element_interactions -->
   <!-- svelte-ignore a11y_interactive_supports_focus -->
   <div
+  use:portal
     class="overlay"
     class:closing={isClosing}
     onclick={handleOverlayClick}
@@ -127,7 +152,16 @@
             </div>
           </div>
 
-          <div class="divider"><span>and</span></div>
+          
+          <div class="field">
+            <label for="audit-email">Email Account</label>
+            <div class="input-wrap" class:shake={shakeEmail}>
+              <Mail class="w-4 h-4 absolute left-3.5 text-gray-400 "/>
+              <input id="audit-email" type="tel" bind:value={email} placeholder="eg. globals@gmail.com" />
+            </div>
+          </div>
+
+        
 
           <div class="field">
             <label for="audit-url">Website URL</label>
@@ -178,8 +212,8 @@
             </div>
             <h2>You're all set! 🎉</h2>
             <p>
-              We've got your details and will send your free website audit within
-              <strong>24 hours</strong>. Keep your phone nearby!
+              We've got your details and will send your free website audit  
+              <strong class="text-black font-bold text-lg">as soon as possible</strong>. If you would need a quiker response, hit us on whatsapp at <a target="_blank" rel="noopener noreferrer" href="https://wa.me/254700412990">+254700412990</a>
             </p>
           </div>
 
@@ -462,25 +496,8 @@
     box-shadow: 0 0 0 4px var(--wa-focus-ring);
   }
 
-  /* ── Divider ─────────────────────────────────────────────────────────────── */
-  .divider {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 22px 0;
-  }
-  .divider::before,
-  .divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--wa-border);
-  }
-  .divider span {
-    font-size: 11px;
-    color: var(--wa-subtle);
-    letter-spacing: 0.08em;
-  }
+ 
+   
 
   /* ── Submit ──────────────────────────────────────────────────────────────── */
   .btn {

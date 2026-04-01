@@ -92,6 +92,7 @@ let projects = $derived(data.projects)
   );
 
 let featured = $derived(projects.find((project:any)=>project.featured))
+
 let categories:any[] = $derived(["All",...new Set(projects.map((item:any)=>item.type.toLowerCase()))])
 </script>
 
@@ -147,14 +148,14 @@ class="min-h-screen  animate-fade-up ">
               alt="Project Preview"
               class="h-full   w-full object-cover"
             />
-            <!-- <div class="bg-black/50 absolute inset-0"></div> -->
-            <!-- <div class="text-center absolute top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%]">
-              <a href={featured.link} class="mx-auto mb-3 flex h-20 w-20 items-center justify-center rounded-xl bg-blue-500/60
+            <div class="bg-black/50 absolute inset-0"></div>
+            <div class="text-center absolute top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%]">
+              <a href={"https://"+featured.link} target="_blank" class="mx-auto mb-3 flex h-20 w-20 items-center justify-center rounded-xl bg-blue-500/60
                text-[#22c55e]">
                 <ExternalLink size={32} />
               </a>
               <p class="text-sm text-white">Project Preview</p>
-            </div> -->
+            </div>
           </div>
 
           <!-- Content -->
@@ -205,19 +206,22 @@ class="min-h-screen  animate-fade-up ">
   </section>
 
   <!-- Project Grid -->
+   <!-- private projects -->
   <section class="px-4 pb-6 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-7xl">
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {#each filtered.filter((item:any)=>  !item.opensource) as project}
-          <div
+         <a
+                  href={project.link}
+                  target="_blank"
             class="group   overflow-hidden rounded-xl bg-secondary hover:scale-[102%] transition-all duration-300 cursor-pointer"
           >
             <div class="relative flex aspect-video items-center justify-center bg-linear-to-br from-[#1e293b] to-[#0f172a]">
               <span class="text-3xl font-bold text-white ">
-              <enhanced:img  src={project.coverImage} alt={project.title}/>
+              <enhanced:img  src={project.coverImage} alt={project.title} />
               </span>
 
-              <div class="absolute inset-0 flex items-center justify-center bg-[#0f172a]/80 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <!-- <div class="absolute inset-0 flex items-center justify-center bg-[#0f172a]/80 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 <a
                   href={project.link}
                   target="_blank"
@@ -225,7 +229,7 @@ class="min-h-screen  animate-fade-up ">
                 >
                   View Project <ExternalLink size={14} />
                 </a>
-              </div>
+              </div> -->
             </div>
 
             <div class="p-5">
@@ -249,7 +253,7 @@ class="min-h-screen  animate-fade-up ">
                 {/each}
               </div>
             </div>
-          </div>
+          </a>
         {/each}
       </div>
     </div>
@@ -257,21 +261,26 @@ class="min-h-screen  animate-fade-up ">
 
 
   <!-- Project Grid -->
+   <!-- open source projects  -->
   <section class="px-4 pb-20 sm:px-6 lg:px-8">
  
     <div class="mx-auto max-w-7xl">
      <h2 class="font-bold text-2xl text-transparent bg-clip-text bg-linear-to-br  from-blue-500 via-violet-500 to-blue-600 mb-6">Open Source Projects</h2>
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {#each filtered.filter((item:any)=>!item.featured && item.opensource) as project}
-          <div
+          <a
+                  href={project.link}
+                  target="_blank"
             class="group   overflow-hidden rounded-xl bg-secondary hover:scale-[102%] transition-all duration-300 cursor-pointer"
           >
+            <!-- svelte-ignore element_implicitly_closed -->
+   
             <div class="relative flex aspect-video items-center justify-center bg-linear-to-br from-[#1e293b] to-[#0f172a]">
               <span class="text-3xl font-bold text-white ">
               <enhanced:img  src={project.coverImage} alt={project.title}/>
               </span>
 
-              <div class="absolute inset-0 flex items-center justify-center bg-[#0f172a]/80 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <!-- <div class="absolute inset-0 flex items-center justify-center bg-[#0f172a]/80 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 <a
                   href={project.link}
                   target="_blank"
@@ -279,8 +288,9 @@ class="min-h-screen  animate-fade-up ">
                 >
                   View Project <ExternalLink size={14} />
                 </a>
-              </div>
-            </div>
+            </div> -->
+
+             </div>
 
             <div class="p-5">
               <span class="inline-block rounded-full bg-[#22c55e] px-2.5 py-0.5 text-xs font-semibold text-white">
@@ -303,7 +313,7 @@ class="min-h-screen  animate-fade-up ">
                 {/each}
               </div>
             </div>
-          </div>
+          </a>
         {/each}
       </div>
     </div>

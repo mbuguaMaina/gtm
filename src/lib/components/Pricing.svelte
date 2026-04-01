@@ -3,6 +3,7 @@
   import { Check, Star } from "@lucide/svelte";
 	import ProjectModal from "./ProjectModal.svelte";
 	import { packages } from "$lib";
+	import WhatsappBtn from "./contact/whatsappBtn.svelte";
 
   
 </script>
@@ -78,15 +79,7 @@
       <p class="text-muted-foreground mb-4">
         Need something different? Let's discuss your specific requirements.
       </p>
-      <Button  onclick={()=> {
-let a = document.createElement("a");
-a.href = "https://wa.me/254700412990"
-a.target = "_blank"
-a.click()
-
-        }} class="bg-green-500 text-white hover:bg-accent " size="lg">
-        Schedule a Consultation
-      </Button>
+       <WhatsappBtn />
     </div>
   </div>
 </section>

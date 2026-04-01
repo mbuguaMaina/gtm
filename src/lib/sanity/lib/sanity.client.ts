@@ -83,7 +83,7 @@ export async function sanityFetch(query:any, params:any = {}, preview = false) {
     const data = await selectedClient.fetch(query, params)
     return {data, error: null}
   } catch (error: any) {
-    console.error('Sanity fetch error:', error)
+    
     return {data: null, error: error.message}
   }
 }

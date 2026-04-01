@@ -7,9 +7,7 @@
   
 let { caseStudy=$bindable() } = $props();
  
-$effect(() => {
-  console.log("Received case study data:", caseStudy);
-}); 
+  
 </script>
 
  

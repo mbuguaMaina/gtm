@@ -86,11 +86,16 @@ export async function getFeaturedPosts(limit = 3, preview = false) {
     excerpt,
     "mainImage": coverImage.asset->url,
     publishedDate,
-    "author": author->name,
-    categories[]-> {
+    "author": authors[0]->{
+      name,
+      "image": photo.asset->url
+    },
+    "category": category->{
       title,
       "slug": slug.current
-    }
+    },
+    readingTime,
+    _createdAt
   }`
   return sanityFetch(query, {limit}, preview)
 }

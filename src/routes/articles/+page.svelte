@@ -15,7 +15,7 @@ let {data}=$props()
 
 	const featuredPost = $derived(data.featuredPosts[0])
  
-
+ 
 	const categories:any[] = $derived(['all', ...new Set(blogPosts.category)]);
 
 	// Derived state for filtered posts
@@ -98,11 +98,11 @@ $inspect(filteredPosts)
 					<p class="  mb-6">{featuredPost.excerpt}</p>
 					<div class="flex items-center mb-6">
 						<div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center   font-semibold mr-3">
-							{featuredPost.authors?.[0].name.slice(0,1)}
+							 <img class="w-10 h-10 rounded-full object-center object-cover" src="{featuredPost?.author?.image}" alt="{featuredPost.author?.name}" >
 						</div>
 						<div>
-							<p class="text-sm font-semibold  ">{featuredPost.author}</p>
-							<p class="text-xs  ">{featuredPost.date} · {featuredPost.readTime}</p>
+							<p class="text-sm font-semibold  ">{featuredPost.author?.name}</p>
+							<p class="text-xs  ">{Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(featuredPost._createdAt))} · {featuredPost.readTime || '5 min.'}</p>
 						</div>
 					</div>
 					<a href="/articles/{featuredPost.slug}" class="inline-flex items-center text-green-600 font-semibold hover:text-green-800 transition">

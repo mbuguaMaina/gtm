@@ -1,15 +1,15 @@
 <script lang="ts">
   // ── TYPES ──────────────────────────────────────────────────
   export type PricingPackage = {
-    planName:    string;    // e.g. "Growth", "Starter", "Authority"
-    serviceName: string;    // e.g. "SEO Optimisation"
-    serviceVal:  string;    // chip val: "seo" | "ppc" | "social" | "content" | "design" | "dev" | "maintenance" | "ecommerce" | "branding"
-    price:       string;    // e.g. "KES 75,000" or "Custom"
-    priceUnit?:  string;    // e.g. "/ month" or "one-time project"
-    features?:   string[];  // shown in the modal's package banner
-    budgetIndex?: number;   // 0–10 index into budgetMap; auto-derived from price if omitted
-    timeline?:   string;    // pre-selected timeline val; defaults to "1month"
-    isFeatured?: boolean;   // renders "Most Popular" accent on the button
+    planName:    string;
+    serviceName: string;
+    serviceVal:  string;
+    price:       string;
+    priceUnit?:  string;
+    features?:   string[];
+    budgetIndex?: number;
+    timeline?:   string;
+    isFeatured?: boolean;
   };
 
   // ── PROPS ──────────────────────────────────────────────────
@@ -34,12 +34,8 @@
   const totalSteps = 5;
 
   // ── FORM STATE ─────────────────────────────────────────────
-  let firstName        = $state("");
-  let lastName         = $state("");
   let email            = $state("");
   let phone            = $state("");
-  let company          = $state("");
-  let role             = $state("");
   let website          = $state("");
   let contactMethod    = $state("email");
 
@@ -61,9 +57,9 @@
   let startDate       = $state("");
   let additionalNotes = $state("");
 
-  let errors       = $state<Record<string, string>>({});
+  let errors        = $state<Record<string, string>>({});
   let termsAccepted = $state(false);
-  let isDragging   = $state(false);
+  let isDragging    = $state(false);
 
   // ── STATIC DATA ────────────────────────────────────────────
   const services = [
@@ -79,10 +75,9 @@
   ];
 
   const contactMethods = [
- 
-    { val: "whatsapp", label: "💬 WhatsApp"    },
-    { val: "call",     label: "📞 Phone Call"  },
-    { val: "zoom",     label: "🎥 Zoom/Meet" },
+    { val: "whatsapp", label: "💬 WhatsApp"   },
+    { val: "call",     label: "📞 Phone Call" },
+    { val: "zoom",     label: "🎥 Zoom/Meet"  },
   ];
 
   const priorities = [
@@ -154,10 +149,8 @@
           `${pkg.planName} — ${pkg.serviceName} · ${pkg.price}${pkg.priceUnit ? " " + pkg.priceUnit : ""}`,
         ] as [string, string]]
       : []),
-    ["Contact",      `${firstName} ${lastName}`.trim() || "—"],
     ["Email",        email    || "—"],
     ["Phone",        phone    || "—"],
-    ["Company",      company  || "Not provided"],
     ["Contact via",  contactMethods.find(c => c.val === contactMethod)?.label ?? "—"],
     [
       "Services",
@@ -178,7 +171,6 @@
   ]);
 
   // ── PACKAGE HELPERS ────────────────────────────────────────
-  /** Derive a budget slider index from a price string like "KES 75,000" */
   function guessBudgetIndex(price: string): number {
     if (!price || price.toLowerCase() === "custom") return 5;
     const n = parseInt(price.replace(/[^\d]/g, ""), 10);
@@ -205,8 +197,7 @@
 
   // ── MODAL CONTROL ──────────────────────────────────────────
   function openModal() {
-    // reset all fields
-    firstName = lastName = email = phone = company = role = website = "";
+    email = phone = website = "";
     contactMethod = "email";
     selectedServices = [];
     projectType = industry = referralSource = "";
@@ -220,7 +211,7 @@
     termsAccepted = false;
     submitted = false;
 
-    applyPackage();                          // apply package pre-fills on top
+    applyPackage();
 
     overlayOpen = true;
     currentStep = 0;
@@ -236,10 +227,8 @@
   function validateStep(step: number): boolean {
     const e: Record<string, string> = {};
     if (step === 0) {
-      if (!firstName.trim()) e.firstName = "First name is required";
-      if (!lastName.trim())  e.lastName  = "Last name is required";
       if (!email.trim() || !email.includes("@")) e.email = "Valid email is required";
-      if (!phone.trim())     e.phone     = "Phone number is required";
+      if (!phone.trim()) e.phone = "Phone number is required";
     }
     if (step === 1) {
       if (!selectedServices.length) e.services    = "Select at least one service";
@@ -262,7 +251,6 @@
 
   // ── FILE & SERVICE HELPERS ─────────────────────────────────
   function toggleService(val: string) {
-    // prevent deselecting the locked plan service
     if (pkg?.serviceVal === val && selectedServices.includes(val)) return;
     selectedServices = selectedServices.includes(val)
       ? selectedServices.filter(s => s !== val)
@@ -283,42 +271,63 @@
   }
 
   // ── SUBMIT ─────────────────────────────────────────────────
-  function submitRequest() {
+  async function submitRequest() {
     submitting = true;
-    setTimeout(() => {
-      submitting = false;
-      submitted  = true;
-      refNumber  =
-        "GGM-" +
-        Math.random().toString(36).toUpperCase().slice(2, 8) +
-        "-" +
-        Date.now().toString().slice(-4);
-    }, 1400);
+    const res = await fetch("/emails/projectRequest", {
+      method: "POST",
+      body: JSON.stringify({
+        refNumber:
+          "GGM-" +
+          Math.random().toString(36).toUpperCase().slice(2, 8) +
+          "-" +
+          Date.now().toString().slice(-4),
+        email, phone, website,
+        contactMethod,
+        selectedServices,
+        projectType, industry, referralSource,
+        projectName, projectDescription, targetAudience, goals, competitors,
+        uploadedFiles,
+        budgetIndex,
+        timeline,
+        startDate, additionalNotes,
+        termsAccepted,
+        priority,
+      }),
+    });
+
+    submitting = false;
+    submitted  = true;
+    
   }
 
   // ── SHARED STYLE HELPERS ───────────────────────────────────
+  // Base input: text colors explicit for both modes; placeholder fixed
   const baseInput =
-    "w-full rounded-xl border px-3.5 py-2.5 text-sm outline-none transition-all placeholder:text-zinc-100   ";
+    "w-full rounded-xl border px-3.5 py-2.5 text-sm text-gray-900 dark:text-green-50 outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-green-700";
+
   const focusRing =
     "border-gray-200 bg-gray-50 focus:border-green-400 focus:bg-white focus:shadow-[0_0_0_3px] focus:shadow-green-500/10 dark:border-green-400/15 dark:bg-green-400/5 dark:focus:border-green-400 dark:focus:bg-green-400/8";
-  const errorRing = "border-red-400 bg-red-50 dark:border-red-400/50 dark:bg-red-400/8";
+
+  const errorRing =
+    "border-red-400 bg-red-50 dark:border-red-400/50 dark:bg-red-400/8";
 
   function inputCls(hasError: boolean, extra = "") {
     return `${baseInput} ${hasError ? errorRing : focusRing} ${extra}`;
   }
 
+  // Select: explicit text color in both modes
   const selectCls =
-    "w-full appearance-none rounded-xl border border-gray-200 bg-gray-50 px-3.5 py-2.5 text-sm text-gray-900 outline-none transition-all focus:border-green-400 focus:bg-white focus:shadow-[0_0_0_3px] focus:shadow-green-500/10 dark:border-green-400/15 dark:bg-green-400/5  placeholder:text-zinc-100 dark:focus:border-green-400 dark:focus:bg-green-400/8";
+    "w-full appearance-none rounded-xl border border-gray-200 bg-gray-50 px-3.5 py-2.5 text-sm text-gray-900 dark:text-green-50 outline-none transition-all focus:border-green-400 focus:bg-white focus:shadow-[0_0_0_3px] focus:shadow-green-500/10 dark:border-green-400/15 dark:bg-green-400/5 dark:focus:border-green-400 dark:focus:bg-green-400/8";
+
+  // Plain input mirrors baseInput + focusRing
   const plainInput =
-    "w-full rounded-xl border border-gray-200 bg-gray-50 px-3.5 py-2.5 text-sm text-gray-900 outline-none transition-all placeholder:text-zinc-100 focus:border-green-400 focus:bg-white focus:shadow-[0_0_0_3px] focus:shadow-green-500/10 dark:border-green-400/15 dark:bg-green-400/5   dark:focus:border-green-400 dark:focus:bg-green-400/8";
+    "w-full rounded-xl border border-gray-200 bg-gray-50 px-3.5 py-2.5 text-sm text-gray-900 dark:text-green-50 outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-green-700 focus:border-green-400 focus:bg-white focus:shadow-[0_0_0_3px] focus:shadow-green-500/10 dark:border-green-400/15 dark:bg-green-400/5 dark:focus:border-green-400 dark:focus:bg-green-400/8";
+
+  // Label: explicit text color for both modes
   const labelCls =
-    "mb-1.5 block text-[10px] font-bold uppercase tracking-widest  ";
+    "mb-1.5 block text-[10px] font-bold uppercase tracking-widest text-gray-500 dark:text-green-600";
 
   // ── PORTAL ACTION ──────────────────────────────────────────
-  // Teleports the node out of the component DOM tree and appends
-  // it directly to <body>, so z-index, overflow:hidden, CSS
-  // transforms, and stacking contexts on parent elements never
-  // clip or obscure the modal.
   function portal(node: HTMLElement) {
     document.body.appendChild(node);
     return {
@@ -330,38 +339,30 @@
 </script>
 
 
- 
 {#if pkg}
- 
   <button
     onclick={openModal}
-    class="group relative w-full overflow-hidden rounded-xl border px-4 py-2.5 text-sm font-bold transition-all duration-200 active:scale-[0.98] bg-linear-to-r  
+    class="group relative w-full overflow-hidden rounded-xl border px-4 py-2.5 text-sm font-bold transition-all duration-200 active:scale-[0.98] bg-linear-to-r
       {pkg.isFeatured
-        ? ' ring border-0 ring-accent from-accent  to-accent/80 shadow-hero transform scale-105'
+        ? 'ring border-0 ring-accent from-accent to-accent/80 shadow-hero transform scale-105'
         : 'shadow-card hover:shadow-elegant border border-accent text-accent ring-0'}"
   >
-    <!-- shimmer sweep on featured -->
     {#if pkg.isFeatured}
       <span class="pointer-events-none absolute inset-0 -translate-x-full skew-x-12 bg-white/20 transition-transform duration-700 group-hover:translate-x-full"></span>
     {/if}
     <span class="relative flex items-center justify-center gap-2">
       Get Started with {pkg.planName}
-      <svg
-        class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
-        viewBox="0 0 14 14"
-        fill="none"
-      >
+      <svg class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 14 14" fill="none">
         <path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </span>
   </button>
 
 {:else}
-  <!-- GENERIC BUTTON -->
   <button
     onclick={openModal}
     class="inline-flex items-center gap-2 rounded-xl bg-green-500
-     px-5 py-3 text-sm font-bold text-green-950 shadow-lg shadow-green-500/20 transition-all duration-200 
+     px-5 py-3 text-sm font-bold text-green-950 shadow-lg shadow-green-500/20 transition-all duration-200
      hover:-translate-y-0.5 hover:bg-green-400 hover:shadow-green-400/30 active:scale-95 dark:bg-green-400 dark:text-green-950 dark:hover:bg-green-300 {className}"
   >
     <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none">
@@ -373,7 +374,6 @@
 {/if}
 
 
- 
 {#if overlayOpen}
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -396,13 +396,11 @@
   <!-- ── HEADER ────────────────────────────────────────────── -->
   <div class="flex shrink-0 items-start justify-between border-b border-green-500/10 px-6 py-5 dark:border-green-400/10">
     <div class="flex flex-col gap-1.5">
-   
-      <!-- Title -->
       <h2 class="font-syne text-2xl font-extrabold tracking-tight text-gray-900 dark:text-green-50">
         {#if pkg}
-          Get Started with <span class="font-instrument italic  dark:text-green-400">{pkg.planName}</span>
+          Get Started with <span class="font-instrument italic dark:text-green-400">{pkg.planName}</span>
         {:else}
-          Start Your <span class="font-instrument italic  dark:text-green-400">Project</span>
+          Start Your <span class="font-instrument italic dark:text-green-400">Project</span>
         {/if}
       </h2>
     </div>
@@ -417,8 +415,6 @@
       </svg>
     </button>
   </div>
- 
-
 
   <!-- ── PROGRESS ───────────────────────────────────────────── -->
   {#if !submitted}
@@ -438,7 +434,11 @@
           {:else}{i + 1}{/if}
         </div>
         <span class="hidden text-[9px] font-semibold uppercase tracking-wider sm:block
-          {i === currentStep ? 'text-green-600 dark:text-green-400' : i < currentStep ? '/70 ' : 'text-gray-400 dark:text-green-800'}">
+          {i === currentStep
+            ? 'text-green-600 dark:text-green-400'
+            : i < currentStep
+            ? 'text-gray-500 dark:text-green-600'
+            : 'text-gray-400 dark:text-green-800'}">
           {label}
         </span>
       </div>
@@ -460,14 +460,14 @@
     <!-- SUCCESS ──────────────────────────────────────────────── -->
     {#if submitted}
       <div class="flex flex-col items-center gap-4 py-10 text-center">
-        <div class="flex h-16 w-16 items-center justify-center rounded-full border-2 border-green-500 bg-green-50  dark:border-green-400 dark:bg-green-400/10 dark:text-green-400">
+        <div class="flex h-16 w-16 items-center justify-center rounded-full border-2 border-green-500 bg-green-50 text-green-600 dark:border-green-400 dark:bg-green-400/10 dark:text-green-400">
           <svg class="h-7 w-7" viewBox="0 0 28 28" fill="none">
             <path d="M5 14l6 6 12-12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         <div>
           <h3 class="font-syne text-2xl font-extrabold text-gray-900 dark:text-green-50">
-            Request <span class="font-instrument italic  dark:text-green-400">Submitted!</span>
+            Request <span class="font-instrument italic dark:text-green-400">Submitted!</span>
           </h3>
           <p class="mt-2 text-sm leading-relaxed text-gray-500 dark:text-green-600">
             {#if pkg}
@@ -490,48 +490,22 @@
 
     <!-- ── STEP 1 · CONTACT ──────────────────────────────── -->
     {:else if currentStep === 0}
-      <p class="mb-5 font-instrument text-base italic text-gray-500 ">
+      <p class="mb-5 font-instrument text-base italic text-gray-500 dark:text-green-600">
         Who should we reach out to?
       </p>
 
-      <div class="grid grid-cols-2 gap-3">
-        <div>
-          <label for="name" class={labelCls}>First Name <span class="">*</span></label>
-          <input id="name" type="text" bind:value={firstName} placeholder="e.g. James" autocomplete="given-name"
-            class={inputCls(!!errors.firstName)}/>
-          {#if errors.firstName}<p class="mt-1 text-[11px] font-semibold text-red-500">{errors.firstName}</p>{/if}
-        </div>
-        <div>
-          <label for="lastName" class={labelCls}>Last Name <span class="">*</span></label>
-          <input id="lastName" type="text" bind:value={lastName} placeholder="e.g. Mwangi" autocomplete="family-name"
-            class={inputCls(!!errors.lastName)}/>
-          {#if errors.lastName}<p class="mt-1 text-[11px] font-semibold text-red-500">{errors.lastName}</p>{/if}
-        </div>
-      </div>
-
       <div class="mt-3 grid grid-cols-2 gap-3">
         <div>
-          <label for="email" class={labelCls}>Email <span class="">*</span></label>
-          <input id="email"  type="email" bind:value={email} placeholder="you@company.com" autocomplete="email"
+          <label for="email" class={labelCls}>Email <span class="text-red-400">*</span></label>
+          <input id="email" type="email" bind:value={email} placeholder="you@company.com" autocomplete="email"
             class={inputCls(!!errors.email)}/>
           {#if errors.email}<p class="mt-1 text-[11px] font-semibold text-red-500">{errors.email}</p>{/if}
         </div>
         <div>
-          <label for="phone" class={labelCls}>Phone / WhatsApp <span class="">*</span></label>
+          <label for="phone" class={labelCls}>Phone / WhatsApp <span class="text-red-400">*</span></label>
           <input id="phone" type="tel" bind:value={phone} placeholder="+254 700 000 000" autocomplete="tel"
             class={inputCls(!!errors.phone)}/>
           {#if errors.phone}<p class="mt-1 text-[11px] font-semibold text-red-500">{errors.phone}</p>{/if}
-        </div>
-      </div>
-
-      <div class="mt-3 grid grid-cols-2 gap-3">
-        <div>
-          <label for="company" class={labelCls}>Company Name</label>
-          <input id="company" type="text" bind:value={company} placeholder="e.g. Acme Ltd" class={plainInput}/>
-        </div>
-        <div>
-          <label for="role" class={labelCls}>Your Role / Title</label>
-          <input id="role" type="text" bind:value={role} placeholder="e.g. Marketing Manager" class={plainInput}/>
         </div>
       </div>
 
@@ -542,10 +516,10 @@
       </div>
 
       <div class="mt-4">
-        <label for="contactMethod" class="{labelCls} mb-2">Preferred Contact Method <span class="">*</span></label>
+        <label for="contact-method" class="{labelCls} mb-2">Preferred Contact Method <span class="text-red-400">*</span></label>
         <div class="flex flex-wrap gap-1">
           {#each contactMethods as m}
-            <button type="button" onclick={() => (contactMethod = m.val)}
+            <button id="contact-method" type="button" onclick={() => (contactMethod = m.val)}
               class="rounded-full border px-3 py-1.5 text-xs font-semibold transition-all
                 {contactMethod === m.val
                   ? 'border-green-500 bg-green-50 text-green-600 dark:border-green-400 dark:bg-green-400/12 dark:text-green-400'
@@ -558,14 +532,14 @@
 
     <!-- ── STEP 2 · SERVICE ──────────────────────────────── -->
     {:else if currentStep === 1}
-      <p class="mb-5 font-instrument text-base italic text-gray-500 ">
+      <p class="mb-5 font-instrument text-base italic text-gray-500 dark:text-green-600">
         What services do you need?
       </p>
 
       <div class="mb-4">
-        <div  class="{labelCls} mb-2">
-          Services Required <span class="">*</span>
-          <span class="ml-1 font-normal normal-case tracking-normal text-gray-400">(select all that apply)</span>
+        <div class="{labelCls} mb-2">
+          Services Required <span class="text-red-400">*</span>
+          <span class="ml-1 font-normal normal-case tracking-normal text-gray-400 dark:text-green-700">(select all that apply)</span>
         </div>
         <div class="flex flex-wrap gap-2">
           {#each services as s}
@@ -600,7 +574,7 @@
       </div>
 
       <div class="mt-4">
-        <label for="projectType" class={labelCls}>Project Type <span class="">*</span></label>
+        <label for="projectType" class={labelCls}>Project Type <span class="text-red-400">*</span></label>
         <select id="projectType" bind:value={projectType} class="{selectCls} {errors.projectType ? 'border-red-400' : ''}">
           <option value="" disabled>Select project type…</option>
           {#each projectTypes as t}<option value={t}>{t}</option>{/each}
@@ -609,7 +583,7 @@
       </div>
 
       <div class="mt-3">
-        <label for="industry" class={labelCls}>Industry <span class="">*</span></label>
+        <label for="industry" class={labelCls}>Industry <span class="text-red-400">*</span></label>
         <select id="industry" bind:value={industry} class="{selectCls} {errors.industry ? 'border-red-400' : ''}">
           <option value="" disabled>Select your industry…</option>
           {#each industries as ind}<option value={ind}>{ind}</option>{/each}
@@ -633,19 +607,19 @@
 
     <!-- ── STEP 3 · PROJECT DETAILS ──────────────────────── -->
     {:else if currentStep === 2}
-      <p class="mb-5 font-instrument text-base italic text-gray-500 ">
+      <p class="mb-5 font-instrument text-base italic text-gray-500 dark:text-green-600">
         Tell us what you're building.
       </p>
 
       <div class="mb-3">
-        <label for="projectName" class={labelCls}>Project Name <span class="">*</span></label>
+        <label for="projectName" class={labelCls}>Project Name <span class="text-red-400">*</span></label>
         <input id="projectName" type="text" bind:value={projectName} placeholder="e.g. Acme Online Store Redesign"
           class={inputCls(!!errors.projectName)}/>
         {#if errors.projectName}<p class="mt-1 text-[11px] font-semibold text-red-500">{errors.projectName}</p>{/if}
       </div>
 
       <div class="mb-3">
-        <label for="projectDescription" class={labelCls}>Project Description <span class="">*</span></label>
+        <label for="projectDescription" class={labelCls}>Project Description <span class="text-red-400">*</span></label>
         <textarea id="projectDescription" bind:value={projectDescription} rows={3}
           placeholder="Describe what you need, the problem you're solving, and any key requirements…"
           class={inputCls(!!errors.projectDescription, "resize-y leading-relaxed")}></textarea>
@@ -667,7 +641,7 @@
 
       <div class="mb-4">
         <label for="competitors" class={labelCls}>Competitor / Inspiration URLs</label>
-        <input id="competitors"  type="text" bind:value={competitors}
+        <input id="competitors" type="text" bind:value={competitors}
           placeholder="https://site1.com, https://site2.com" class={plainInput}/>
         <p class="mt-1 text-[11px] text-gray-400 dark:text-green-700">Sites you admire or competitors to outperform.</p>
       </div>
@@ -676,10 +650,10 @@
 
       <!-- Priority -->
       <div class="mb-4">
-        <label for="priority" class="{labelCls} mb-2">Priority Level</label>
+        <label for="priorities" class="{labelCls} mb-2">Priority Level</label>
         <div class="flex gap-2">
           {#each priorities as p}
-            <button type="button" onclick={() => (priority = p.val)}
+            <button id="priorities" type="button" onclick={() => (priority = p.val)}
               class="flex flex-1 flex-col items-center gap-1 rounded-xl border py-2.5 text-center transition-all
                 {priority === p.val
                   ? 'border-green-500 bg-green-50 dark:border-green-400 dark:bg-green-400/10'
@@ -700,6 +674,7 @@
         <label for="attachments" class="{labelCls} mb-2">Attachments / Reference Files</label>
         <!-- svelte-ignore a11y_no_static_element_interactions -->
         <div
+        id="attachments"
           class="relative cursor-pointer rounded-xl border-2 border-dashed p-5 text-center transition-all
             {isDragging
               ? 'border-green-400 bg-green-50 dark:border-green-400 dark:bg-green-400/10'
@@ -711,7 +686,7 @@
           <input type="file" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.zip,.xls,.xlsx"
             onchange={(e) => handleFiles((e.target as HTMLInputElement).files)}
             class="absolute inset-0 h-full w-full cursor-pointer opacity-0"/>
-          <div class="mx-auto mb-2 flex h-9 w-9 items-center justify-center rounded-lg border border-green-200 bg-green-50  dark:border-green-400/25 dark:bg-green-400/10 dark:text-green-400">
+          <div class="mx-auto mb-2 flex h-9 w-9 items-center justify-center rounded-lg border border-green-200 bg-green-50 text-green-600 dark:border-green-400/25 dark:bg-green-400/10 dark:text-green-400">
             <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none">
               <path d="M10 13V4M10 4L7 7M10 4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M3 14v2a1 1 0 001 1h12a1 1 0 001-1v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -724,13 +699,13 @@
           <div class="mt-2 flex flex-col gap-1.5">
             {#each uploadedFiles as file, i}
               <div class="flex items-center gap-2.5 rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 dark:border-green-400/15 dark:bg-green-400/5">
-                <svg class="h-3.5 w-3.5 shrink-0  dark:text-green-400" viewBox="0 0 16 16" fill="none">
+                <svg class="h-3.5 w-3.5 shrink-0 text-gray-500 dark:text-green-400" viewBox="0 0 16 16" fill="none">
                   <path d="M9 2H4a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1V6L9 2z" stroke="currentColor" stroke-width="1.3"/>
                   <path d="M9 2v4h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
                 </svg>
                 <span class="flex-1 truncate text-xs text-gray-700 dark:text-green-200">{file.name}</span>
                 <span class="text-[10px] text-gray-400 dark:text-green-700">{fmtSize(file.size)}</span>
-                <button id="removeFile" title="Remove file" type="button" onclick={() => removeFile(i)}
+                <button type="button" title="Remove file" onclick={() => removeFile(i)}
                   class="text-gray-400 transition-colors hover:text-red-500 dark:text-green-700 dark:hover:text-red-400">
                   <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none">
                     <path d="M1.5 1.5l9 9M10.5 1.5l-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -744,18 +719,17 @@
 
     <!-- ── STEP 4 · BUDGET & TIMELINE ────────────────────── -->
     {:else if currentStep === 3}
-      <p class="mb-5 font-instrument text-base italic text-gray-500 ">
+      <p class="mb-5 font-instrument text-base italic text-gray-500 dark:text-green-600">
         What's your budget and when do you need this done?
       </p>
 
       <!-- Budget -->
       <div class="mb-5">
-        <label for="budget" class="{labelCls} mb-2">Estimated Budget (KES) <span class="">*</span></label>
+        <label class="{labelCls} mb-2">Estimated Budget (KES) <span class="text-red-400">*</span></label>
 
-        <!-- Package price anchor (shown when pkg provided) -->
         {#if pkg}
           <div class="mb-3 flex items-center gap-3 rounded-xl border border-green-500/25 bg-green-50/70 px-4 py-2.5 dark:border-green-400/20 dark:bg-green-400/8">
-            <svg class="h-4 w-4 shrink-0  dark:text-green-400" viewBox="0 0 16 16" fill="none">
+            <svg class="h-4 w-4 shrink-0 text-green-600 dark:text-green-400" viewBox="0 0 16 16" fill="none">
               <rect x="3" y="7" width="10" height="8" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
               <path d="M5 7V5a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
             </svg>
@@ -763,7 +737,7 @@
               <p class="text-xs font-bold text-green-700 dark:text-green-300">
                 {pkg.price}{pkg.priceUnit ? " " + pkg.priceUnit : ""}
               </p>
-              <p class="text-[10px] text-green-600 ">
+              <p class="text-[10px] text-green-600 dark:text-green-500">
                 Fixed price for the {pkg.planName} plan. Adjust the slider if your total budget differs.
               </p>
             </div>
@@ -771,7 +745,7 @@
         {/if}
 
         <div class="mb-3 flex items-baseline gap-1.5">
-          <span class="font-syne text-2xl font-extrabold tracking-tight  dark:text-green-400">
+          <span class="font-syne text-2xl font-extrabold tracking-tight text-gray-900 dark:text-green-400">
             {budgetLabel}
           </span>
           <span class="text-xs text-gray-400 dark:text-green-700">total budget</span>
@@ -789,7 +763,7 @@
 
       <!-- Timeline -->
       <div class="mb-4">
-        <label for="timeline" class="{labelCls} mb-2">Preferred Timeline <span class="">*</span></label>
+        <label class="{labelCls} mb-2">Preferred Timeline <span class="text-red-400">*</span></label>
         <div class="grid grid-cols-3 gap-2">
           {#each timelines as tl}
             <button type="button" onclick={() => (timeline = tl.val)}
@@ -821,7 +795,7 @@
 
     <!-- ── STEP 5 · REVIEW & SUBMIT ──────────────────────── -->
     {:else if currentStep === 4}
-      <p class="mb-4 font-instrument text-base italic  ">
+      <p class="mb-4 font-instrument text-base italic text-gray-500 dark:text-green-600">
         Review your request before sending.
       </p>
 
@@ -832,7 +806,7 @@
               ? 'bg-green-50 dark:bg-green-400/8'
               : i % 2 === 0 ? 'bg-white dark:bg-transparent' : 'bg-gray-50/60 dark:bg-green-400/3'}">
             <span class="w-28 shrink-0 pt-px text-[10px] font-bold uppercase tracking-wider
-              {key === 'Package' ? 'text-green-600 ' : 'text-gray-400 dark:text-green-700'}">
+              {key === 'Package' ? 'text-green-600 dark:text-green-400' : 'text-gray-400 dark:text-green-700'}">
               {key}
             </span>
             <span class="flex-1 wrap-break-word text-xs leading-relaxed
@@ -844,14 +818,13 @@
       </div>
 
       <!-- Terms checkbox -->
-     
+      <!-- svelte-ignore a11y_click_events_have_key_events -->
+      <!-- svelte-ignore a11y_no_static_element_interactions -->
       <div
-    
-
         class="flex cursor-pointer items-start gap-3 rounded-xl border border-green-500/20 bg-green-50/60 p-4 dark:border-green-400/15 dark:bg-green-400/6"
         onclick={() => (termsAccepted = !termsAccepted)}
       >
-        <div id="terms" class="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded border-2 transition-all
+        <div class="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded border-2 transition-all
           {termsAccepted
             ? 'border-green-500 bg-green-500 dark:border-green-400 dark:bg-green-400'
             : 'border-gray-300 dark:border-green-400/30'}">

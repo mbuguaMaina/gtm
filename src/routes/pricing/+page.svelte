@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Faq from "$lib/components/contact/faq.svelte";
+	import WhatsappBtn from "$lib/components/contact/whatsappBtn.svelte";
 	import Pricing from "$lib/components/Pricing.svelte";
 
 	// Dark mode state - can be controlled by parent component or global store
@@ -121,7 +122,7 @@
 
 <div  >
 	<!-- Hero Section -->
-	<section class="bg-gradient-to-br from-green-600 via-green-700 grid place-items-center h-[50dvh] to-green-900 py-20 text-white dark:from-green-800 dark:via-green-900 dark:to-gray-900">
+	<section class="bg-linear-to-br from-green-600 via-green-700 grid place-items-center h-auto to-green-900 pt-20 pb-5 md:py-20  text-white dark:from-green-800 dark:via-green-900 dark:to-gray-900">
 		<div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
 			<h1 class="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl">
 				Services That Drives Results
@@ -296,16 +297,13 @@
 				Let's create a marketing strategy that delivers real results for your brand.
 			</p>
 			<div class="flex flex-col justify-center gap-4 sm:flex-row">
-				<button
-					class="inline-block rounded-lg bg-white px-8 py-3 font-semibold text-green-600 transition hover:bg-green-50"
-				>
-					Schedule Free Consultation
-				</button>
+			 <WhatsappBtn />
 				<a
-					href="mailto:hello@ggmtechnologies.co.ke"
+				
+					href="mailto:ggmtechhub@gmail.com"
 					class="inline-block rounded-lg border-2 border-white bg-green-700 px-8 py-3 font-semibold text-white transition hover:bg-green-800 dark:bg-green-800 dark:hover:bg-green-900"
 				>
-					Contact Us
+					Mail Us
 				</a>
 			</div>
 			<p class="mt-6 text-sm text-green-200">

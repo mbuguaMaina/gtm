@@ -1,6 +1,7 @@
 <script lang="ts">
   import { ArrowRight, Calendar } from "@lucide/svelte";
-	import Button from "../ui/Button.svelte";
+ 
+	import WhatsappBtn from "../contact/whatsappBtn.svelte";
 </script>
 
 <section class="py-20 bg-linear-to-br from-[hsl(210,100%,36%)] to-[hsl(209,100%,18%)] text-[hsl(0,0%,100%)]">
@@ -18,20 +19,7 @@
 
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
         
-        <Button
-        onclick={()=> {
-let a = document.createElement("a");
-a.href = "https://wa.me/254700412990"
-a.target = "_blank"
-a.click()
-
-        }}
-          size="lg"
-          class="bg-[hsl(0,0%,100%)] text-[hsl(209,100%,18%)] hover:bg-[hsl(0,0%,100%)]/90 text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-        >
-          <Calendar class="mr-2 h-5 w-5" />
-          Schedule Free Consultation
-        </Button>
+        <WhatsappBtn />
 
         <button
           class="border-2 border-[hsl(0,0%,100%)] rounded text-[hsl(0,0%,100%)] hover:bg-[hsl(0,0%,100%)]/10 text-lg px-8 py-6 backdrop-blur-sm"

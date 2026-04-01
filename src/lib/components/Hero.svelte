@@ -76,7 +76,7 @@ const services = [
         Our Work <ArrowBigRight />
       </a>
 
-     <WebsiteAuditModal />
+     <WebsiteAuditModal  />
     </div>
 
     <!-- Stats -->

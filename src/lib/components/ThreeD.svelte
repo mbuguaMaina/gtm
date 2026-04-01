@@ -214,7 +214,7 @@
         scene.add(gltf.scene);
       } catch (e) {
         errMsg = 'Could not load model.';
-        console.error(e);
+        
         addFallback(THREE); // show fallback on error
       } finally {
         loading = false;
