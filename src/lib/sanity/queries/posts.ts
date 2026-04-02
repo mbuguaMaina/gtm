@@ -6,14 +6,12 @@ const postFields = `
   _createdAt,
   title,
   "slug": slug.current,
-  authors[] -> {
-  "authorPhoto":photo.asset->url,
+  author -> {
+  "image":photo.asset->url,
     _id,
     name,
     role,
     "slug": slug.current,
-     
-    bio
   },
   publishedDate,
   "mainImage": coverImage.asset->url,
@@ -41,9 +39,11 @@ const postFields = `
 const trancatedPostFields = `
   _id,
   title,
+  _createdAt,
   "slug": slug.current,
-  authors[] -> {
+  author -> {
     name,
+    "image": photo.asset->url
   },
   "mainImage": coverImage.asset->url,
   excerpt,
@@ -86,7 +86,7 @@ export async function getFeaturedPosts(limit = 3, preview = false) {
     excerpt,
     "mainImage": coverImage.asset->url,
     publishedDate,
-    "author": authors[0]->{
+    "author": author->{
       name,
       "image": photo.asset->url
     },

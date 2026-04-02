@@ -14,7 +14,7 @@ let {data}=$props()
 	const blogPosts = $derived(data.allPosts)
 
 	const featuredPost = $derived(data.featuredPosts[0])
- 
+ $inspect(featuredPost)
  
 	const categories:any[] = $derived(['all', ...new Set(blogPosts.category)]);
 
@@ -101,7 +101,7 @@ let {data}=$props()
 						</div>
 						<div>
 							<p class="text-sm font-semibold  ">{featuredPost.author?.name}</p>
-							<p class="text-xs  ">{Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(featuredPost._createdAt))} · {featuredPost.readTime || '5 min.'}</p>
+							<p class="text-xs  ">{Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(featuredPost._createdAt))} · {featuredPost.readingTime || '5 min.'}</p>
 						</div>
 					</div>
 					<a href="/articles/{featuredPost.slug}" class="inline-flex items-center text-green-600 font-semibold hover:text-green-800 transition">
@@ -150,11 +150,11 @@ let {data}=$props()
 						<div class="flex items-center justify-between pt-4 border-t border-accent/30">
 							<div class="flex items-center">
 								<div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center   text-xs font-semibold mr-2">
-									{post.authors?.[0].name.slice(0,1)}
+									{post.author?.name.slice(0,1)}
 								</div>
-								<span class="text-xs  ">{post.author}</span>
+								<span class="text-xs  ">{post.author?.name}</span>
 							</div>
-							<span class="text-xs  ">{post.date}</span>
+							<span class="text-xs  ">{post.publishedDate}</span>
 						</div>
 					</div>
 				</a>

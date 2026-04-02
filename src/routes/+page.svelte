@@ -18,9 +18,9 @@
  
 
 const meta = createMeta({
-  title: "GGM Technologies | Web Development & Digital Marketing Agency",
+  title: "GGM Technologies | Build. Grow. Scale.",
   description:
-    "GGM Technologies builds high-performing websites, web apps, and digital marketing strategies that help businesses grow and scale.",
+    "We build the digital infrastructure that drives real business growth — from high-performance websites and web apps to strategies that convert.",
   path: "/",
   keywords: ["digital marketing", "SEO", "web design", "web development", "e-commerce","SEM","social media marketing","content marketing"]
 })
@@ -45,7 +45,7 @@ const schemas = [
  variant="secondary"
         title="Ready to Transform Your Business?"
         description="Get a free consultation and discover how we can help you build a stunning e-commerce presence that converts visitors into customers."
-        buttonText="Get Free Consultation"
+      
         highlight="No commitment required"
    />
 
@@ -58,7 +58,7 @@ const schemas = [
  variant="primary"
         title="Don't Wait - Your Competitors Are Already Online"
         description="Every day without a professional e-commerce store is a day of lost sales. Let's build something amazing together."
-        buttonText="Start Your Project Today"
+       
         highlight="Free SEO audit included"
       />
       <Testimonies />
