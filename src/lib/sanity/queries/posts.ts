@@ -79,7 +79,7 @@ export async function getPostBySlug(slug: string, preview = false) {
 }
 
 export async function getFeaturedPosts(limit = 3, preview = false) {
-  const query = `*[_type == "post" && featured == true] [0...$limit] {
+  const query = `*[_type == "post" && featured == true] | order(_createdAt desc) [0...$limit] {
     _id,
     title,
     "slug": slug.current,

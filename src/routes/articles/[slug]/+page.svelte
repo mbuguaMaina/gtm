@@ -225,7 +225,7 @@ function formatDate(date: string) {
 
 let {data} = $props()
  const postData:any = $derived(data.post)
- $inspect(postData)
+ 
   const icons = [Twitter, Facebook, Linkedin]
 
 </script>

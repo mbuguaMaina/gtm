@@ -23,8 +23,7 @@ let {data}=$props()
 		selectedCategory === 'all' 
 			? blogPosts 
 			: blogPosts.filter((blogPosts:any) => blogPosts.category.toLowerCase() === selectedCategory.toLowerCase())
-	);
-$inspect(filteredPosts)
+	); 
 	// Functions
 	function selectCategory(category:any) {
 		selectedCategory = category.toLowerCase();
@@ -88,9 +87,9 @@ $inspect(filteredPosts)
 	<!-- Featured Post -->
 	<section class="container mx-auto px-6 -mt-16 mb-16">
 		<div class="bg-secondary rounded-2xl shadow-xl overflow-hidden">
-			<div class="md:flex">
+			<div class="md:flex ">
 				<div class="md:w-1/2">
-					<enhanced:img src={featuredPost.mainImage} alt="Featured" class="w-full h-full object-cover" />
+					<enhanced:img src={featuredPost.mainImage} alt="Featured" class="w-full max-h-125 h-full object-cover" />
 				</div>
 				<div class="md:w-1/2 p-8 md:p-12">
 					<span class="inline-block px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm font-semibold mb-4">Featured</span>
