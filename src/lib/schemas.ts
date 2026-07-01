@@ -2,12 +2,12 @@ export function OrganizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "AdvertisingAgency",
-    "@id": "https://www.ggmtechnologies.ac.ke/#organization",
+    "@id": "https://www.ggmtechnologies.co.ke/#organization",
     "name": "GGM Technologies",
-    "url": "https://www.ggmtechnologies.ac.ke",
-    "logo": "https://www.ggmtechnologies.ac.ke/logo.png",
+    "url": "https://www.ggmtechnologies.co.ke",
+    "logo": "https://www.ggmtechnologies.co.ke/logo.png",
     "description": "GGM Technologies is a digital marketing and technology agency specializing in SEO, branding, website development, and digital growth strategies.",
-    "email": "info@ggmtechnologies.ac.ke",
+    "email": "info@ggmtechnologies.co.ke",
     "telephone": "+254700412990",
     "foundingDate": "2024",
     "address": {
@@ -27,15 +27,15 @@ export function WebsiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://www.ggmtechnologies.ac.ke/#website",
-    "url": "https://www.ggmtechnologies.ac.ke",
+    "@id": "https://www.ggmtechnologies.co.ke/#website",
+    "url": "https://www.ggmtechnologies.co.ke",
     "name": "GGM Technologies",
     "publisher": {
-      "@id": "https://www.ggmtechnologies.ac.ke/#organization"
+      "@id": "https://www.ggmtechnologies.co.ke/#organization"
     },
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://www.ggmtechnologies.ac.ke/search?q={search_term_string}",
+      "target": "https://www.ggmtechnologies.co.ke/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   }
@@ -57,10 +57,10 @@ export function WebPageSchema({
     "name": title,
     "description": description,
     "isPartOf": {
-      "@id": "https://www.ggmtechnologies.ac.ke/#website"
+      "@id": "https://www.ggmtechnologies.co.ke/#website"
     },
     "about": {
-      "@id": "https://www.ggmtechnologies.ac.ke/#organization"
+      "@id": "https://www.ggmtechnologies.co.ke/#organization"
     }
   }
 }
@@ -93,7 +93,7 @@ export function ServiceSchema({
     "description": description,
     "url": url,
     "provider": {
-      "@id": "https://www.ggmtechnologies.ac.ke/#organization"
+      "@id": "https://www.ggmtechnologies.co.ke/#organization"
     },
     "areaServed": {
       "@type": "Country",
@@ -145,7 +145,7 @@ export function ArticleSchema({
       "name": "GGM Technologies"
     },
     "publisher": {
-      "@id": "https://www.ggmtechnologies.ac.ke/#organization"
+      "@id": "https://www.ggmtechnologies.co.ke/#organization"
     },
     "mainEntityOfPage": url
   }

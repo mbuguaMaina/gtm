@@ -3,18 +3,110 @@
 	import { ServiceSchema, WebPageSchema } from "$lib/schemas";
 	import SEO from "$lib/SEO.svelte";
 	import {   MenuIcon } from "@lucide/svelte";
-	import { onMount } from "svelte";
+ 
 
  import { page } from "$app/state";
 	import ProjectModal from "$lib/components/ProjectModal.svelte";
 	import { fullservices, pages } from "$lib";
 
 const meta = createMeta({
-  title: "Digital Marketing and Web Development Services in Kenya | GGM Technologies",
+  title:
+    "Digital Marketing & Web Development Services in Kenya | GGM Technologies",
+
   description:
-    "Professional digital marketing services in Kenya to help businesses rank higher on Google. We offer SEO, social media marketing, Web Development, and more.",
+    "GGM Technologies provides professional digital marketing and web development services in Kenya including SEO, social media marketing, web design, e-commerce development, branding, and scalable business solutions.",
+
   path: "/services",
-  keywords: ["Digital Marketing services", "Web development services", "GGM Technologies", "Digital Marketing services"]
+
+  image: "/images/services-og.jpg",
+
+  keywords: [
+    // Brand
+    "GGM Technologies",
+    "ggmtechnologies",
+
+    // Core Services
+    "digital marketing services",
+    "web development services",
+    "web design services",
+    "website development",
+    "custom web applications",
+    "business website design",
+    "responsive web design",
+
+    // SEO
+    "SEO services Kenya",
+    "SEO agency Kenya",
+    "technical SEO",
+    "local SEO Kenya",
+    "Google ranking services",
+
+    // Marketing
+    "social media marketing",
+    "SEM services",
+    "content marketing",
+    "email marketing",
+    "online advertising",
+    "Google Ads management",
+
+    // E-commerce
+    "e-commerce development",
+    "online store development",
+    "Shopify development",
+    "WooCommerce development",
+
+    // Location SEO
+    "digital marketing Kenya",
+    "web development Kenya",
+    "web design Nairobi",
+    "SEO Nairobi",
+    "Kenya web developers",
+    "Nairobi digital agency",
+  ],
+
+  openGraph: {
+    title:
+      "Digital Marketing & Web Development Services in Kenya | GGM Technologies",
+
+    description:
+      "SEO, web development, branding, social media marketing, and scalable digital solutions for businesses in Kenya.",
+
+    url: "https://ggmtechnologies.co.ke/services",
+
+    siteName: "GGM Technologies",
+
+    images: [
+      {
+        url: "https://ggmtechnologies.co.ke/images/services-og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "GGM Technologies Services",
+      },
+    ],
+
+    locale: "en_KE",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+
+    title:
+      "Digital Marketing & Web Development Services in Kenya | GGM Technologies",
+
+    description:
+      "Professional SEO, web development, and digital marketing services for growing businesses.",
+
+    images: [
+      "https://ggmtechnologies.co.ke/images/services-og.jpg",
+    ],
+
+    creator: "@ggmtechnologies",
+  },
+
+  alternates: {
+    canonical: "https://ggmtechnologies.co.ke/services",
+  },
 })
 
 const schemas = [
@@ -30,8 +122,8 @@ const schemas = [
   })
 ]
 let activePage = $state("seo-optimization");
- onMount(() => {
-  const tag = page.url.searchParams.get("tag");
+ let tag = $derived(page.url.searchParams.get("tag"));
+ $effect(() => {
   if (tag ) {
     activePage = tag;
   }

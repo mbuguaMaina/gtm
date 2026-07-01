@@ -6,7 +6,7 @@
   const stats = [
     {
       icon: UsersOutline,
-      value: 50,
+      value: 5,
       label: "Happy Clients",
       suffix:"+"
       

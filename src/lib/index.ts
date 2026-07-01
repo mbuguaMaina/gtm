@@ -35,13 +35,12 @@ export const packages = [
     description: "A clean personal site to showcase your work and get noticed",
     features: [
       "Domain name registration",
-      "SSL certificate",
+      "Free SSL certificate",
       "Up to 5 pages (Home, About, Portfolio, Services, Contact)",
       "Mobile-responsive design",
-      "Contact form integration",
       "Basic SEO setup",
       "Social media links",
-      "3 days of support",
+      "7 days of support",
     ],
     popular: false,
   },
@@ -53,10 +52,9 @@ export const packages = [
       "Everything in Portfolio",
       "Custom e-commerce website design",
       "Product catalog setup",
-      "Payment gateway integration (M-Pesa, PayHero, etc.)",
       "Website hosting",
+      "WhatsApp integration",
       "Basic SEO optimization",
-      "7 days of support",
     ],
     popular: false,
   },
@@ -68,7 +66,7 @@ export const packages = [
       "Everything in Launchpad",
       "Advanced SEO & content strategy",
       "Google Analytics & tracking",
-      "Blog setup & content guidance",
+      "Blog setup ",
       "Performance optimization",
       "14 days of support",
     ],
@@ -155,40 +153,40 @@ export const fullservices: any = {
       tag: "SEO Optimization",
       title: "SEARCH ENGINE Optimisation",
       description:
-        "Rank higher on Google and attract customers who are already searching for your services. We use technical SEO, keyword strategy, content optimization, and backlink building to grow your organic traffic steadily and reduce dependency on paid ads.",
+        "Most businesses rely on paid ads to survive — we help you build something better. Our SEO service makes your website the answer Google shows when your ideal customers are already searching for what you offer. Through technical improvements, smart keyword targeting, content that earns trust, and backlinks that signal authority, we grow your organic traffic steadily — so you're not paying for every click forever.",
       stats: [
-        { value: "3X", label: "Avg Traffic Growth" },
-        { value: "6mo", label: "To see results" },
-        { value: "40%", label: "Lower cost vs ads" }
+        { value: "3X", label: "Average Traffic Growth in 6 Months" },
+        { value: "6mo", label: "Typical Time to Visible Results" },
+        { value: "40%", label: "Lower Customer Acquisition Cost vs Paid Ads" }
       ]
     },
     what: {
-      title: "We make Google work for you.",
+      title: "We make Google work for you — not your competitors.",
       text:
-        "SEO improves your website structure, content, and authority so it ranks higher on search engines and brings consistent long-term traffic.",
+        "Search engine optimization isn't about tricks or shortcuts. It's about making your website genuinely easier for Google to understand, trust, and recommend. We audit what's holding you back, fix the technical issues that suppress your rankings, build out content around the exact terms your customers search, and earn backlinks that position you as an authority in your industry. The result is compounding, long-term traffic that doesn't disappear when your ad budget runs out.",
       steps: [
-        "Audit & Research",
-        "On Page SEO",
-        "Technical SEO",
-        "Backlinks",
-        "Reporting"
+        "Audit & Research — We map your current rankings, find technical issues, and identify keyword opportunities your competitors are missing.",
+        "On-Page SEO — Every page gets optimised: titles, headings, meta descriptions, internal links, and content structure.",
+        "Technical SEO — We fix crawl errors, improve site speed, ensure mobile compatibility, and clean up your site architecture.",
+        "Backlink Building — We build high-quality links from relevant, authoritative sites that signal trust to Google.",
+        "Monthly Reporting — You receive clear, jargon-free reports showing traffic growth, keyword movements, and what we're working on next."
       ]
     },
     deliverables: {
       title: "WHAT YOU GET",
       items: [
-        "Keyword Strategy",
-        "Optimised Pages",
-        "Technical Fixes",
-        "Backlinks",
-        "Local SEO",
-        "Reports"
+        "Keyword Strategy — A prioritised map of the search terms most likely to bring qualified traffic to your business.",
+        "Optimised Pages — Updated and improved page copy, metadata, and structure across your key landing pages.",
+        "Technical Fixes — Resolved site speed issues, broken links, crawl errors, and mobile responsiveness problems.",
+        "Backlinks — Legitimate, relevant links built over time that increase your domain authority.",
+        "Local SEO — Google Business Profile optimisation and local keyword targeting for businesses serving a specific area.",
+        "Monthly Reports — Transparent breakdowns of traffic, rankings, and progress every single month."
       ]
     },
     pricing: {
       title: "PRICING",
       plans: [
-        { name: "Growth", price: "KES 5,000", highlight: true },
+        { name: "Growth", price: "KES 5,000", highlight: true }
       ]
     }
   },
@@ -198,40 +196,40 @@ export const fullservices: any = {
       tag: "Ads & PPC",
       title: "Paid Ads Campaigns",
       description:
-        "Launch high-converting ad campaigns on Google, Facebook, Instagram, and TikTok. We handle audience targeting, creatives, tracking, and optimization to ensure every shilling spent on ads generates measurable results.",
+        "Running ads without a strategy is just burning money. We build and manage paid ad campaigns on Google, Facebook, Instagram, and TikTok that are engineered to convert — not just get impressions. From audience research and creative production to pixel tracking and continuous optimisation, we make sure every shilling you spend is working toward a measurable return.",
       stats: [
-        { value: "2X", label: "Avg ROI" },
-        { value: "7d", label: "Setup time" },
-        { value: "Fast", label: "Results" }
+        { value: "2X", label: "Average Return on Ad Spend" },
+        { value: "7d", label: "From Brief to Live Campaign" },
+        { value: "Real", label: "Leads, Not Just Clicks" }
       ]
     },
     what: {
-      title: "Ads focused on ROI",
+      title: "Ads that pay for themselves.",
       text:
-        "We create, test, and optimize campaigns that bring real leads and sales instead of wasted ad spend.",
+        "Most businesses waste their ad budgets because they're targeting the wrong people, showing the wrong message, or sending traffic to pages that don't convert. We fix all three. We start with deep audience research to understand exactly who you're reaching and why they should care. Then we build campaigns with compelling creative, sharp copy, and precise targeting — and we track everything from first click to final sale. Once the data is in, we continuously test and optimise so your cost per lead keeps coming down as your results improve.",
       steps: [
-        "Audience Research",
-        "Creative Design",
-        "Campaign Setup",
-        "Tracking",
-        "Optimization"
+        "Audience Research — We define who your best customers are and how to reach them with surgical precision.",
+        "Creative Design — Scroll-stopping visuals and ad copy written to speak directly to your target audience.",
+        "Campaign Setup — Full build of your ad account, campaigns, ad sets, budgets, and targeting parameters.",
+        "Pixel & Conversion Tracking — We set up proper tracking so you know exactly which ads are driving sales.",
+        "Optimisation — Ongoing testing and refinement based on real performance data, not guesswork."
       ]
     },
     deliverables: {
       title: "WHAT YOU GET",
       items: [
-        "Ad Account Setup",
-        "Campaign Build",
-        "Pixel Tracking",
-        "A/B Testing",
-        "Reports",
-        "Scaling"
+        "Ad Account Setup — A properly structured account from scratch, or a full audit and clean-up of your existing one.",
+        "Campaign Build — Complete campaigns built with the right structure, audiences, placements, and bidding strategy.",
+        "Pixel & Conversion Tracking — Accurate tracking of leads, purchases, calls, and other key actions.",
+        "A/B Testing — Ongoing creative and audience tests that reveal what resonates and what to cut.",
+        "Weekly or Monthly Reports — Clear performance summaries with spend, results, cost-per-lead, and recommendations.",
+        "Scaling Strategy — A roadmap for increasing budget as performance improves, without losing efficiency."
       ]
     },
     pricing: {
       title: "PRICING",
       plans: [
-        { name: "Growth", price: "KES 25,000", highlight: true },
+        { name: "Growth", price: "KES 25,000", highlight: true }
       ]
     }
   },
@@ -241,42 +239,40 @@ export const fullservices: any = {
       tag: "Social Media",
       title: "Social Media Management",
       description:
-        "Build a strong online presence with consistent, professional content. We manage your social media pages, create engaging posts, reply to messages, and grow your audience so your brand stays active and trusted.",
+        "Inconsistent posting, generic content, and unanswered DMs are silently costing you customers. We take full ownership of your social media presence — creating professional content, maintaining a consistent posting schedule, engaging your audience, and growing your following — so your brand looks credible and stays top of mind, every single day.",
       stats: [
-        { value: "Daily", label: "Posting" },
-        { value: "3X", label: "Engagement" },
-        { value: "Pro", label: "Design" }
+        { value: "Daily", label: "Content Published on Your Behalf" },
+        { value: "3X", label: "Higher Engagement With Strategic Content" },
+        { value: "Pro", label: "Design Quality, Every Post" }
       ]
     },
     what: {
-      title: "Build authority online",
+      title: "Your brand, showing up every day — professionally.",
       text:
-        "We plan, design, and publish content that grows your brand, increases engagement, and builds trust with your audience.",
+        "Social media isn't optional anymore. It's often the first place a potential customer checks before deciding whether to trust you. We build a content strategy around your business goals, create visually consistent posts that reflect your brand, write captions that actually encourage engagement, and manage your community so no message goes unanswered. You stay focused on running your business while we make sure your audience never forgets you exist.",
       steps: [
-        "Content Plan",
-        "Design",
-        "Posting",
-        "Community",
-        "Reports"
+        "Content Strategy — We define your brand voice, target audience, content pillars, and posting frequency.",
+        "Design & Creative — Every post is designed to professional standards with your brand colours, fonts, and style.",
+        "Scheduling & Posting — Content is planned in advance and published at optimal times for maximum reach.",
+        "Community Management — We reply to comments and DMs, keeping your audience engaged and your reputation intact.",
+        "Monthly Analytics — We review what's working, what's not, and adjust the strategy accordingly."
       ]
     },
     deliverables: {
       title: "WHAT YOU GET",
       items: [
-        "Content Calendar",
-        "Post Design",
-        "Captions",
-        "Hashtags",
-        "DM Replies",
-        "Analytics"
+        "Monthly Content Calendar — A planned schedule of posts across platforms, approved by you in advance.",
+        "Custom Post Designs — Professionally designed graphics and visuals tailored to your brand identity.",
+        "Captions & Copy — Engaging, on-brand text written for each post with clear calls to action.",
+        "Hashtag Research — Strategic hashtag sets that expand your reach to the right audiences.",
+        "DM & Comment Replies — Timely responses that keep your audience engaged and inquiries converted.",
+        "Monthly Performance Report — A clear breakdown of reach, engagement, follower growth, and top-performing content."
       ]
     },
     pricing: {
       title: "PRICING",
       plans: [
-       
-        { name: "Growth", price: "KES 20,000", highlight: true },
-         
+        { name: "Growth", price: "KES 20,000", highlight: true }
       ]
     }
   },
@@ -284,44 +280,42 @@ export const fullservices: any = {
   "ui-ux-design": {
     hero: {
       tag: "UI / UX",
-      title: "Website Design",
+      title: "Website & Interface Design",
       description:
-        "Modern, clean, and conversion-focused designs that make your brand look professional. We design interfaces that are easy to use, visually appealing, and built to guide users toward taking action.",
+        "A beautiful website that confuses visitors doesn't convert. We design interfaces that are clean, modern, and deliberately structured to guide users toward taking action — whether that's booking a call, making a purchase, or submitting an enquiry. Every design decision we make is rooted in how real people actually use websites, not just what looks good in a mockup.",
       stats: [
-        { value: "UI", label: "Modern" },
-        { value: "UX", label: "Optimised" },
-        { value: "Fast", label: "Delivery" }
+        { value: "Modern", label: "UI That Builds Immediate Trust" },
+        { value: "UX", label: "Designed Around User Behaviour" },
+        { value: "Fast", label: "From Concept to Handoff" }
       ]
     },
     what: {
-      title: "Design that converts",
+      title: "Design that earns trust and drives action.",
       text:
-        "We create user-friendly layouts and professional visuals that improve usability and increase conversions.",
+        "Most websites lose potential customers within seconds — not because of bad products, but because of confusing layouts, slow load times, or designs that feel unprofessional. We solve this with a structured design process: starting from how your users think and behave, building wireframes to lock in layout logic, then designing a polished, on-brand interface ready for development. We work across both desktop and mobile, ensuring a consistent experience wherever your customers find you.",
       steps: [
-        "Wireframe",
-        "UI Design",
-        "Prototype",
-        "Review",
-        "Export"
+        "Discovery & Wireframing — We map user journeys and sketch low-fidelity layouts before any design work begins.",
+        "UI Design — High-fidelity screens built in Figma with precise attention to typography, colour, and spacing.",
+        "Prototype — Interactive prototypes that simulate real navigation and reveal usability issues before development.",
+        "Client Review — Structured feedback rounds to refine the design until it's exactly right.",
+        "Asset Export — Developer-ready files, UI kits, and style guides handed off cleanly for a smooth build."
       ]
     },
     deliverables: {
       title: "WHAT YOU GET",
       items: [
-        "Figma Design",
-        "Mobile Layout",
-        "Desktop Layout",
-        "UI Kit",
-        "Icons",
-        "Assets"
+        "Figma Design Files — Complete, editable design files organised for easy handoff to any developer.",
+        "Mobile Layout — Fully designed responsive layouts for all common mobile screen sizes.",
+        "Desktop Layout — Optimised desktop designs that take full advantage of larger screen real estate.",
+        "UI Component Kit — A reusable library of buttons, forms, cards, and elements for future consistency.",
+        "Icons & Illustrations — Custom or curated icon sets that match your brand's visual language.",
+        "Exported Assets — All images, icons, and graphics exported in the right formats for web use."
       ]
     },
     pricing: {
       title: "PRICING",
       plans: [
-      
-        { name: "Growth", price: "KES 30,000", highlight: true },
-      
+        { name: "Growth", price: "KES 30,000", highlight: true }
       ]
     }
   },
@@ -331,87 +325,83 @@ export const fullservices: any = {
       tag: "Web Development",
       title: "Web Development",
       description:
-        "We build fast, secure, and scalable websites and web applications using modern technologies. From business websites to dashboards and full platforms, our development focuses on performance, SEO, and long-term reliability.",
+        "Your website is your most important sales asset — it needs to be fast, reliable, and built to grow with your business. We develop websites and web applications using modern technologies that prioritise performance, security, and SEO from the ground up. Whether you need a business website, a customer portal, or a full web platform, we build it properly so it doesn't need to be rebuilt in two years.",
       stats: [
-        { value: "Fast", label: "Performance" },
-        { value: "Secure", label: "Code" },
-        { value: "SEO", label: "Ready" }
+        { value: "Fast", label: "Optimised for Speed & Core Web Vitals" },
+        { value: "Secure", label: "Clean, Maintainable Codebase" },
+        { value: "SEO", label: "Built in From Line One" }
       ]
     },
     what: {
-      title: "Built for scale",
+      title: "Built properly. Built to last.",
       text:
-        "Our development process ensures your website works smoothly, loads fast, and can grow with your business.",
+        "Many businesses end up with websites that look fine but perform terribly — slow load times, poor mobile experience, no search visibility, and a codebase nobody can maintain. We prevent this by treating development as an engineering problem, not just a production task. We plan architecture carefully, write clean and documented code, test across devices and browsers before anything goes live, and deploy on infrastructure that can handle real traffic. The result is a website that works as hard as you do.",
       steps: [
-        "Planning",
-        "Frontend",
-        "Backend",
-        "Testing",
-        "Deploy"
+        "Discovery & Planning — We define your goals, map user flows, choose the right technology stack, and build a delivery timeline.",
+        "Frontend Development — Pixel-perfect implementation of your design across all devices, with attention to performance and accessibility.",
+        "Backend Development — Server logic, databases, APIs, and integrations built for reliability and scale.",
+        "Testing & QA — Thorough testing across browsers, devices, and user scenarios before anything goes live.",
+        "Deployment & Handover — We deploy to a production environment and provide full documentation for ongoing management."
       ]
     },
     deliverables: {
       title: "WHAT YOU GET",
       items: [
-        "Website",
-        "Dashboard",
-        "API",
-        "Authentication",
-        "CMS",
-        "Deployment"
+        "Full Website — A complete, live website built to spec and optimised for performance and SEO.",
+        "Admin Dashboard — A custom backend interface for managing content, users, orders, or data — built for non-technical users.",
+        "API Development — Custom APIs that connect your website to third-party tools, payment gateways, or internal systems.",
+        "User Authentication — Secure login, registration, and access control for websites with member areas or client portals.",
+        "CMS Integration — A content management system so your team can update text, images, and pages without developer help.",
+        "Deployment & Hosting Setup — Your site deployed on fast, secure infrastructure with SSL, backups, and monitoring configured."
       ]
     },
     pricing: {
       title: "PRICING",
       plans: [
-        
-        { name: "Growth", price: "KES 30,000", highlight: true },
-    
+        { name: "Growth", price: "KES 30,000", highlight: true }
       ]
     }
   },
 
   "maintenance-support": {
     hero: {
-      tag: "Maintenance",
-      title: "Maintenance & Support",
+      tag: "Maintenance & Support",
+      title: "Website Maintenance & Support",
       description:
-        "Keep your website secure, updated, and running smoothly. We monitor performance, fix bugs, apply updates, and ensure your system stays fast, safe, and reliable at all times.",
+        "A website isn't a one-time project — it's an ongoing system that needs to be kept updated, secure, and performing well. We handle everything that happens after launch: monitoring for downtime, applying software updates, running security scans, fixing bugs, and optimising speed — so your website stays in top condition without you having to think about it.",
       stats: [
-        { value: "24/7", label: "Support" },
-        { value: "Secure", label: "Updates" },
-        { value: "Fast", label: "Fixes" }
+        { value: "24/7", label: "Uptime Monitoring & Alerts" },
+        { value: "Proactive", label: "Security Updates Before Issues Arise" },
+        { value: "Fast", label: "Bug Fixes With Clear Turnaround Times" }
       ]
     },
     what: {
-      title: "We keep things running",
+      title: "We keep things running — so you can keep things growing.",
       text:
-        "We handle updates, backups, and technical issues so you can focus on running your business.",
+        "Most website problems don't announce themselves in advance. Plugins go out of date and create security vulnerabilities. Hosting configurations drift. Page speed degrades as content builds up. Small bugs compound into bigger ones. We prevent all of this through proactive monitoring and regular maintenance, and when something does go wrong, you have a team that knows your website and can resolve it quickly — not a support ticket queue that takes days to respond.",
       steps: [
-        "Monitoring",
-        "Updates",
-        "Backups",
-        "Fixes",
-        "Reports"
+        "Uptime Monitoring — We track your website around the clock and alert you immediately if anything goes down.",
+        "Software & Plugin Updates — Core systems, plugins, and frameworks are kept current to prevent security vulnerabilities.",
+        "Automated Backups — Your website and database are backed up regularly so we can restore quickly in any scenario.",
+        "Bug Fixes & Changes — Ongoing issues and minor content updates resolved with agreed turnaround times.",
+        "Monthly Reports — A clear summary of everything we did, your uptime stats, and the current health of your site."
       ]
     },
     deliverables: {
       title: "WHAT YOU GET",
       items: [
-        "Bug Fixes",
-        "Updates",
-        "Backups",
-        "Security",
-        "Speed",
-        "Support"
+        "Bug Fixes — Fast resolution of technical issues as they arise, with transparent communication throughout.",
+        "Software Updates — Regular updates to your CMS, plugins, themes, and server configuration.",
+        "Automated Backups — Scheduled backups stored securely off-site so your data is never at risk.",
+        "Security Monitoring — Active scanning for malware, vulnerabilities, and suspicious activity.",
+        "Performance Optimisation — Ongoing checks on page speed, image compression, and caching to keep your site fast.",
+        "Priority Support — Direct access to a team that already knows your website and can act immediately when you need help."
       ]
     },
     pricing: {
       title: "PRICING",
       plans: [
- 
-        { name: "Growth", price: "KES 10,000", highlight: true },
-     
+        { name: "Growth", price: "KES 10,000", highlight: true }
       ]
     }
   }

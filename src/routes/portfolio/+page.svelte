@@ -7,11 +7,94 @@
  
   import { ArrowRight, ExternalLink } from "@lucide/svelte";
 const meta = createMeta({
-  title: "Portfolio | GGM Technologies",
+  title:
+    "Portfolio | Web Design, SEO & Software Projects | GGM Technologies",
+
   description:
-    "A showcase of GGM Technologies' projects, featuring web design, e-commerce, mobile apps, and custom development.",
+    "Explore the GGM Technologies portfolio featuring modern websites, e-commerce platforms, custom web applications, branding, SEO projects, and scalable digital solutions for businesses in Kenya and beyond.",
+
   path: "/portfolio",
-  keywords: ["Portfolio", "GGM Technologies", "Web Design", "E-Commerce", "Mobile App", "Custom Development"]
+
+  image: "/images/portfolio-og.jpg",
+
+  keywords: [
+    // Brand
+    "GGM Technologies",
+    "GGM portfolio",
+
+    // Portfolio Keywords
+    "web design portfolio",
+    "web development portfolio",
+    "SEO portfolio",
+    "digital marketing portfolio",
+    "software development projects",
+    "website projects",
+
+    // Services
+    "custom web applications",
+    "e-commerce development",
+    "responsive website design",
+    "mobile app development",
+    "branding projects",
+    "UI UX design",
+
+    // Industry Keywords
+    "business websites",
+    "startup websites",
+    "corporate websites",
+    "online store development",
+
+    // Location SEO
+    "web developers Kenya",
+    "web design Kenya",
+    "SEO Kenya",
+    "Nairobi web agency",
+    "Kenya software company",
+  ],
+
+  openGraph: {
+    title:
+      "Portfolio | Web Design, SEO & Software Projects | GGM Technologies",
+
+    description:
+      "See our latest web development, SEO, branding, and digital transformation projects for modern businesses.",
+
+    url: "https://ggmtechnologies.co.ke/portfolio",
+
+    siteName: "GGM Technologies",
+
+    images: [
+      {
+        url: "https://ggmtechnologies.co.ke/images/portfolio-og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "GGM Technologies Portfolio",
+      },
+    ],
+
+    locale: "en_KE",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+
+    title:
+      "Portfolio | Web Design, SEO & Software Projects | GGM Technologies",
+
+    description:
+      "Explore websites, e-commerce platforms, branding, SEO, and software solutions built by GGM Technologies.",
+
+    images: [
+      "https://ggmtechnologies.co.ke/images/portfolio-og.jpg",
+    ],
+
+    creator: "@ggmtechnologies",
+  },
+
+  alternates: {
+    canonical: "https://ggmtechnologies.co.ke/portfolio",
+  },
 })
 const schemas = [
   WebPageSchema({

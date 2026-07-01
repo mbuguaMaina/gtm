@@ -122,14 +122,14 @@
 
 <div  >
 	<!-- Hero Section -->
-	<section class="bg-linear-to-br from-green-600 via-green-700 grid place-items-center h-auto to-green-900 pt-20 pb-5 md:py-20  text-white dark:from-green-800 dark:via-green-900 dark:to-gray-900">
+	<section class=" grid place-items-center h-auto  pt-20 pb-5 md:py-20  text-foreground">
 		<div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
 			<h1 class="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl">
-				Services That Drives Results
+				Prices for Everyone
 			</h1>
 
-            <h2 class="mb-2 text-2xl font-semibold md:text-4xl">Transparent pricing</h2> 
-			<p class="mx-auto mb-8 max-w-3xl text-xl text-green-100 md:text-2xl">
+            <h2 class="mb-2 text-2xl font-medium md:text-4xl">Transparent pricing</h2> 
+			<p class="mx-auto mb-8 max-w-3xl text-lg text-foreground/50 md:text-xl">
 		  No hidden fees, no surprises—just growth.
 			</p>
 
@@ -290,7 +290,7 @@
 	</section>
 
 	<!-- CTA Section -->
-	<section class="bg-gradient-to-r from-green-600 to-green-800 py-16 text-white dark:from-green-700 dark:to-green-900">
+	<section class=" py-16 text-foreground">
 		<div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
 			<h2 class="mb-4 text-3xl font-bold md:text-4xl">Ready to Grow Your Business?</h2>
 			<p class="mb-8 text-xl text-green-100">
@@ -301,12 +301,12 @@
 				<a
 				
 					href="mailto:ggmtechhub@gmail.com"
-					class="inline-block rounded-lg border-2 border-white bg-green-700 px-8 py-3 font-semibold text-white transition hover:bg-green-800 dark:bg-green-800 dark:hover:bg-green-900"
+					class="inline-block rounded-lg border-2  px-8 py-3 font-semibold text-white transition"
 				>
 					Mail Us
 				</a>
 			</div>
-			<p class="mt-6 text-sm text-green-200">
+			<p class="mt-6 text-sm text-foreground/70">
 				No commitment required • Free marketing audit • Custom strategy proposal
 			</p>
 		</div>

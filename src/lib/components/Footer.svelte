@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Mail, Phone, MapPin } from "@lucide/svelte";
 	import ProjectModal from "./ProjectModal.svelte";
+	import { services } from "$lib";
  
  
   let {openModal = $bindable(false)}:{openModal:boolean} = $props();
@@ -13,7 +14,8 @@
       <div class="col-span-1 md:col-span-2">
         <h3 class="text-2xl font-bold mb-4">GGM Technologies</h3>
         <p class="text-white mb-6 max-w-md">
-      Building digital experiences that drive growth. Your trusted partner for web development, SEO, and digital marketing in Kenya.
+     Helping Kenyan businesses move from ideas to impact with modern websites, smart SEO strategies, and results-driven digital marketing. GGM Technologies
+ creates fast, scalable, and user-focused digital experiences designed to increase visibility, improve credibility, and accelerate business growth in today’s competitive digital world.
         </p>
         <!-- <Button onclick={() => openModal = !openModal} class="bg-[#22c55e] text-zinc-100"  size="lg">
           Start Your Project
@@ -24,10 +26,10 @@
       <div>
         <h4 class="font-semibold mb-4">Services</h4>
         <ul class="space-y-2 text-white">
-          <li> Web Design & Development</li>
-          <li> E-commerce Solutions</li>
-          <li> SEO & Content</li>
-          <li> Social Media Advertising</li>
+        {#each services as service}
+          <li> <a href="/services?tag={service.tag}">{service.title}</a></li>
+        {/each}
+       
         </ul>
       </div>
 <div>

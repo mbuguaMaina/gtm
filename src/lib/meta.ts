@@ -1,18 +1,55 @@
 import { SEO } from "./config.js"
 
-export function createMeta({
+type CreateMetaProps = {
+  title: string
+  description: string
+  path?: string
+  image?: string
+  keywords: string[]
+
+  openGraph?: {
+    title?: string
+    description?: string
+    url?: string
+    siteName?: string
+    images?: {
+      url: string
+      width?: number
+      height?: number
+      alt?: string
+    }[]
+    locale?: string
+    type?: string
+  }
+
+  twitter?: {
+    card?: string
+    title?: string
+    description?: string
+    images?: string[]
+    creator?: string
+  }
+
+  robots?: {
+    index?: boolean
+    follow?: boolean
+  }
+
+  alternates?: {
+    canonical?: string
+  }
+
+  [key: string]: any
+}
+
+export function createMeta<T extends CreateMetaProps>({
   title,
   description,
   path = "",
   image = "/og.jpg",
-  keywords 
-}:{
-  title: string,
-  description: string,
-  path?: string,
-  image?: string,
-  keywords: string[]
-}) {
+  keywords,
+  ...rest
+}: T) {
   const url = SEO.siteUrl + path
 
   return {
@@ -20,6 +57,7 @@ export function createMeta({
     description,
     url,
     image: SEO.siteUrl + image,
-    keywords: keywords.join(", ")
+    keywords: keywords.join(", "),
+    ...rest,
   }
 }
